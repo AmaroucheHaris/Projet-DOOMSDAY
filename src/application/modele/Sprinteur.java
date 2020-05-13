@@ -1,4 +1,4 @@
-package modele;
+package application.modele;
 
 public class Sprinteur extends Zombie{
 

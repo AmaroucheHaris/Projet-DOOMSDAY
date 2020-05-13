@@ -1,4 +1,4 @@
-package modele;
+package application.modele;
 
 public abstract class Zombie {
 	private double pv;

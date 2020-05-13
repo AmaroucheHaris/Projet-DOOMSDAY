@@ -1,4 +1,4 @@
-package modele;
+package application.modele;
 
 public class Kamikaze extends Zombie{
 

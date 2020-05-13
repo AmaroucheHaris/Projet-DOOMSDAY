@@ -1,4 +1,4 @@
-package modele;
+package application.modele;
 
 public class Blesses extends Zombie{
 	
