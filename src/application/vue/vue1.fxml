@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.TilePane?>
 
-<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controleur.ControleurMap">
+<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controleur.ControleurMap">
    <center>
-      <TilePane fx:id="pane" prefHeight="704.0" prefWidth="960.0" BorderPane.alignment="CENTER" />
+      <Pane fx:id="paneCentrale">
+         <children>
+            <TilePane fx:id="Tpane" prefHeight="704.0" prefWidth="960.0" BorderPane.alignment="CENTER" />
+         </children>
+      </Pane>
    </center>
 </BorderPane>
