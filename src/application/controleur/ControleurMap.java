@@ -2,7 +2,6 @@ package application.controleur;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.net.URL;
 import java.util.ResourceBundle;
 
