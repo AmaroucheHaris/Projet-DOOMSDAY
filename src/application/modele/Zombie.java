@@ -1,17 +1,18 @@
 package application.modele;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+
 public abstract class Zombie {
 	private double pv;
 	private int vitesse;
-	private int x;
-	private int y;
+	private IntegerProperty x,y;
 	
 	public Zombie (int x, int y) {
+		this.x = new SimpleIntegerProperty(x);
+		this.y = new SimpleIntegerProperty(y);
 		this.pv = 0;
 		this.vitesse = 0;
-		this.x = x;
-		this.y = y;
-
 	}
 
 	public double getPv() {
@@ -23,19 +24,27 @@ public abstract class Zombie {
 	}
 
 	public int getX() {
-		return x;
+		return x.getValue();
+	}
+	
+	public IntegerProperty getXProperty() {
+		return this.x;
 	}
 
 	public void setX(int x) {
-		this.x = x;
+		this.x.setValue(x);
 	}
 
-	public int getY() {
-		return y;
+	public double getY() {
+		return y.getValue();
+	}
+	
+	public IntegerProperty getYProperty() {
+		return this.y;
 	}
 
-	public void setY(int y) {
-		this.y = y;
+	public void setY(double y) {
+		this.y.setValue(y);;
 	}
 
 	public int getVitesse() {
