@@ -110,6 +110,7 @@ public class ControleurMap implements Initializable {
 						img.setImage(i3);
 						break;
 				}
+				
 				this.Tpane.getChildren().add(img);
 			}
 		}
