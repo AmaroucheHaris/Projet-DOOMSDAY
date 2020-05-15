@@ -11,9 +11,9 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			BorderPane root = FXMLLoader.load(getClass().getClassLoader().getResource("application/vue/Vue1.fxml"));
+			BorderPane root = FXMLLoader.load(getClass().getClassLoader().getResource("application/vue/vue1.fxml"));
 			Scene scene = new Scene(root,960,704);
-			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+			scene.getStylesheets().add(getClass().getResource("vue/application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.show();
 		} catch(Exception e) {
