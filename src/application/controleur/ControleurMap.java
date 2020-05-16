@@ -40,11 +40,12 @@ public class ControleurMap implements Initializable {
 		mapAGenerer = new TabMap1();
 		
 		mapAGenerer.genererMap(Tpane);
+		env.initSommets();
 		
 		
 			SpriteZombie sp;
 			try {
-				sp = new SpriteZombie(new Sprinteur(50, 300), env);
+				sp = new SpriteZombie(new Sprinteur(100, 300), env);
 				sp.creerSpriteZombie(paneCentrale);
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
