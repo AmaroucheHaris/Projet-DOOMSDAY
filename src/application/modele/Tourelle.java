@@ -75,6 +75,6 @@ public abstract class Tourelle {
 	public abstract void agir();
 	
 	public String toString() {
-		return "[ x= " + this.x + ", y= " + this.y + ", degat= " + this.degat + ", vitesse d'attaque= " + this.vitesseAttack + ", précision=" + this.precision + ", portée= " + this.precision +" ]";
+		return "[ x= " + this.x + ", y= " + this.y + ", degat= " + this.degat + ", vitesse d'attaque= " + this.vitesseAttack + ", précision=" + this.precision + ", portée= " + this.portee +" ]";
 	}
 }
