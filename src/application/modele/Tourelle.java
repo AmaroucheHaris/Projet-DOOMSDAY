@@ -54,6 +54,8 @@ public abstract class Tourelle {
 		return this.portee;
 	}
 	
+	public abstract boolean detecter();
+	
 	public String toString() {
 		return "[ x= " + this.x + ", y= " + this.y + ", degat= " + this.degat + ", vitesse d'attaque= " + this.vitesseAttack + ", précision=" + this.precision + ", portée= " + this.precision +" ]";
 	}
