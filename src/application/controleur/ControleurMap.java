@@ -1,22 +1,19 @@
 package application.controleur;
 
-import java.io.FileInputStream;
+
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.net.URL;
 import java.util.ResourceBundle;
-
 import application.modele.Environnement;
+import application.modele.Militaire;
 import application.modele.Sprinteur;
 import application.modele.TabMap1;
-import application.modele.Zombie;
+import application.vue.SpriteTourelle;
 import application.vue.SpriteZombie;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.util.Duration;
@@ -44,9 +41,12 @@ public class ControleurMap implements Initializable {
 		
 		
 			SpriteZombie sp;
+			SpriteTourelle spt;
 			try {
 				sp = new SpriteZombie(new Sprinteur(100, 300), env);
 				sp.creerSpriteZombie(paneCentrale);
+				spt = new SpriteTourelle(new Militaire(100, 300, env, 10, 10, 10, 400), env);
+				spt.creerSpriteTourelle(paneCentrale);
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
 			}
@@ -65,7 +65,6 @@ public class ControleurMap implements Initializable {
 		
 		KeyFrame keyframe = new KeyFrame(Duration.seconds(0.017), (ev ->{
 			
-				System.out.println("un tour");
 				env.unTour();
 			time++;
 		})

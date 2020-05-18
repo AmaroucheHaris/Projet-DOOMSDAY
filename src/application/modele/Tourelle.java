@@ -1,19 +1,23 @@
 package application.modele;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+
 public abstract class Tourelle {
 	
-	private int x;
-	private int y;
+	private IntegerProperty x, y;
 	private int degat;
 	private int vitesseAttack;
 	private int precision;
 	private int portee;
 	private String id;
 	private static int compteurId = 0;
+	private Environnement env;
 	
-	public Tourelle(int x, int y, int degat, int vitesseAttack, int precision, int portee) {
-		this.x = x;
-		this.y = y;
+	public Tourelle(int x, int y, Environnement env, int degat, int vitesseAttack, int precision, int portee) {
+		this.x = new SimpleIntegerProperty(x);
+		this.y = new SimpleIntegerProperty(y);
+		this.env = env;
 		this.degat = degat;
 		this.vitesseAttack = vitesseAttack;
 		this.precision = precision;
@@ -23,19 +27,31 @@ public abstract class Tourelle {
 	}
 	
 	public int getX() {
+		return this.x.getValue();
+	}
+	
+	public void setX(int x) {
+		this.x.setValue(x);
+	}
+	
+	public IntegerProperty getXProperty() {
 		return this.x;
 	}
 	
-	public int setX(int x) {
-		return this.x = x;
+	public int getY() {
+		return this.y.getValue();
 	}
 	
-	public int getY() {
+	public void setY(int y) {
+		this.y.setValue(y);
+	}
+
+	public IntegerProperty getYProperty() {
 		return this.y;
 	}
 	
-	public int setY(int y) {
-		return this.y = y;
+	public Environnement getEnv() {
+		return this.env;
 	}
 	
 	public int getDegat() {
@@ -54,7 +70,9 @@ public abstract class Tourelle {
 		return this.portee;
 	}
 	
-	public abstract boolean detecter();
+	public abstract Zombie detecter(Environnement env);
+	
+	public abstract void agir();
 	
 	public String toString() {
 		return "[ x= " + this.x + ", y= " + this.y + ", degat= " + this.degat + ", vitesse d'attaque= " + this.vitesseAttack + ", précision=" + this.precision + ", portée= " + this.precision +" ]";

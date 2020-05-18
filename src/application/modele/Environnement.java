@@ -5,12 +5,12 @@ import java.util.ArrayList;
 public class Environnement {
 	
 	private int width,height;
-	private int nbTours;
+	//private int nbTours;
 	
 	private boolean mancheEnCours;
 	
 	private ArrayList<Zombie> listeZombie;
-	//private ArrayList<Tourelle> listeTourelle;
+	private ArrayList<Tourelle> listeTourelle;
 	private ArrayList<Coordonnes> listeCoordonnes;
 	
 	public Environnement(int width, int height) {
@@ -18,8 +18,8 @@ public class Environnement {
 		this.height = height;
 		this.mancheEnCours = false;
 		listeZombie = new ArrayList<Zombie>();
-	//	listeTourelle = new ArrayList<Tourelle>();
-		this.nbTours = 0;
+		listeTourelle = new ArrayList<Tourelle>();
+		//this.nbTours = 0;
 		this.listeCoordonnes = new ArrayList<Coordonnes>();
 	}
 	
@@ -27,13 +27,13 @@ public class Environnement {
 		this.mancheEnCours = true;
 		for(Zombie currentZombie : this.listeZombie) {
 			Coordonnes test = plusProcheCoord(currentZombie);
-			System.out.println("x= " + test.getX() + "    " +"y = " + test.getY());
+//			System.out.println("x= " + test.getX() + "    " +"y = " + test.getY());
 			currentZombie.agit(test);
 		}
 		
-//		for(Tourelle currentTourelle : this.listeTourelle) {
-//			currentTourelle.agit();
-//		}
+		for(Tourelle currentTourelle : this.listeTourelle) {
+			currentTourelle.agir();
+		}
 		this.mancheEnCours = false;
 	}
 	
@@ -53,6 +53,10 @@ public class Environnement {
 		return this.listeZombie;
 	}
 	
+	public ArrayList<Tourelle> getListeTourelles(){
+		return this.listeTourelle;
+	}
+	
 	public void initSommets() {
 		this.listeCoordonnes.add(new Coordonnes(105, 300));
 		this.listeCoordonnes.add(new Coordonnes(285, 300));
@@ -70,7 +74,6 @@ public class Environnement {
 	public Coordonnes plusProcheCoord(Zombie zombie) {
 		boolean test = false;
 		if(zombie.getCoordonnesDest() != null) {
-			System.out.println("je suis un com");
 			return zombie.getCoordonnesDest();
 		}
 		double distance = 1000;
@@ -89,4 +92,7 @@ public class Environnement {
 		zombie.setCoordonneesDest(coordMinimal);
 		return coordMinimal;
 	}
+	
+	
+	
 }
