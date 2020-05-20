@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
@@ -9,8 +12,27 @@
    <center>
       <Pane fx:id="paneCentrale">
          <children>
-            <TilePane fx:id="Tpane" prefHeight="704.0" prefWidth="960.0" BorderPane.alignment="CENTER" />
+            <TilePane fx:id="Tpane" layoutX="7.0" layoutY="2.0" prefHeight="704.0" prefWidth="960.0" BorderPane.alignment="CENTER" />
          </children>
       </Pane>
    </center>
+   <right>
+      <VBox prefHeight="704.0" prefWidth="150.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label text="Tourelles">
+               <VBox.margin>
+                  <Insets left="50.0" />
+               </VBox.margin>
+            </Label>
+            <ImageView fx:id="imageMilitaire" fitHeight="63.0" fitWidth="86.0" onMouseClicked="#onMouseClickedMilitaire" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@ressources/tourelles/TourelleBase.png" />
+               </image>
+               <VBox.margin>
+                  <Insets left="50.0" top="10.0" />
+               </VBox.margin>
+            </ImageView>
+         </children>
+      </VBox>
+   </right>
 </BorderPane>
