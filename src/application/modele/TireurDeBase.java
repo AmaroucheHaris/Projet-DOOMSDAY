@@ -32,10 +32,6 @@ public class TireurDeBase extends Tourelle {
 			//méthode atk
 			this.setY(this.getY() + 1);
 		}
-		else {
-			this.setX(100);
-			this.setY(300);
-		}
 	}
 
 }

@@ -14,6 +14,8 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.util.Duration;
@@ -28,7 +30,12 @@ public class ControleurMap implements Initializable {
 	private Timeline gameloop;
 	private int time;
 
-	private TabMap1 mapAGenerer;	
+    @FXML
+    private ImageView imageMilitaire;
+    @FXML
+    private ImageView target;
+	
+    private TabMap1 mapAGenerer;
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -45,8 +52,6 @@ public class ControleurMap implements Initializable {
 			try {
 				sp = new SpriteZombie(new Sprinteur(100, 300), env);
 				sp.creerSpriteZombie(paneCentrale);
-				spt = new SpriteTourelle(new Militaire(100, 300, env, 10, 10, 10, 400), env);
-				spt.creerSpriteTourelle(paneCentrale);
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
 			}
@@ -71,5 +76,40 @@ public class ControleurMap implements Initializable {
 		);
 		gameloop.getKeyFrames().add(keyframe);
 
-	}	
+	}
+	
+	
+    @FXML
+    void onMouseClickedMilitaire(MouseEvent event) {
+    	if (event.isDragDetect()) {
+    		SpriteTourelle spt;
+    	    int posX = (int) event.getSceneX();
+    	    int posY = (int) event.getSceneY();
+    	    try {
+    			spt = new SpriteTourelle(new Militaire(posX, posY, env, 10, 10, 10, 400), env);
+    			spt.creerSpriteTourelle(paneCentrale);
+    		} catch (FileNotFoundException e) {
+    			e.printStackTrace();
+    		}
+		}
+    }
+    	
+		
+	
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }
