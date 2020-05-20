@@ -43,7 +43,7 @@ public class ControleurMap implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		modeEdit = false;
-		tourelle = null;
+		tourelle = "null";
 		env = new Environnement(960, 704);
 		mapAGenerer = new TabMap1();
 		
@@ -90,34 +90,42 @@ public class ControleurMap implements Initializable {
 	
     @FXML
     void onMouseClickedOff(MouseEvent event) {
+    	tourelle = "null";
     	modeEdit = false;
     	
     }	
 	
     @FXML
     void onMouseClickedMilitaire(MouseEvent event) {
-    	tourelle = "militaire";
-    	onMouseClickedPane(event);
+    	if (modeEdit) {
+    		tourelle = "militaire";
+		}
     }
     
     @FXML
     void onMouseClickedPane(MouseEvent event) {
 	    if (modeEdit) {
-	    	if (tourelle.equals("militaire")) {
-	    		int posX = (int) event.getSceneX();
-			    int posY = (int) event.getSceneY();
-			    SpriteTourelle spt;
-
-			    try {
-					spt = new SpriteTourelle(new Militaire(posX, posY, env, 10, 10, 10, 100), env);
-					spt.creerSpriteTourelle(paneCentrale);
-				} catch (FileNotFoundException e) {
-					e.printStackTrace();
-				}
-			}
-		}
+	    	if (tourelle.equals("null")) {
+	    		System.out.println("Aucune tourelle sélectionnée");
+	    	}
 	    	
-    	
+	    	else {
+	    		if (tourelle.equals("militaire")) {
+		    		int posX = (int) event.getSceneX();
+				    int posY = (int) event.getSceneY();
+				    SpriteTourelle spt;
+
+				    try {
+						spt = new SpriteTourelle(new Militaire(posX, posY, env, 10, 10, 10, 100), env);
+						spt.creerSpriteTourelle(paneCentrale);
+					} catch (FileNotFoundException e) {
+						e.printStackTrace();
+					}
+				}
+
+			}
+	    		
+		}
     } 
     
 }
