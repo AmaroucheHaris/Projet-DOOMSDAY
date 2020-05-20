@@ -81,35 +81,22 @@ public class ControleurMap implements Initializable {
 	
     @FXML
     void onMouseClickedMilitaire(MouseEvent event) {
-    	if (event.isDragDetect()) {
-    		SpriteTourelle spt;
-    	    int posX = (int) event.getSceneX();
-    	    int posY = (int) event.getSceneY();
-    	    try {
-    			spt = new SpriteTourelle(new Militaire(posX, posY, env, 10, 10, 10, 400), env);
-    			spt.creerSpriteTourelle(paneCentrale);
-    		} catch (FileNotFoundException e) {
-    			e.printStackTrace();
-    		}
-		}
-    }
+    	onMouseClickedPane(event);
     	
-		
-	
+    }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    @FXML
+    void onMouseClickedPane(MouseEvent event) {
+	    int posX = (int) event.getSceneX();
+	    int posY = (int) event.getSceneY();
+	    SpriteTourelle spt;
+
+	    try {
+			spt = new SpriteTourelle(new Militaire(posX, posY, env, 10, 10, 10, 100), env);
+			spt.creerSpriteTourelle(paneCentrale);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+    } 
     
 }
