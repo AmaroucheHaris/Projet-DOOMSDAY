@@ -8,7 +8,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.TilePane;
 
 public class TabMap1 {
-	private int [][] TAB = {
+	private int [][] tab = {
 
 			{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
 			{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
@@ -33,7 +33,7 @@ public class TabMap1 {
 			{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
 			{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}			
 		
-		};;
+		};
 		
 		public void genererMap(TilePane tPane) {
 			Image i1 = null;
@@ -51,12 +51,12 @@ public class TabMap1 {
 			
 			ImageView img = null;
 			
-			for(int ligne = 0; ligne<TAB.length; ligne++) {
-				for(int colonne = 0; colonne < TAB[ligne].length; colonne++) {
+			for(int ligne = 0; ligne<tab.length; ligne++) {
+				for(int colonne = 0; colonne < tab[ligne].length; colonne++) {
 
 					img = new ImageView();
 					
-					switch (TAB[ligne][colonne]) {
+					switch (tab[ligne][colonne]) {
 					
 						case 1:
 							img.setImage(i1);
@@ -75,6 +75,9 @@ public class TabMap1 {
 				}
 		}
 	}
+		public int[][] getTab(){
+			return this.tab;
+		}
 
 
 }

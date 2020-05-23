@@ -9,7 +9,8 @@ public abstract class Zombie {
 	private double pv;
 	private int vitesse;
 	private IntegerProperty x,y;
-	private Coordonnes coordonneesDest;
+	private Sommets SommetsDest;
+	private Environnement env;
 	
 	
 	public Zombie (int x, int y) {
@@ -17,7 +18,7 @@ public abstract class Zombie {
 		this.y = new SimpleIntegerProperty(y);
 		this.pv = 0;
 		this.vitesse = 0;
-		this.coordonneesDest = null;
+		this.SommetsDest = null;
 		
 	}
 
@@ -62,18 +63,23 @@ public abstract class Zombie {
 	}
 	
 	public Coordonnes getCoordonnesDest() {
-		return this.coordonneesDest;
+		return this.SommetsDest.getCoordonnes();
 	}
 	
-	public void setCoordonneesDest(Coordonnes c) {
-		this.coordonneesDest = c;
+	public Sommets getSommet() {
+		return this.SommetsDest;
+	}
+	
+	public void setSommetsDest(Sommets s) {
+		this.SommetsDest = s;
 	}
 
 	public String toString() {
 		return "[pv=" + pv + ", vitesse=" + vitesse + ", x=" + x + ", y=" + y + "]";
 	}
 	
-	public void seDeplacer(Coordonnes c) {
+	public void seDeplacer() {
+		Coordonnes c = this.SommetsDest.getCoordonnes();
 		if(this.getX() < c.getX()) {
 			this.setX(getX() + this.getVitesse());
 		}
@@ -87,14 +93,18 @@ public abstract class Zombie {
 			this.setY(getY() - this.getVitesse());
 		}
 		//this.setY(this.getY() + this.getVitesse());
-		System.out.println(this.toString());
+		System.out.println("AFFICHAGE DEST x=   " + c.getX() + "y = " + c.getY());
 		if(getX() == c.getX() && getY() == c.getY()) {
-			this.coordonneesDest = null;
+			this.SommetsDest = this.SommetsDest.getSommetPere();
+			if(this.SommetsDest == null) {
+				this.SommetsDest = new Sommets(new Coordonnes(448, 672));
+			}
+			System.out.println("Père : x = " + this.SommetsDest.getCoordonnes().getX() + "y = " + this.SommetsDest.getCoordonnes().getY());
 		}
 	}
 	
-	public void agit(Coordonnes c) {
-		this.seDeplacer(c);
+	public void agit() {
+		this.seDeplacer();
 		this.toString();
 	}
 	
@@ -106,6 +116,8 @@ public abstract class Zombie {
 		//System.out.println(Math.sqrt(y));
 		return Math.sqrt(y);
 	}
+	
+	
 	
 	
 

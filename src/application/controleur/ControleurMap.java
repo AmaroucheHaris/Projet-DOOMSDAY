@@ -27,25 +27,28 @@ public class ControleurMap implements Initializable {
 	private TilePane Tpane;
 	@FXML
 	private Pane paneCentrale;
+	
 	private Environnement env;
 	private Timeline gameloop;
 	private int time;
-
 	private TabMap1 mapAGenerer;	
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
-		env = new Environnement(960, 704);
+		
 		mapAGenerer = new TabMap1();
 		
 		mapAGenerer.genererMap(Tpane);
-		env.initSommets();
+		//env.initSommets();
+		
+		this.env = new Environnement(960, 704, mapAGenerer);
 		
 		
 			SpriteZombie sp;
 			try {
-				sp = new SpriteZombie(new Sprinteur(100, 300), env);
+				sp = new SpriteZombie(new Sprinteur(0, 96), env);
+				env.initZombie();
 				sp.creerSpriteZombie(paneCentrale);
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();

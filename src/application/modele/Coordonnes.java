@@ -9,7 +9,7 @@ public class Coordonnes {
 	}
 
 	public int getX() {
-		return x;
+		return this.x;
 	}
 
 	public void setX(int x) {
@@ -17,7 +17,7 @@ public class Coordonnes {
 	}
 
 	public int getY() {
-		return y;
+		return this.y;
 	}
 
 	public void setY(int y) {
