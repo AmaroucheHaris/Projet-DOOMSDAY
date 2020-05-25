@@ -5,6 +5,7 @@ import application.modele.bfs.Coordonnes;
 import application.modele.bfs.Graphe;
 import application.modele.ennemis.Zombie;
 import application.modele.tourelles.Tourelle;
+import application.vue.ChargementMap;
 
 public class Environnement {
 	
@@ -17,10 +18,10 @@ public class Environnement {
 	private ArrayList<Tourelle> listeTourelle;
 	private ArrayList<Coordonnes> listeCoordonnes;
 	private Graphe graphe;
-	private TabMap1 tab;
+	private ChargementMap tab;
 	
 	
-	public Environnement(int width, int height, TabMap1 map) {
+	public Environnement(int width, int height, ChargementMap map) {
 		this.width = width;
 		this.height = height;
 		this.mancheEnCours = false;
@@ -31,7 +32,7 @@ public class Environnement {
 		//this.nbTours = 0;
 		this.listeCoordonnes = new ArrayList<Coordonnes>();
 		this.graphe = new Graphe();
-		graphe.initSommets(this.tab.getTab());
+		graphe.initSommets(this.tab.getMap());
 		graphe.bfs();
 		graphe.afficher();
 				

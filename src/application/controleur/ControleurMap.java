@@ -8,6 +8,7 @@ import application.modele.Environnement;
 import application.modele.TabMap1;
 import application.modele.ennemis.Sprinteur;
 import application.modele.tourelles.Militaire;
+import application.vue.ChargementMap;
 import application.vue.SpriteTourelle;
 import application.vue.SpriteZombie;
 import javafx.animation.KeyFrame;
@@ -30,7 +31,7 @@ public class ControleurMap implements Initializable {
 	private Environnement env;
 	private Timeline gameloop;
 	private int time;
-	private TabMap1 mapAGenerer;	
+	private ChargementMap mapAGenerer;	
 
     @FXML
     private ImageView imageMilitaire;
@@ -47,7 +48,7 @@ public class ControleurMap implements Initializable {
 		
 		modeEdit = false;
 		tourelle = "";
-		mapAGenerer = new TabMap1();
+		mapAGenerer = new ChargementMap();
 		
 		mapAGenerer.genererMap(Tpane);
 		//env.initSommets();
