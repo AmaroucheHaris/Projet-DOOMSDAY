@@ -120,13 +120,10 @@ public class ControleurMap implements Initializable {
 		    		int posX = (int) event.getSceneX();
 				    int posY = (int) event.getSceneY();
 				    SpriteTourelle spt;
-
-				    try {
-						spt = new SpriteTourelle(new Militaire(posX, posY, env, 10, 10, 10, 100), env);
+				    
+						spt = new SpriteTourelle();
 						spt.creerSpriteTourelle(paneCentrale);
-					} catch (FileNotFoundException e) {
-						e.printStackTrace();
-					}
+
 				}
 
 			}

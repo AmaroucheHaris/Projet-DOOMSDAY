@@ -1,9 +1,14 @@
 package application.modele.tourelles;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+
 import application.modele.Environnement;
 import application.modele.ennemis.Zombie;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 public abstract class Tourelle {
 	
@@ -15,6 +20,8 @@ public abstract class Tourelle {
 	private String id;
 	private static int compteurId = 0;
 	private Environnement env;
+	private Image image;
+	private ImageView sprite;
 	
 	public Tourelle(int x, int y, Environnement env, int degat, int vitesseAttack, int precision, int portee) {
 		this.x = new SimpleIntegerProperty(x);
@@ -72,10 +79,23 @@ public abstract class Tourelle {
 		return this.portee;
 	}
 	
+	public ImageView initSpriteTourelle() {
+		this.env.getListeTourelles().add(this);
+		if(this instanceof TireurDeBase) {
+			try {
+				this.image = new Image(new FileInputStream("src/application/vue/ressources/tourelles/TourelleBase.png"));
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			}
+			this.sprite = new ImageView(this.image);
+		}
+		return this.sprite;
+	}
+	
 	public abstract Zombie detecter(Environnement env);
 	
 	public abstract void agir();
-	
+
 	public String toString() {
 		return "[ x= " + this.x + ", y= " + this.y + ", degat= " + this.degat + ", vitesse d'attaque= " + this.vitesseAttack + ", précision=" + this.precision + ", portée= " + this.portee +" ]";
 	}
