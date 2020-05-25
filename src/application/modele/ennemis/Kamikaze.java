@@ -1,4 +1,4 @@
-package application.modele;
+package application.modele.ennemis;
 
 public class Kamikaze extends Zombie{
 

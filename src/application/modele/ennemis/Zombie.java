@@ -1,5 +1,8 @@
-package application.modele;
+package application.modele.ennemis;
 
+import application.modele.Environnement;
+import application.modele.bfs.Coordonnes;
+import application.modele.bfs.Sommets;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 

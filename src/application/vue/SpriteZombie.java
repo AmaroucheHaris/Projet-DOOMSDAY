@@ -4,8 +4,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
 import application.modele.Environnement;
-import application.modele.Sprinteur;
-import application.modele.Zombie;
+import application.modele.ennemis.Sprinteur;
+import application.modele.ennemis.Zombie;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;

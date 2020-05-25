@@ -1,4 +1,4 @@
-package application.modele;
+package application.modele.ennemis;
 
 public class Tank extends Zombie{
 

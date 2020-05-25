@@ -1,7 +1,10 @@
 package application.modele;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
+import application.modele.bfs.Coordonnes;
+import application.modele.bfs.Graphe;
+import application.modele.ennemis.Zombie;
+import application.modele.tourelles.Tourelle;
 
 public class Environnement {
 	

@@ -1,4 +1,6 @@
-package application.modele;
+package application.modele.tourelles;
+
+import application.modele.Environnement;
 
 public class Militaire extends TireurDeBase {
 

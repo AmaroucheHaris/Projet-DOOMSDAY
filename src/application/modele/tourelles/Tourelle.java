@@ -1,5 +1,7 @@
-package application.modele;
+package application.modele.tourelles;
 
+import application.modele.Environnement;
+import application.modele.ennemis.Zombie;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
