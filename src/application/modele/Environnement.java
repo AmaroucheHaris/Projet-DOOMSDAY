@@ -27,10 +27,11 @@ public class Environnement {
 		listeTourelle = new ArrayList<Tourelle>();
 		//this.nbTours = 0;
 		this.listeCoordonnes = new ArrayList<Coordonnes>();
-		this.graphe = new Graphe();
-		graphe.initSommets(this.tab.getTab());
-		graphe.bfs();
-		graphe.afficher();
+		System.out.println("construction graphe");
+		this.graphe = new Graphe(mapModele.TAB1);
+//		graphe.initSommets(this.tab.getTab());
+//		graphe.bfs();
+//		graphe.afficher();
 				
 	}
 	
@@ -104,6 +105,10 @@ public class Environnement {
 		}
 		//zombie.setCoordonneesDest(coordMinimal);
 		return coordMinimal;
+	}
+	
+	public Graphe getGraphe() {
+		return this.graphe;
 	}
 	
 	

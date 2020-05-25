@@ -7,7 +7,7 @@ public abstract class Zombie {
 	private double pv;
 	private int vitesse;
 	private IntegerProperty x,y;
-	private Sommets SommetsDest;
+	private Sommet SommetsDest;
 	private Environnement env;
 	
 	
@@ -64,11 +64,11 @@ public abstract class Zombie {
 		return this.SommetsDest.getCoordonnes();
 	}
 	
-	public Sommets getSommet() {
+	public Sommet getSommet() {
 		return this.SommetsDest;
 	}
 	
-	public void setSommetsDest(Sommets s) {
+	public void setSommetsDest(Sommet s) {
 		this.SommetsDest = s;
 	}
 
@@ -76,28 +76,50 @@ public abstract class Zombie {
 //		return "[pv=" + pv + ", vitesse=" + vitesse + ", x=" + x + ", y=" + y + "]";
 //	}
 	
+//	public void seDeplacer() {
+//		Coordonnes c = this.SommetsDest.getCoordonnes();
+//		if(this.getX() < c.getX()) {
+//			this.setX(getX() + this.getVitesse());
+//		}
+//		else if(this.getX() > c.getX()) {
+//			this.setX(getX() - this.getVitesse());
+//		}
+//		if(this.getY() < c.getY()) {
+//			this.setY(getY() + this.getVitesse());
+//		}
+//		else if(this.getY() > c.getY()) {
+//			this.setY(getY() - this.getVitesse());
+//		}
+//		//this.setY(this.getY() + this.getVitesse());
+//		System.out.println("AFFICHAGE DEST x=   " + c.getX() + "y = " + c.getY());
+//		if(getX() == c.getX() && getY() == c.getY()) {
+//			this.SommetsDest = this.SommetsDest.getSommetPere();
+//			if(this.SommetsDest == null) {
+//				this.SommetsDest = new Sommet(new Coordonnes(448, 672));
+//			}
+//			System.out.println("Père : x = " + this.SommetsDest.getCoordonnes().getX() + "y = " + this.SommetsDest.getCoordonnes().getY());
+//		}
+//	}
+	
 	public void seDeplacer() {
-		Coordonnes c = this.SommetsDest.getCoordonnes();
-		if(this.getX() < c.getX()) {
+		Sommet s = this.env.getGraphe().getSommetDeDepart();
+		
+		while((s.getCoordonnes().getX() - this.x.getValue()) > 32 || (s.getCoordonnes().getY() - this.y.getValue()) > 32) {
+			s = this.env.getGraphe().getBfs().getAssociationPereFils().get(s);
+		}
+		this.SommetsDest = s;
+		
+		if(this.getX() < this.SommetsDest.getCoordonnes().getX()) {
 			this.setX(getX() + this.getVitesse());
 		}
-		else if(this.getX() > c.getX()) {
+		else if(this.getX() > this.SommetsDest.getCoordonnes().getX()) {
 			this.setX(getX() - this.getVitesse());
 		}
-		if(this.getY() < c.getY()) {
+		if(this.getY() < this.SommetsDest.getCoordonnes().getY()) {
 			this.setY(getY() + this.getVitesse());
 		}
-		else if(this.getY() > c.getY()) {
+		else if(this.getY() > this.SommetsDest.getCoordonnes().getY()) {
 			this.setY(getY() - this.getVitesse());
-		}
-		//this.setY(this.getY() + this.getVitesse());
-		System.out.println("AFFICHAGE DEST x=   " + c.getX() + "y = " + c.getY());
-		if(getX() == c.getX() && getY() == c.getY()) {
-			this.SommetsDest = this.SommetsDest.getSommetPere();
-			if(this.SommetsDest == null) {
-				this.SommetsDest = new Sommets(new Coordonnes(448, 672));
-			}
-			System.out.println("Père : x = " + this.SommetsDest.getCoordonnes().getX() + "y = " + this.SommetsDest.getCoordonnes().getY());
 		}
 	}
 	
