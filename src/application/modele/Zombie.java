@@ -1,7 +1,5 @@
 package application.modele;
 
-import java.util.ArrayList;
-
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
@@ -74,9 +72,9 @@ public abstract class Zombie {
 		this.SommetsDest = s;
 	}
 
-	public String toString() {
-		return "[pv=" + pv + ", vitesse=" + vitesse + ", x=" + x + ", y=" + y + "]";
-	}
+//	public String toString() {
+//		return "[pv=" + pv + ", vitesse=" + vitesse + ", x=" + x + ", y=" + y + "]";
+//	}
 	
 	public void seDeplacer() {
 		Coordonnes c = this.SommetsDest.getCoordonnes();

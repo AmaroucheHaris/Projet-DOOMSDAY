@@ -6,12 +6,12 @@ import java.util.LinkedList;
 public class Environnement {
 	
 	private int width,height;
-	private int nbTours;
+	//private int nbTours;
 	
 	private boolean mancheEnCours;
 	
 	private ArrayList<Zombie> listeZombie;
-	//private ArrayList<Tourelle> listeTourelle;
+	private ArrayList<Tourelle> listeTourelle;
 	private ArrayList<Coordonnes> listeCoordonnes;
 	private Graphe graphe;
 	private TabMap1 tab;
@@ -24,7 +24,8 @@ public class Environnement {
 		listeZombie = new ArrayList<Zombie>();
 		this.tab = map;
 	//	listeTourelle = new ArrayList<Tourelle>();
-		this.nbTours = 0;
+		listeTourelle = new ArrayList<Tourelle>();
+		//this.nbTours = 0;
 		this.listeCoordonnes = new ArrayList<Coordonnes>();
 		this.graphe = new Graphe();
 		graphe.initSommets(this.tab.getTab());
@@ -40,12 +41,18 @@ public class Environnement {
 			//System.out.println("x= " + test.getX() + "    " +"y = " + test.getY());
 			currentZombie.agit();
 			
+//			Coordonnes test = plusProcheCoord(currentZombie);
+//			System.out.println("x= " + test.getX() + "    " +"y = " + test.getY());
+//			currentZombie.agit(test);
 		}
 		
 		
 //		for(Tourelle currentTourelle : this.listeTourelle) {
 //			currentTourelle.agit();
 //		}
+		for(Tourelle currentTourelle : this.listeTourelle) {
+			currentTourelle.agir();
+		}
 		this.mancheEnCours = false;
 	}
 	
@@ -70,23 +77,35 @@ public class Environnement {
 		return this.listeZombie;
 	}
 	
-//	public void creerGraphe (int[][] matrice, int nbLigne, int nbColonne, Coordonnes coordDeDepart) {
-//		boolean continuer = true;
-//		LinkedList<Sommets> listeSommet = new LinkedList<Sommets>();
-//		
-//		Coordonnes c1 = new Coordonnes(470, 680);
-//		listeSommet.addLast(new Sommets(c1));
-//		
-//		int x,y;
-//		x = coordDeDepart.getX();
-//		y = coordDeDepart.getY();
-//		while(continuer) {
-//			// quatre possibilitées: 
-//			// 1. partir à gauche(x-1 > 0 && matrice [x-1][y] == 2) 
-//			// 2. partir à droite(x+1 < nbColonne && matrice [x+1][y] == 2
-//			// 3. monter (y-1 > 0 && matrice [x][y-1]== 2
-//			// 4. monter (y+1 < nbLigne && matrice [x][y+1]== 2
-//
-//		}
-//	}
+
+	public ArrayList<Tourelle> getListeTourelles(){
+		return this.listeTourelle;
+	}
+	
+	
+	
+	public Coordonnes plusProcheCoord(Zombie zombie) {
+		boolean test = false;
+		if(zombie.getCoordonnesDest() != null) {
+			return zombie.getCoordonnesDest();
+		}
+		double distance = 1000;
+		Coordonnes coordMinimal = new Coordonnes(0, 0);
+		//System.out.println(listeCoordonnes.size());
+		for(Coordonnes coord : this.listeCoordonnes) {
+			if(zombie.distance(coord) != 0) {
+				if(distance > zombie.distance(coord)) {
+				distance = zombie.distance(coord);
+				coordMinimal.setX(coord.getX());
+				coordMinimal.setY(coord.getY());
+
+				}
+			}
+		}
+		//zombie.setCoordonneesDest(coordMinimal);
+		return coordMinimal;
+	}
+	
+	
+	
 }
