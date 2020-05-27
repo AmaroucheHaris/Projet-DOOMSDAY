@@ -5,9 +5,9 @@ import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import application.modele.Environnement;
-import application.modele.TabMap1;
 import application.modele.ennemis.Sprinteur;
-import application.modele.tourelles.Militaire;
+import application.modele.tourelles.TireurDeBase;
+import application.modele.tourelles.Tourelle;
 import application.vue.ChargementMap;
 import application.vue.SpriteTourelle;
 import application.vue.SpriteZombie;
@@ -41,10 +41,10 @@ public class ControleurMap implements Initializable {
 
     private boolean modeEdit;
     private String tourelle;
+    private Tourelle tour;
     
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		
 		
 		modeEdit = false;
 		tourelle = "";
@@ -57,7 +57,6 @@ public class ControleurMap implements Initializable {
 		
 		
 			SpriteZombie sp;
-			SpriteTourelle spt;
 			try {
 				sp = new SpriteZombie(new Sprinteur(0, 96), env);
 				env.initZombie();
@@ -112,18 +111,18 @@ public class ControleurMap implements Initializable {
     void onMouseClickedPane(MouseEvent event) {
 	    if (modeEdit) {
 	    	if (tourelle.equals("")) {
-	    		System.out.println("Aucune tourelle sï¿½lectionnï¿½e");
+	    		System.out.println("Aucune tourelle sélectionnée");
 	    	}
 	    	
 	    	else {
 	    		if (tourelle.equals("militaire")) {
 		    		int posX = (int) event.getSceneX();
 				    int posY = (int) event.getSceneY();
+				    this.tour = new TireurDeBase(posX, posY, env, 10, 10, 10, 300);
 				    SpriteTourelle spt;
-				    
-						spt = new SpriteTourelle();
-						spt.creerSpriteTourelle(paneCentrale);
 
+				    spt = new SpriteTourelle(tour, posX, posY);
+					spt.creerSpriteTourelle(paneCentrale, spt);
 				}
 
 			}

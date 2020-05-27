@@ -5,14 +5,12 @@ import java.io.FileNotFoundException;
 
 import application.modele.Environnement;
 import application.modele.ennemis.Zombie;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public abstract class Tourelle {
 	
-	private IntegerProperty x, y;
+	private int x, y;
 	private int degat;
 	private int vitesseAttack;
 	private int precision;
@@ -24,8 +22,8 @@ public abstract class Tourelle {
 	private ImageView sprite;
 	
 	public Tourelle(int x, int y, Environnement env, int degat, int vitesseAttack, int precision, int portee) {
-		this.x = new SimpleIntegerProperty(x);
-		this.y = new SimpleIntegerProperty(y);
+		this.x = x;
+		this.y = y;
 		this.env = env;
 		this.degat = degat;
 		this.vitesseAttack = vitesseAttack;
@@ -36,28 +34,22 @@ public abstract class Tourelle {
 	}
 	
 	public int getX() {
-		return this.x.getValue();
-	}
-	
-	public void setX(int x) {
-		this.x.setValue(x);
-	}
-	
-	public IntegerProperty getXProperty() {
 		return this.x;
 	}
 	
+	public void setX(int x) {
+		this.x = x;
+	}
+	
+	
 	public int getY() {
-		return this.y.getValue();
+		return this.y;
 	}
 	
 	public void setY(int y) {
-		this.y.setValue(y);
+		this.y = y;
 	}
 
-	public IntegerProperty getYProperty() {
-		return this.y;
-	}
 	
 	public Environnement getEnv() {
 		return this.env;
@@ -79,7 +71,7 @@ public abstract class Tourelle {
 		return this.portee;
 	}
 	
-	public ImageView initSpriteTourelle() {
+	public ImageView initSpriteTourelle(int x, int y) {
 		this.env.getListeTourelles().add(this);
 		if(this instanceof TireurDeBase) {
 			try {
@@ -88,14 +80,16 @@ public abstract class Tourelle {
 				e.printStackTrace();
 			}
 			this.sprite = new ImageView(this.image);
+			this.sprite.setX(x);
+			this.sprite.setY(y);
 		}
 		return this.sprite;
 	}
-	
+
 	public abstract Zombie detecter(Environnement env);
 	
 	public abstract void agir();
-
+	
 	public String toString() {
 		return "[ x= " + this.x + ", y= " + this.y + ", degat= " + this.degat + ", vitesse d'attaque= " + this.vitesseAttack + ", précision=" + this.precision + ", portée= " + this.portee +" ]";
 	}
