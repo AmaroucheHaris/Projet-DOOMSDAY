@@ -14,28 +14,19 @@ public class SpriteZombie {
 	private Zombie zombie;
 	private int posX;
 	private int posY;
-	
-//	public SpriteZombie(Zombie zombie, Environnement env) throws FileNotFoundException {
-//		this.zombie = zombie;
-//		this.env = env;
-//		this.env.getListeZombies().add(zombie);
-//		if(this.zombie instanceof Sprinteur) {
-//			this.image = new Image(new FileInputStream("src/application/vue/ressources/zombies/zombieImmobile.png"));
-//			this.sprite = new ImageView(this.image);
-//		}
-//	}
+	private ImageView sprite;
 	
 	public SpriteZombie(Zombie z, int x, int y) {
 		this.zombie = z;
 		this.posX = x;
 		this.posY = y;
+		this.sprite = this.zombie.initSpriteZombie(z.getX(), z.getY());
 	}
 	
 	public void creerSpriteZombie(Pane pane, Zombie z) {
-		ImageView test = this.zombie.initSpriteZombie(z.getX(), z.getY());
-		pane.getChildren().add(test);
-		test.translateXProperty().bind(z.getXProperty());
-		test.translateYProperty().bind(z.getYProperty());
+		sprite.translateXProperty().bind(z.getXProperty());
+		sprite.translateYProperty().bind(z.getYProperty());
+		pane.getChildren().add(this.zombie.initSpriteZombie(z.getX(), z.getY()));
 	}
 	
 	public int getX() {

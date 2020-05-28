@@ -57,12 +57,13 @@ public class ControleurMap implements Initializable {
 		
 			SpriteZombie sp;
 			int posXz = 10;
-			int posYz = 10;
-			Zombie z = new Sprinteur(posXz, posYz);
+			int posYz = 60;
+			Zombie z = new Sprinteur(posXz, posYz, env);
 
 			sp = new SpriteZombie(z, posXz, posYz);
 			
 			env.initZombie();
+			
 			sp.creerSpriteZombie(paneCentrale, z);
 		
 		

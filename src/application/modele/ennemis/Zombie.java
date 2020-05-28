@@ -21,13 +21,13 @@ public abstract class Zombie {
 	private ImageView sprite;
 	
 	
-	public Zombie (int x, int y) {
+	public Zombie (int x, int y, Environnement env) {
 		this.x = new SimpleIntegerProperty(x);
 		this.y = new SimpleIntegerProperty(y);
 		this.pv = 0;
 		this.vitesse = 0;
 		this.SommetsDest = null;
-		
+		this.env = env;
 	}
 
 	public double getPv() {
@@ -112,7 +112,7 @@ public abstract class Zombie {
 	}
 	
 	public void agit() {
-		this.seDeplacer();
+//		this.seDeplacer();
 		this.toString();
 	}
 	
