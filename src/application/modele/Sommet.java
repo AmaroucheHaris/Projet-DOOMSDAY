@@ -40,9 +40,7 @@ public class Sommet {
 		return listeSommetsAccessible;
 	}
 
-	public void setListeSommetsAccessible(ArrayList<Sommet> listeSommetsAccessible) {
-		this.listeSommetsAccessible = listeSommetsAccessible;
-	}
+	
 
 //	public Sommet getSommetPere() {
 //		return this.sommetPere;
@@ -62,6 +60,7 @@ public class Sommet {
 	
 	public void ajouterSommet(Sommet s) {
 		if(!this.listeSommetsAccessible.contains(s)) {
+			//System.out.println(s);
 			this.listeSommetsAccessible.add(s);
 		}
 	}
@@ -113,6 +112,13 @@ public class Sommet {
 //			System.out.println("fils : " + "x= " + s.getCoordonnes().getX() + "y= " + s.getCoordonnes().getY());
 //		}
 //	}
+	
+	public boolean estAdjacent(Sommet s) {
+		if(this.coordonnes.estAdjacent(s.getCoordonnes())) {
+			return true;
+		}
+		return false;
+	}
 	
 	
 }

@@ -11,12 +11,13 @@ public abstract class Zombie {
 	private Environnement env;
 	
 	
-	public Zombie (int x, int y) {
+	public Zombie (int x, int y, Environnement env) {
 		this.x = new SimpleIntegerProperty(x);
 		this.y = new SimpleIntegerProperty(y);
 		this.pv = 0;
 		this.vitesse = 0;
 		this.SommetsDest = null;
+		this.env = env;
 		
 	}
 
@@ -102,12 +103,16 @@ public abstract class Zombie {
 //	}
 	
 	public void seDeplacer() {
-		Sommet s = this.env.getGraphe().getSommetDeDepart();
+		Coordonnes coordZombie = new Coordonnes((this.x.getValue()/32)*32, (this.y.getValue()/32)*32);
+		//System.out.println(this.env.getGraphe());
+		//Coordonnes coordZombie = new Coordonnes(Math.floorDiv(this.x.getValue(), 32), Math.floorDiv(this.y.getValue(), 32));
+
+		Sommet sommetCourant = this.env.getGraphe().chercheSommet(coordZombie);
 		
-		while((s.getCoordonnes().getX() - this.x.getValue()) > 32 || (s.getCoordonnes().getY() - this.y.getValue()) > 32) {
-			s = this.env.getGraphe().getBfs().getAssociationPereFils().get(s);
-		}
-		this.SommetsDest = s;
+		//mettre à sommetDest la valeur associée à sommetCourant dans la HashMap
+		
+		this.SommetsDest = this.env.getGraphe().getBfs().getAssociationPereFils().get(sommetCourant);
+		System.out.println(SommetsDest);
 		
 		if(this.getX() < this.SommetsDest.getCoordonnes().getX()) {
 			this.setX(getX() + this.getVitesse());
@@ -125,7 +130,7 @@ public abstract class Zombie {
 	
 	public void agit() {
 		this.seDeplacer();
-		this.toString();
+		//this.toString();
 	}
 	
 	
@@ -135,6 +140,10 @@ public abstract class Zombie {
 		y += x; 
 		//System.out.println(Math.sqrt(y));
 		return Math.sqrt(y);
+	}
+	
+	public Environnement getEnvironnement() {
+		return this.env;
 	}
 	
 	

@@ -54,5 +54,19 @@ public class Coordonnes {
 		return "Coordonnes [x=" + x + ", y=" + y + "]";
 	}
 	
-	
+	public boolean estAdjacent(Coordonnes coord) {
+		if(this.x - 32 == coord.x && this.y == coord.y) {
+			return true;
+		}
+		if(this.x + 32 == coord.x && this.y == coord.y) {
+			return true;
+		}
+		if(this.x  == coord.x && this.y - 32 == coord.y) {
+			return true;
+		}
+		if(this.x  == coord.x && this.y + 32 == coord.y) {
+			return true;
+		}
+		return false;
+	}
 }

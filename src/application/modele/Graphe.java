@@ -4,19 +4,19 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class Graphe {
-	//private LinkedList<Sommet> listeSommets;
+	// private LinkedList<Sommet> listeSommets;
 	private ArrayList<Sommet> listeSommets;
 	private Sommet sommetDeDepart;
-	private int [][] matrice;
+	private int[][] matrice;
 	private Bfs bfs;
-	
-	public Graphe(int [][] matrice) {
-		//this.listeSommets = new LinkedList<Sommet>();
+
+	public Graphe(int[][] matrice) {
+		// this.listeSommets = new LinkedList<Sommet>();
 		this.listeSommets = new ArrayList<Sommet>();
-		this.sommetDeDepart = new Sommet(new Coordonnes(470, 680));
+		this.sommetDeDepart = new Sommet(new Coordonnes(448, 672));
 		this.matrice = matrice;
 		initSommets();
-		this.bfs = new Bfs(this.sommetDeDepart);
+		this.bfs = new Bfs(this);
 	}
 //	public void initSommets() {
 //		
@@ -84,42 +84,42 @@ public class Graphe {
 //		this.listeSommets.add(sommet10);
 //		this.listeSommets.add(sommet11);
 //	}
-	
-	public void initSommets () {
+
+	public void initSommets() {
 //		boolean continuer = true;
 //		System.out.println("Sommet de départ V1 :  x= " + sommetDeDepart.getCoordonnes().getX() + " y = " + sommetDeDepart.getCoordonnes().getX());
 //		this.sommetDeDepart.setCoordonnes(new Coordonnes(448, 640));
 //		this.listeSommets.addLast(this.sommetDeDepart);
-		
-		for(int ligne = 0; ligne < matrice.length; ligne ++) {
-			
-			for(int colonne = 0; colonne < matrice[ligne].length; colonne++) {
-				
-				
-				//Sommet verifSommet = new Sommet(new Coordonnes(32*colonne, 32*ligne));
-				
-				if(matrice[ligne][colonne] == 2) {
-					
-					//Sommet s1 = verifSommet;
-					Sommet s = new Sommet(new Coordonnes(32*colonne, 32*ligne));
-					
-						
-						//s1 = this.listeSommets.get(getIndice(s1));
-						this.listeSommets.add(s);
+
+		for (int ligne = 0; ligne < matrice.length; ligne++) {
+
+			for (int colonne = 0; colonne < matrice[ligne].length; colonne++) {
+
+				// Sommet verifSommet = new Sommet(new Coordonnes(32*colonne, 32*ligne));
+
+				if (matrice[ligne][colonne] == 2) {
+
+					// Sommet s1 = verifSommet;
+					Sommet s = new Sommet(new Coordonnes(32 * colonne, 32 * ligne));
+
+					// s1 = this.listeSommets.get(getIndice(s1));
+					this.listeSommets.add(s);
 				}
 			}
 		}
-		
-		for(Sommet s : this.listeSommets) {
-			for(Sommet sommetTest : this.listeSommets) {
-				if((s.getCoordonnes().getX() == sommetTest.getCoordonnes().getX()-32 && s.getCoordonnes().getY() == sommetTest.getCoordonnes().getY()) || (s.getCoordonnes().getX() == sommetTest.getCoordonnes().getX()+32 && s.getCoordonnes().getY() == sommetTest.getCoordonnes().getY()) || (s.getCoordonnes().getY() == sommetTest.getCoordonnes().getY()-32 && s.getCoordonnes().getX() == sommetTest.getCoordonnes().getX())|| (s.getCoordonnes().getY() == sommetTest.getCoordonnes().getY()+32 && s.getCoordonnes().getX() == sommetTest.getCoordonnes().getX())) {
+		System.out.println(this.listeSommets);
+		System.out.println(this.listeSommets.size());
+		for (Sommet s : this.listeSommets) {
+			for (Sommet sommetTest : this.listeSommets) {
+				if (s.estAdjacent(sommetTest)) {
+					// System.out.println(sommetTest);
 					s.ajouterSommet(sommetTest);
 				}
-			
+
 			}
-			System.out.println(s);
+			// System.out.println(s);
 		}
-		
+
 //					//this.listeSommets.addLast(s1);
 //					
 //					//regarde à gauche
@@ -255,12 +255,9 @@ public class Graphe {
 //				
 //			}
 //		}
-		
-		
-		
-		
-		
-	}	
+
+	}
+
 	public Sommet plusProcheCoord(Zombie zombie) {
 		boolean test = false;
 		Sommet tmpSommet = null;
@@ -270,32 +267,31 @@ public class Graphe {
 //		}
 		double distance = 1000;
 		Coordonnes coordMinimal = new Coordonnes(0, 0);
-		
-		for(Sommet sommet : this.listeSommets) {
-			if(zombie.distance(sommet.getCoordonnes()) == 0) {
+
+		for (Sommet sommet : this.listeSommets) {
+			if (zombie.distance(sommet.getCoordonnes()) == 0) {
 //				if(distance > zombie.distance(sommet.getCoordonnes())) {
 //					tmpSommet = sommet;
 //					distance = zombie.distance(sommet.getCoordonnes());
 //					coordMinimal.setX(sommet.getCoordonnes().getX());
 //					coordMinimal.setY(sommet.getCoordonnes().getY());
 //	
-				//}
+				// }
 				return sommet;
 			}
 		}
 		return null;
-		//System.out.println("tmpSommet    x= " + tmpSommet.getCoordonnes().getX() + "y= " + tmpSommet.getCoordonnes().getY());
+		// System.out.println("tmpSommet x= " + tmpSommet.getCoordonnes().getX() + "y= "
+		// + tmpSommet.getCoordonnes().getY());
 	}
-	
-	
-	public Sommet getSommetDeDepart() {
-		return sommetDeDepart;
+
+	public Sommet getSommetDeDepart(Coordonnes coord) {
+		Sommet depart = chercheSommet(coord);
+		return depart;
 	}
+
 	
-	public void setSommetDeDepart(Sommet sommetDeDepart) {
-		this.sommetDeDepart = sommetDeDepart;
-	}
-	
+
 //	public void dijskra() {
 //		this.sommetDeDepart = this.listeSommets.get(0);
 //		this.sommetDeDepart.setDistance(0);
@@ -311,7 +307,7 @@ public class Graphe {
 //			if(sommetCourant == null) continuer = false;
 //		}
 //	}
-	
+
 //	public void bfs() {
 //		LinkedList<Sommet> liste = new LinkedList<Sommet>();
 //		this.sommetDeDepart = this.listeSommets.get(getIndice(new Sommet(new Coordonnes(448, 672))));
@@ -329,7 +325,7 @@ public class Graphe {
 //			if(liste.size() == 0) continuer = false;
 //		}
 //	}
-	
+
 //	public Sommet sommetMin() {
 //		Sommet s1 = null;
 //		double distance = 1000;
@@ -434,8 +430,19 @@ public class Graphe {
 //			}
 //		}
 //	}
-	
+
 	public Bfs getBfs() {
 		return this.bfs;
+	}
+
+	public Sommet chercheSommet(Coordonnes coord) {
+		for (Sommet s : this.listeSommets) {
+			//System.out.println(s);
+			if (s.getCoordonnes().equals(coord)) {
+				return s;
+			}
+		}
+		// System.out.println("test");
+		return null;
 	}
 }

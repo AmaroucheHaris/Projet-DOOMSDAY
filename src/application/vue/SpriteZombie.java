@@ -16,9 +16,9 @@ public class SpriteZombie {
 	private Image image;
 	private ImageView sprite;
 	
-	public SpriteZombie(Zombie zombie, Environnement env) throws FileNotFoundException {
+	public SpriteZombie(Zombie zombie) throws FileNotFoundException {
 		this.zombie = zombie;
-		this.env = env;
+		this.env = zombie.getEnvironnement();
 		this.env.getListeZombies().add(zombie);
 		if(this.zombie instanceof Sprinteur) {
 			this.image = new Image(new FileInputStream("src/application/vue/ressources/zombies/zombieImmobile.png"));

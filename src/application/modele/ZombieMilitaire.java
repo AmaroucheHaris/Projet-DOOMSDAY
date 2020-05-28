@@ -4,8 +4,8 @@ public class ZombieMilitaire extends Zombie{
 
 	private int probaAbsorbe;
 	
-	public ZombieMilitaire(int x, int y) {
-		super(x, y);
+	public ZombieMilitaire(int x, int y, Environnement env) {
+		super(x, y, env);
 		this.setVitesse(3);
 		this.probaAbsorbe = 20;
 	}
