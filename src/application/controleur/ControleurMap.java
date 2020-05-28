@@ -6,6 +6,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import application.modele.Environnement;
 import application.modele.ennemis.Sprinteur;
+import application.modele.ennemis.Zombie;
 import application.modele.tourelles.TireurDeBase;
 import application.modele.tourelles.Tourelle;
 import application.vue.ChargementMap;
@@ -54,16 +55,15 @@ public class ControleurMap implements Initializable {
 		//env.initSommets();
 		
 		this.env = new Environnement(960, 704, mapAGenerer);
-		
-		
+			
+			int posXz = 10;
+			int posYz = 10;
+			Zombie z = new Sprinteur(posXz, posYz);
 			SpriteZombie sp;
-			try {
-				sp = new SpriteZombie(new Sprinteur(0, 96), env);
-				env.initZombie();
-				sp.creerSpriteZombie(paneCentrale);
-			} catch (FileNotFoundException e) {
-				e.printStackTrace();
-			}
+			
+			sp = new SpriteZombie(z, posXz, posYz);
+			env.initZombie();
+			sp.creerSpriteZombie(paneCentrale, z);
 			 
 		
 		

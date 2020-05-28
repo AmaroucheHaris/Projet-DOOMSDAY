@@ -13,6 +13,7 @@ public class SpriteTourelle {
 		this.posX = posX;
 		this.posY = posY;
 	}
+	
 	public void creerSpriteTourelle(Pane pane, SpriteTourelle tour) {
         pane.getChildren().add(this.tourelle.initSpriteTourelle(tour.getX(), tour.getY()));
 	}
