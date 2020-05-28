@@ -6,7 +6,6 @@ import java.io.FileNotFoundException;
 import application.modele.Environnement;
 import application.modele.bfs.Coordonnes;
 import application.modele.bfs.Sommets;
-import application.modele.tourelles.TireurDeBase;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.scene.image.Image;
@@ -130,7 +129,7 @@ public abstract class Zombie {
 		this.env.getListeZombies().add(this);
 		if(this instanceof Sprinteur) {
 			try {
-				this.image = new Image(new FileInputStream("src/application/vue/ressources/tourelles/TourelleBase.png"));
+				this.image = new Image(new FileInputStream("src/application/vue/ressources/zombies/zombieImmobile.png"));
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
 			}

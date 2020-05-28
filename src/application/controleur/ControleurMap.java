@@ -1,7 +1,6 @@
 package application.controleur;
 
 
-import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import application.modele.Environnement;
