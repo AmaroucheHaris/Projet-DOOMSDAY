@@ -1,7 +1,5 @@
 package application.controleur;
 
-
-import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import application.modele.Environnement;
@@ -61,10 +59,12 @@ public class ControleurMap implements Initializable {
 			Zombie z = new Sprinteur(posXz, posYz);
 			SpriteZombie sp;
 			
+
 			sp = new SpriteZombie(z, posXz, posYz);
+			
 			env.initZombie();
 			sp.creerSpriteZombie(paneCentrale, z);
-			 
+
 		
 		
 		animation();

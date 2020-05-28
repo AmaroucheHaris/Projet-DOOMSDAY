@@ -126,17 +126,17 @@ public abstract class Zombie {
 		return Math.sqrt(y);
 	}
 	
-	public ImageView initSpriteZombie(IntegerProperty x, IntegerProperty y) {
+	public ImageView initSpriteZombie(int x, int y) {
 		this.env.getListeZombies().add(this);
 		if(this instanceof Sprinteur) {
 			try {
-				this.image = new Image(new FileInputStream("src/application/vue/ressources/tourelles/TourelleBase.png"));
+				this.image = new Image(new FileInputStream("src/application/vue/ressources/zombies/zombieImmobile.png"));
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
 			}
 			this.sprite = new ImageView(this.image);
-			this.sprite.setX(x.getValue());
-			this.sprite.setY(y.getValue());
+			this.sprite.setX(x);
+			this.sprite.setY(y);
 		}
 		return this.sprite;
 	}

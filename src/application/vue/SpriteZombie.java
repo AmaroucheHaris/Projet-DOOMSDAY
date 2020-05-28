@@ -7,7 +7,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 
 public class SpriteZombie {
-	private ImageView sprite;
 	private Zombie zombie;
 	private int posX, posY;
 	
@@ -28,16 +27,18 @@ public class SpriteZombie {
 	}
 	
 	public void creerSpriteZombie(Pane pane, Zombie z) {
-		this.sprite.translateXProperty().bind(z.getXProperty());
-        this.sprite.translateYProperty().bind(z.getYProperty());
-        pane.getChildren().add(z.initSpriteZombie(this.getX(), this.getY()));
+		ImageView test = this.zombie.initSpriteZombie(z.getX(), z.getY());
+		pane.getChildren().add(test);
+		test.translateXProperty().bind(z.getXProperty());
+		test.translateYProperty().bind(z.getYProperty());
 	}
 	
-	public IntegerProperty getX() {
-		return this.zombie.getXProperty();
+	public int getX() {
+		return this.posX;
 	}
 	
-	public IntegerProperty getY() {
-		return this.zombie.getYProperty();
+	public int getY() {
+		return this.posY;
 	}
+	
 }
