@@ -1,10 +1,15 @@
 package application.modele.ennemis;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+
 import application.modele.Environnement;
 import application.modele.bfs.Coordonnes;
 import application.modele.bfs.Sommets;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 public abstract class Zombie {
 	private double pv;
@@ -12,6 +17,8 @@ public abstract class Zombie {
 	private IntegerProperty x,y;
 	private Sommets SommetsDest;
 	private Environnement env;
+	private Image image;
+	private ImageView sprite;
 	
 	
 	public Zombie (int x, int y) {
@@ -43,7 +50,7 @@ public abstract class Zombie {
 		this.x.setValue(x);
 	}
 
-	public double getY() {
+	public int getY() {
 		return y.getValue();
 	}
 	
@@ -117,10 +124,20 @@ public abstract class Zombie {
 		//System.out.println(Math.sqrt(y));
 		return Math.sqrt(y);
 	}
-	
-	
-	
-	
 
+	public ImageView initSpriteZombie(int x, int y) {
+		this.env.getListeZombies().add(this);
+		if(this instanceof Sprinteur) {
+			try {
+				this.image = new Image(new FileInputStream("src/application/vue/ressources/zombies/zombieImmobile.png"));
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			}
+			this.sprite = new ImageView(this.image);
+			this.sprite.setX(x);
+			this.sprite.setY(y);
+		}
+		return this.sprite;
+	}
 	
 }
