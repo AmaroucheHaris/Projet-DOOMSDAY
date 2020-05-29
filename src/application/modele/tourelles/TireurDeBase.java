@@ -34,9 +34,7 @@ public class TireurDeBase extends Tourelle {
 
 	@Override
 	public void attaquer(Zombie target) {
-		if (detecter(this.getEnv()) != null) {
-			
-		}
+		
 	}
 	
 }
