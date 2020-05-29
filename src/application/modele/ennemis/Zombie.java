@@ -170,9 +170,11 @@ public abstract class Zombie {
 	
 	public boolean estEnVie() {
 		return this.pv > 0;
-
 	}
 	
-
+	public void suprimerZombie() {
+		this.env.getListeZombies().remove(this);
+	}
+	
 	
 }

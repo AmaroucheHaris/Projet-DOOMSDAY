@@ -2,11 +2,13 @@ package application.controleur;
 
 import java.io.FileNotFoundException;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.Random;
 import java.util.ResourceBundle;
 import application.modele.Environnement;
 import application.modele.TabMap1;
 import application.modele.ennemis.Sprinteur;
+import application.modele.ennemis.Zombie;
 import application.modele.tourelles.Militaire;
 import application.modele.tourelles.TireurDeBase;
 import application.modele.tourelles.Tourelle;
@@ -42,10 +44,12 @@ public class ControleurMap implements Initializable {
 
 	private boolean modeEdit;
 	private String tourelle;
+	private HashMap<Zombie, SpriteZombie> linkSpriteZombie;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
+		linkSpriteZombie = new HashMap<Zombie, SpriteZombie>();
 		modeEdit = false;
 		tourelle = "";
 	
@@ -142,10 +146,21 @@ public class ControleurMap implements Initializable {
 		// mettre à l'interieur de rand.nextInt() le nombre de type de zombie
 		int valRand = rand.nextInt(1);
 		
+		Zombie z;
 		switch(valRand) {
 		case 0:
-			sp = new SpriteZombie(new Sprinteur(env));
+			z = new Sprinteur(env);
+			sp = new SpriteZombie(z);
 			sp.ajouterSpriteZombie(paneCentrale);
+			linkSpriteZombie.put(z, sp);
+		}
+	}
+	
+	public void tuerZombie(Zombie target) {
+		if (!target.estEnVie()) {
+			target.suprimerZombie();
+			SpriteZombie sz = linkSpriteZombie.get(target);
+			sz.suprimerSpriteZombie(paneCentrale);
 		}
 	}
 }
