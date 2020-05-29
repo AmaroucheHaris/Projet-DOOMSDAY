@@ -179,9 +179,9 @@ public class ControleurMap implements Initializable {
 	
 	public void tuerZombiesMorts(){
 		ArrayList<Zombie> listeZombies = this.env.getListeZombies();
-		for (Zombie zombie : listeZombies) {
-			if (!zombie.estEnVie()) {
-				this.tuerZombie(zombie);
+		for (int i = 0; i < listeZombies.size(); i++) {
+			if (!listeZombies.get(i).estEnVie()) {
+				this.tuerZombie(listeZombies.get(i));
 			}
 		}	
 	}
