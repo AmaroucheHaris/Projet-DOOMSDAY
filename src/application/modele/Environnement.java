@@ -82,6 +82,11 @@ public class Environnement {
 		return this.listeZombie;
 	}
 	
+	public void deleteZombie(Zombie target) {
+		this.listeZombie.remove(target);
+	}
+	
+	
 
 	public ArrayList<Tourelle> getListeTourelles(){
 		return this.listeTourelle;

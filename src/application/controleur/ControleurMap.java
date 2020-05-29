@@ -61,6 +61,19 @@ public class ControleurMap implements Initializable {
 
 		try {
 			creerZombieAleatoire();
+			creerZombieAleatoire();
+			creerZombieAleatoire();
+			creerZombieAleatoire();
+			creerZombieAleatoire();
+			creerZombieAleatoire();
+			creerZombieAleatoire();
+			creerZombieAleatoire();
+			creerZombieAleatoire();
+			creerZombieAleatoire();
+			creerZombieAleatoire();
+			creerZombieAleatoire();
+			creerZombieAleatoire();
+
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -77,7 +90,7 @@ public class ControleurMap implements Initializable {
 		KeyFrame keyframe = new KeyFrame(Duration.seconds(0.017), (ev -> {
 
 			env.unTour();
-			this.tuerZombiesMorts();
+			tuerZombiesMorts();
 			time++;
 		}));
 		gameloop.getKeyFrames().add(keyframe);
@@ -170,7 +183,6 @@ public class ControleurMap implements Initializable {
 			if (!zombie.estEnVie()) {
 				this.tuerZombie(zombie);
 			}
-		}
+		}	
 	}
-	
 }
