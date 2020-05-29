@@ -7,7 +7,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 
 public abstract class Tourelle {
 	
-	private IntegerProperty x, y;
+	private int x, y;
 	private int degat;
 	private int vitesseAttack;
 	private int precision;
@@ -17,8 +17,8 @@ public abstract class Tourelle {
 	private Environnement env;
 	
 	public Tourelle(int x, int y, Environnement env, int degat, int vitesseAttack, int precision, int portee) {
-		this.x = new SimpleIntegerProperty(x);
-		this.y = new SimpleIntegerProperty(y);
+		this.x = x;
+		this.y = y;
 		this.env = env;
 		this.degat = degat;
 		this.vitesseAttack = vitesseAttack;
@@ -29,28 +29,28 @@ public abstract class Tourelle {
 	}
 	
 	public int getX() {
-		return this.x.getValue();
-	}
-	
-	public void setX(int x) {
-		this.x.setValue(x);
-	}
-	
-	public IntegerProperty getXProperty() {
 		return this.x;
 	}
 	
+	public void setX(int x) {
+		this.x = x;
+	}
+	
+//	public IntegerProperty getXProperty() {
+//		return this.x;
+//	}
+	
 	public int getY() {
-		return this.y.getValue();
+		return this.y;
 	}
 	
 	public void setY(int y) {
-		this.y.setValue(y);
+		this.y = y;
 	}
 
-	public IntegerProperty getYProperty() {
-		return this.y;
-	}
+//	public IntegerProperty getYProperty() {
+//		return this.y;
+//	}
 	
 	public Environnement getEnv() {
 		return this.env;

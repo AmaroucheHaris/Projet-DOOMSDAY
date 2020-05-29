@@ -8,6 +8,8 @@ import application.modele.Environnement;
 import application.modele.TabMap1;
 import application.modele.ennemis.Sprinteur;
 import application.modele.tourelles.Militaire;
+import application.modele.tourelles.TireurDeBase;
+import application.modele.tourelles.Tourelle;
 import application.vue.ChargementMap;
 import application.vue.SpriteTourelle;
 import application.vue.SpriteZombie;
@@ -108,19 +110,29 @@ public class ControleurMap implements Initializable {
 				if (tourelle.equals("militaire")) {
 					int posX = (int) event.getSceneX();
 					int posY = (int) event.getSceneY();
-					SpriteTourelle spt;
+//					SpriteTourelle spt;
+//
+//					try {
+//						spt = new SpriteTourelle(new Militaire(posX, posY, env, 10, 10, 10, 100), env);
+//						spt.creerSpriteTourelle(paneCentrale);
+//					} catch (FileNotFoundException e) {
+//						e.printStackTrace();
+//					}
+//				}
+				Tourelle tour = new TireurDeBase(posX, posY, env, 10, 10, 10, 300);
+				SpriteTourelle spt;
 
-					try {
-						spt = new SpriteTourelle(new Militaire(posX, posY, env, 10, 10, 10, 100), env);
-						spt.creerSpriteTourelle(paneCentrale);
-					} catch (FileNotFoundException e) {
-						e.printStackTrace();
-					}
+				try {
+					spt = new SpriteTourelle(tour, env, posX, posY);
+					spt.creerSpriteTourelle(paneCentrale, spt);
+				} catch (FileNotFoundException e) {
+					e.printStackTrace();
 				}
 
 			}
 
 		}
+	}
 	}
 	
 	public void creerZombieAleatoire() throws FileNotFoundException {
