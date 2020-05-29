@@ -1,11 +1,11 @@
 package application.modele;
 
 import java.util.ArrayList;
-import application.modele.bfs.Coordonnes;
+import java.util.LinkedList;
+
 import application.modele.bfs.Graphe;
 import application.modele.ennemis.Zombie;
 import application.modele.tourelles.Tourelle;
-import application.vue.ChargementMap;
 
 public class Environnement {
 	
@@ -16,25 +16,26 @@ public class Environnement {
 	
 	private ArrayList<Zombie> listeZombie;
 	private ArrayList<Tourelle> listeTourelle;
-	private ArrayList<Coordonnes> listeCoordonnes;
+	//private ArrayList<Coordonnes> listeCoordonnes;
 	private Graphe graphe;
-	private ChargementMap tab;
+	private TabMap1 tab;
 	
-	
-	public Environnement(int width, int height, ChargementMap map) {
+	public Environnement(int width, int height) {
 		this.width = width;
 		this.height = height;
+		this.tab = new TabMap1();
 		this.mancheEnCours = false;
 		listeZombie = new ArrayList<Zombie>();
-		this.tab = map;
 	//	listeTourelle = new ArrayList<Tourelle>();
 		listeTourelle = new ArrayList<Tourelle>();
 		//this.nbTours = 0;
-		this.listeCoordonnes = new ArrayList<Coordonnes>();
-		this.graphe = new Graphe();
-		graphe.initSommets(this.tab.getMap());
-		graphe.bfs();
-		graphe.afficher();
+		//this.listeCoordonnes = new ArrayList<Coordonnes>();
+		System.out.println("construction graphe");
+		this.graphe = new Graphe(tab.getTab());
+		System.out.println("graphe" + this.graphe);
+//		graphe.initSommets(this.tab.getTab());
+//		graphe.bfs();
+//		graphe.afficher();
 				
 	}
 	
@@ -43,6 +44,7 @@ public class Environnement {
 		for(Zombie currentZombie : this.listeZombie) {
 			//Coordonnes test = this.graphe.plusProcheCoord(currentZombie);
 			//System.out.println("x= " + test.getX() + "    " +"y = " + test.getY());
+			System.out.println(currentZombie);
 			currentZombie.agit();
 			
 //			Coordonnes test = plusProcheCoord(currentZombie);
@@ -60,11 +62,11 @@ public class Environnement {
 		this.mancheEnCours = false;
 	}
 	
-	public void initZombie() {
-		for(Zombie z : this.listeZombie) {
-			z.setSommetsDest(this.graphe.plusProcheCoord(z));
-		}
-	}
+//	public void initZombie() {
+//		for(Zombie z : this.listeZombie) {
+//			z.setSommetsDest(this.graphe.plusProcheCoord(z));
+//		}
+//	}
 	public boolean getMancheEnCours() {
 		return this.mancheEnCours;
 	}
@@ -88,26 +90,30 @@ public class Environnement {
 	
 	
 	
-	public Coordonnes plusProcheCoord(Zombie zombie) {
-		boolean test = false;
-		if(zombie.getCoordonnesDest() != null) {
-			return zombie.getCoordonnesDest();
-		}
-		double distance = 1000;
-		Coordonnes coordMinimal = new Coordonnes(0, 0);
-		//System.out.println(listeCoordonnes.size());
-		for(Coordonnes coord : this.listeCoordonnes) {
-			if(zombie.distance(coord) != 0) {
-				if(distance > zombie.distance(coord)) {
-				distance = zombie.distance(coord);
-				coordMinimal.setX(coord.getX());
-				coordMinimal.setY(coord.getY());
-
-				}
-			}
-		}
-		//zombie.setCoordonneesDest(coordMinimal);
-		return coordMinimal;
+//	public Coordonnes plusProcheCoord(Zombie zombie) {
+//		boolean test = false;
+//		if(zombie.getCoordonnesDest() != null) {
+//			return zombie.getCoordonnesDest();
+//		}
+//		double distance = 1000;
+//		Coordonnes coordMinimal = new Coordonnes(0, 0);
+//		//System.out.println(listeCoordonnes.size());
+//		for(Coordonnes coord : this.listeCoordonnes) {
+//			if(zombie.distance(coord) != 0) {
+//				if(distance > zombie.distance(coord)) {
+//				distance = zombie.distance(coord);
+//				coordMinimal.setX(coord.getX());
+//				coordMinimal.setY(coord.getY());
+//
+//				}
+//			}
+//		}
+//		//zombie.setCoordonneesDest(coordMinimal);
+//		return coordMinimal;
+//	}
+	
+	public Graphe getGraphe() {
+		return this.graphe;
 	}
 	
 	

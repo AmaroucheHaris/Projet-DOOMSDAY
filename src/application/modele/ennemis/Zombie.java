@@ -1,33 +1,31 @@
 package application.modele.ennemis;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Random;
 
 import application.modele.Environnement;
 import application.modele.bfs.Coordonnes;
-import application.modele.bfs.Sommets;
+import application.modele.bfs.Sommet;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 
 public abstract class Zombie {
 	private double pv;
 	private int vitesse;
 	private IntegerProperty x,y;
-	private Sommets SommetsDest;
+	private Sommet SommetsDest;
 	private Environnement env;
-	private Image image;
-	private ImageView sprite;
 	
 	
-	public Zombie (int x, int y, Environnement env) {
-		this.x = new SimpleIntegerProperty(x);
-		this.y = new SimpleIntegerProperty(y);
+	public Zombie (Environnement env) {
+		Coordonnes coord = this.Lieuxspawn();
+		this.x = new SimpleIntegerProperty(coord.getX());
+		this.y = new SimpleIntegerProperty(coord.getY());
 		this.pv = 0;
 		this.vitesse = 0;
 		this.SommetsDest = null;
 		this.env = env;
+		
 	}
 
 	public double getPv() {
@@ -50,7 +48,7 @@ public abstract class Zombie {
 		this.x.setValue(x);
 	}
 
-	public int getY() {
+	public double getY() {
 		return y.getValue();
 	}
 	
@@ -74,11 +72,11 @@ public abstract class Zombie {
 		return this.SommetsDest.getCoordonnes();
 	}
 	
-	public Sommets getSommet() {
+	public Sommet getSommet() {
 		return this.SommetsDest;
 	}
 	
-	public void setSommetsDest(Sommets s) {
+	public void setSommetsDest(Sommet s) {
 		this.SommetsDest = s;
 	}
 
@@ -86,34 +84,60 @@ public abstract class Zombie {
 //		return "[pv=" + pv + ", vitesse=" + vitesse + ", x=" + x + ", y=" + y + "]";
 //	}
 	
+//	public void seDeplacer() {
+//		Coordonnes c = this.SommetsDest.getCoordonnes();
+//		if(this.getX() < c.getX()) {
+//			this.setX(getX() + this.getVitesse());
+//		}
+//		else if(this.getX() > c.getX()) {
+//			this.setX(getX() - this.getVitesse());
+//		}
+//		if(this.getY() < c.getY()) {
+//			this.setY(getY() + this.getVitesse());
+//		}
+//		else if(this.getY() > c.getY()) {
+//			this.setY(getY() - this.getVitesse());
+//		}
+//		//this.setY(this.getY() + this.getVitesse());
+//		System.out.println("AFFICHAGE DEST x=   " + c.getX() + "y = " + c.getY());
+//		if(getX() == c.getX() && getY() == c.getY()) {
+//			this.SommetsDest = this.SommetsDest.getSommetPere();
+//			if(this.SommetsDest == null) {
+//				this.SommetsDest = new Sommet(new Coordonnes(448, 672));
+//			}
+//			System.out.println("Père : x = " + this.SommetsDest.getCoordonnes().getX() + "y = " + this.SommetsDest.getCoordonnes().getY());
+//		}
+//	}
+	
 	public void seDeplacer() {
-		Coordonnes c = this.SommetsDest.getCoordonnes();
-		if(this.getX() < c.getX()) {
+		Coordonnes coordZombie = new Coordonnes((this.x.getValue()/32)*32, (this.y.getValue()/32)*32);
+		//System.out.println(this.env.getGraphe());
+		//Coordonnes coordZombie = new Coordonnes(Math.floorDiv(this.x.getValue(), 32), Math.floorDiv(this.y.getValue(), 32));
+
+		Sommet sommetCourant = this.env.getGraphe().chercheSommet(coordZombie);
+		
+		//mettre à sommetDest la valeur associée à sommetCourant dans la HashMap
+		
+		this.SommetsDest = this.env.getGraphe().getBfs().getAssociationPereFils().get(sommetCourant);
+		System.out.println(SommetsDest);
+		
+		if(this.getX() < this.SommetsDest.getCoordonnes().getX()) {
 			this.setX(getX() + this.getVitesse());
 		}
-		else if(this.getX() > c.getX()) {
+		else if(this.getX() > this.SommetsDest.getCoordonnes().getX()) {
 			this.setX(getX() - this.getVitesse());
 		}
-		if(this.getY() < c.getY()) {
+		if(this.getY() < this.SommetsDest.getCoordonnes().getY()) {
 			this.setY(getY() + this.getVitesse());
 		}
-		else if(this.getY() > c.getY()) {
+		else if(this.getY() > this.SommetsDest.getCoordonnes().getY()) {
 			this.setY(getY() - this.getVitesse());
-		}
-		//this.setY(this.getY() + this.getVitesse());
-		System.out.println("AFFICHAGE DEST x=   " + c.getX() + "y = " + c.getY());
-		if(getX() == c.getX() && getY() == c.getY()) {
-			this.SommetsDest = this.SommetsDest.getSommetPere();
-			if(this.SommetsDest == null) {
-				this.SommetsDest = new Sommets(new Coordonnes(448, 672));
-			}
-			System.out.println("PÃ¨re : x = " + this.SommetsDest.getCoordonnes().getX() + "y = " + this.SommetsDest.getCoordonnes().getY());
 		}
 	}
 	
 	public void agit() {
-//		this.seDeplacer();
-		this.toString();
+		this.seDeplacer();
+		//this.toString();
 	}
 	
 	
@@ -124,20 +148,26 @@ public abstract class Zombie {
 		//System.out.println(Math.sqrt(y));
 		return Math.sqrt(y);
 	}
-
-	public ImageView initSpriteZombie(int x, int y) {
-		this.env.getListeZombies().add(this);
-		if(this instanceof Sprinteur) {
-			try {
-				this.image = new Image(new FileInputStream("src/application/vue/ressources/zombies/zombieImmobile.png"));
-			} catch (FileNotFoundException e) {
-				e.printStackTrace();
-			}
-			this.sprite = new ImageView(this.image);
-			this.sprite.setX(x);
-			this.sprite.setY(y);
-		}
-		return this.sprite;
+	
+	public Environnement getEnvironnement() {
+		return this.env;
 	}
+	
+	public Coordonnes Lieuxspawn() {
+		ArrayList<Coordonnes> listeSpawn = new ArrayList<Coordonnes>();
+		listeSpawn.add(new Coordonnes(0, 96));
+		listeSpawn.add(new Coordonnes(896, 96));
+		listeSpawn.add(new Coordonnes(448, 32));
+		
+		Random rand = new Random();
+		int i = rand.nextInt(3);
+		
+		return listeSpawn.get(i);
+	}
+	
+	
+	
+	
+
 	
 }

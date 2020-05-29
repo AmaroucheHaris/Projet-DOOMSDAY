@@ -12,29 +12,23 @@ import javafx.scene.layout.Pane;
 
 public class SpriteZombie {
 	private Zombie zombie;
-	private int posX;
-	private int posY;
+	private Environnement env;
+	private Image image;
 	private ImageView sprite;
 	
-	public SpriteZombie(Zombie z, int x, int y) {
-		this.zombie = z;
-		this.posX = x;
-		this.posY = y;
-		this.sprite = this.zombie.initSpriteZombie(z.getX(), z.getY());
+	public SpriteZombie(Zombie zombie) throws FileNotFoundException {
+		this.zombie = zombie;
+		this.env = zombie.getEnvironnement();
+		this.env.getListeZombies().add(zombie);
+		if(this.zombie instanceof Sprinteur) {
+			this.image = new Image(new FileInputStream("src/application/vue/ressources/zombies/zombieImmobile.png"));
+			this.sprite = new ImageView(this.image);
+		}
 	}
 	
-	public void creerSpriteZombie(Pane pane, Zombie z) {
-		sprite.translateXProperty().bind(z.getXProperty());
-		sprite.translateYProperty().bind(z.getYProperty());
-		pane.getChildren().add(this.zombie.initSpriteZombie(z.getX(), z.getY()));
+	public void ajouterSpriteZombie(Pane pane) {
+		this.sprite.translateXProperty().bind(zombie.getXProperty());
+        this.sprite.translateYProperty().bind(zombie.getYProperty());
+        pane.getChildren().add(this.sprite);
 	}
-	
-	public int getX() {
-		return this.posX;
-	}
-	
-	public int getY() {
-		return this.posY;
-	}
-	
 }
