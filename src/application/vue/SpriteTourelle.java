@@ -9,8 +9,32 @@ import application.modele.tourelles.Tourelle;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-
+	
 public class SpriteTourelle {
+//	private Tourelle tourelle;
+//	private Environnement env;
+//	private Image image;
+//	private ImageView sprite;
+//	private int posX, posY;
+//		
+//	public SpriteTourelle(Tourelle tourelle, Environnement env, int posX, int posY) throws FileNotFoundException {
+//		this.tourelle = tourelle;
+//		this.env = env;
+//		this.env.getListeTourelles().add(tourelle);
+//		this.posX = posX;
+//		this.posY = posY;
+//		if(this.tourelle instanceof TireurDeBase) {
+//			this.image = new Image(new FileInputStream("src/application/vue/ressources/tourelles/TourelleBase.png"));
+//			this.sprite = new ImageView(this.image);
+//		}
+//	       this.sprite.setX(this.posX);
+//	       this.sprite.setY(this.posY);
+//	}
+//		
+//	public void creerSpriteTourelle(Pane pane, SpriteTourelle tour) {
+//	       pane.getChildren().add(this.sprite);
+//	}
+	
 	private Tourelle tourelle;
 	private Environnement env;
 	private Image image;
@@ -31,4 +55,5 @@ public class SpriteTourelle {
         this.sprite.translateYProperty().bind(tourelle.getYProperty());
         pane.getChildren().add(this.sprite);
 	}
+			
 }

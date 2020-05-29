@@ -18,9 +18,9 @@ public class TireurDeBase extends Tourelle {
 	public Zombie detecter(Environnement env) {
 		ArrayList<Zombie> zombies = env.getListeZombies();
 		for (Zombie zombie : zombies) {
-			System.out.println("r�sultat x = " + (zombie.getXProperty().getValue() - this.getXProperty().getValue()));
-			System.out.println("r�sultat y =" + (zombie.getYProperty().getValue() - this.getYProperty().getValue()));
-			if(zombie.getXProperty().getValue() - this.getXProperty().getValue() >= -this.getPortee() && zombie.getXProperty().getValue() - this.getXProperty().getValue() <= this.getPortee() && zombie.getYProperty().getValue() - this.getYProperty().getValue() >= -this.getPortee() && zombie.getYProperty().getValue() - this.getYProperty().getValue() <= this.getPortee()) {	
+			System.out.println("r�sultat x = " + (zombie.getXProperty().getValue() - this.getX()));
+			System.out.println("r�sultat y =" + (zombie.getYProperty().getValue() - this.getY()));
+			if(zombie.getXProperty().getValue() - this.getX() >= -this.getPortee() && zombie.getXProperty().getValue() - this.getX() <= this.getPortee() && zombie.getYProperty().getValue() - this.getY() >= -this.getPortee() && zombie.getYProperty().getValue() - this.getY() <= this.getPortee()) {	
 				return zombie;
 			}
 		}
@@ -30,8 +30,7 @@ public class TireurDeBase extends Tourelle {
 	@Override
 	public void agir() {
 		if (detecter(this.getEnv()) != null) {
-			//m�thode atk
-			this.setY(this.getY() + 1);
+			
 		}
 	}
 

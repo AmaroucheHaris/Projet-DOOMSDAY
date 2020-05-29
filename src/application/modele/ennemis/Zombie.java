@@ -105,7 +105,7 @@ public abstract class Zombie {
 //			if(this.SommetsDest == null) {
 //				this.SommetsDest = new Sommet(new Coordonnes(448, 672));
 //			}
-//			System.out.println("Père : x = " + this.SommetsDest.getCoordonnes().getX() + "y = " + this.SommetsDest.getCoordonnes().getY());
+//			System.out.println("P�re : x = " + this.SommetsDest.getCoordonnes().getX() + "y = " + this.SommetsDest.getCoordonnes().getY());
 //		}
 //	}
 	
@@ -116,7 +116,7 @@ public abstract class Zombie {
 
 		Sommet sommetCourant = this.env.getGraphe().chercheSommet(coordZombie);
 		
-		//mettre à sommetDest la valeur associée à sommetCourant dans la HashMap
+		//mettre � sommetDest la valeur associ�e � sommetCourant dans la HashMap
 		
 		this.SommetsDest = this.env.getGraphe().getBfs().getAssociationPereFils().get(sommetCourant);
 		System.out.println(SommetsDest);

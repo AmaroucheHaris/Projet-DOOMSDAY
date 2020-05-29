@@ -18,11 +18,12 @@ public class Environnement {
 	private ArrayList<Tourelle> listeTourelle;
 	//private ArrayList<Coordonnes> listeCoordonnes;
 	private Graphe graphe;
-	
+	private TabMap1 tab;
 	
 	public Environnement(int width, int height) {
 		this.width = width;
 		this.height = height;
+		this.tab = new TabMap1();
 		this.mancheEnCours = false;
 		listeZombie = new ArrayList<Zombie>();
 	//	listeTourelle = new ArrayList<Tourelle>();
@@ -30,7 +31,7 @@ public class Environnement {
 		//this.nbTours = 0;
 		//this.listeCoordonnes = new ArrayList<Coordonnes>();
 		System.out.println("construction graphe");
-		this.graphe = new Graphe(mapModele.TAB1);
+		this.graphe = new Graphe(tab.getTab());
 		System.out.println("graphe" + this.graphe);
 //		graphe.initSommets(this.tab.getTab());
 //		graphe.bfs();

@@ -1,12 +1,5 @@
 package application.modele;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.TilePane;
-
 public class TabMap1 {
 	private int [][] tab = {
 
@@ -36,7 +29,6 @@ public class TabMap1 {
 		};
 		
 		
-	
 		public int[][] getTab(){
 			return this.tab;
 		}
