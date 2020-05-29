@@ -89,7 +89,7 @@ public class Graphe {
 
 	public void initSommets() {
 //		boolean continuer = true;
-//		System.out.println("Sommet de départ V1 :  x= " + sommetDeDepart.getCoordonnes().getX() + " y = " + sommetDeDepart.getCoordonnes().getX());
+//		System.out.println("Sommet de dï¿½part V1 :  x= " + sommetDeDepart.getCoordonnes().getX() + " y = " + sommetDeDepart.getCoordonnes().getX());
 //		this.sommetDeDepart.setCoordonnes(new Coordonnes(448, 640));
 //		this.listeSommets.addLast(this.sommetDeDepart);
 
@@ -124,7 +124,7 @@ public class Graphe {
 
 //					//this.listeSommets.addLast(s1);
 //					
-//					//regarde à gauche
+//					//regarde ï¿½ gauche
 //					Coordonnes nouvelleCoordVerif = new Coordonnes(32*(colonne -1), 32*ligne);
 //					s.setCoordonnes(nouvelleCoordVerif);
 //					
@@ -156,7 +156,7 @@ public class Graphe {
 //
 //					}
 //					
-//					//regarde à droite
+//					//regarde ï¿½ droite
 //					
 //					nouvelleCoordVerif = new Coordonnes(32*(colonne +1), 32*ligne);
 //					s.setCoordonnes(nouvelleCoordVerif);
@@ -314,7 +314,7 @@ public class Graphe {
 //		LinkedList<Sommet> liste = new LinkedList<Sommet>();
 //		this.sommetDeDepart = this.listeSommets.get(getIndice(new Sommet(new Coordonnes(448, 672))));
 //		this.sommetDeDepart.setDistance(0);
-//		System.out.println("Sommet de départ :  x= " + sommetDeDepart.getCoordonnes().getX() + " y = " + sommetDeDepart.getCoordonnes().getY());
+//		System.out.println("Sommet de dï¿½part :  x= " + sommetDeDepart.getCoordonnes().getX() + " y = " + sommetDeDepart.getCoordonnes().getY());
 //		boolean continuer = true;
 //		Sommet sommetCourant = sommetDeDepart;
 //		liste.addLast(sommetCourant);
@@ -353,7 +353,7 @@ public class Graphe {
 //		System.out.println(sommetCourant.getListeSommetsAccessible().size());
 //		for(Sommet sommet : sommetCourant.getListeSommetsAccessible()) {
 //			distance = sommetCourant.getDistance() + distanceEntreDeuxCoord(sommetCourant.getCoordonnes(), sommet.getCoordonnes());
-//			System.out.println(sommet.getDistance() + "père = " + sommetCourant.getDistance());
+//			System.out.println(sommet.getDistance() + "pï¿½re = " + sommetCourant.getDistance());
 //			if(sommet.getDistance() >  distance) {
 //				sommet.setDistance(distance);
 //				sommet.setSommetPere(sommetCourant);
@@ -364,7 +364,7 @@ public class Graphe {
 //	public void afficher() {
 //		for(Sommet sommet : this.listeSommets) {
 //			if(sommet.getSommetPere() != null) {
-//				System.out.println(" x = " + sommet.getCoordonnes().getX() + " Y = " + sommet.getCoordonnes().getY() + " distance = " + sommet.getDistance() + "père " + sommet.getSommetPere().getCoordonnes().getX() + " Y= " + sommet.getSommetPere().getCoordonnes().getY()+ " taille : " + sommet.getListeSommetsAccessible().size());
+//				System.out.println(" x = " + sommet.getCoordonnes().getX() + " Y = " + sommet.getCoordonnes().getY() + " distance = " + sommet.getDistance() + "pï¿½re " + sommet.getSommetPere().getCoordonnes().getX() + " Y= " + sommet.getSommetPere().getCoordonnes().getY()+ " taille : " + sommet.getListeSommetsAccessible().size());
 //				sommet.afficheFils();
 //			}
 //			else {

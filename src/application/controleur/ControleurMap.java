@@ -48,6 +48,7 @@ public class ControleurMap implements Initializable {
 
 		modeEdit = false;
 		tourelle = "";
+	
 		mapAGenener = new ChargementMap();
 
 		mapAGenener.genererMap(Tpane);
