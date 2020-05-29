@@ -2,11 +2,12 @@ package application.controleur;
 
 import java.io.FileNotFoundException;
 import java.net.URL;
+import java.util.Random;
 import java.util.ResourceBundle;
 import application.modele.Environnement;
-import application.modele.Militaire;
-import application.modele.Sprinteur;
 import application.modele.TabMap1;
+import application.modele.ennemis.Sprinteur;
+import application.modele.tourelles.Militaire;
 import application.vue.SpriteTourelle;
 import application.vue.SpriteZombie;
 import javafx.animation.KeyFrame;
@@ -51,16 +52,11 @@ public class ControleurMap implements Initializable {
 
 		this.env = new Environnement(960, 704);
 
-		SpriteZombie sp;
-		SpriteTourelle spt;
 		try {
-			sp = new SpriteZombie(new Sprinteur(0, 96, this.env));
-			//env.initZombie();
-			sp.creerSpriteZombie(paneCentrale);
+			creerZombieAleatoire();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-
 		animation();
 		gameloop.play();
 
@@ -123,6 +119,21 @@ public class ControleurMap implements Initializable {
 
 			}
 
+		}
+	}
+	
+	public void creerZombieAleatoire() throws FileNotFoundException {
+		// 7 zombies
+		
+		SpriteZombie sp;
+		Random rand = new Random();
+		// mettre à l'interieur de rand.nextInt() le nombre de type de zombie
+		int valRand = rand.nextInt(1);
+		
+		switch(valRand) {
+		case 0:
+			sp = new SpriteZombie(new Sprinteur(env));
+			sp.ajouterSpriteZombie(paneCentrale);
 		}
 	}
 

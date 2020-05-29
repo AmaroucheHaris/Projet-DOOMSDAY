@@ -1,9 +1,11 @@
-package application.modele;
+package application.modele.ennemis;
+
+import application.modele.Environnement;
 
 public class Tank extends Zombie{
 
-	public Tank(int x, int y, Environnement env) {
-		super(x, y, env);
+	public Tank(Environnement env) {
+		super(env);
 		this.setPv(30);
 		this.setVitesse(2);
 	}

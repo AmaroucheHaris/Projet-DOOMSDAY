@@ -1,4 +1,4 @@
-package application.modele;
+package application.modele.bfs;
 
 import java.util.ArrayList;
 

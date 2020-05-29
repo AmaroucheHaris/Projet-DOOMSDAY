@@ -1,5 +1,11 @@
-package application.modele;
+package application.modele.ennemis;
 
+import java.util.ArrayList;
+import java.util.Random;
+
+import application.modele.Environnement;
+import application.modele.bfs.Coordonnes;
+import application.modele.bfs.Sommet;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
@@ -11,9 +17,10 @@ public abstract class Zombie {
 	private Environnement env;
 	
 	
-	public Zombie (int x, int y, Environnement env) {
-		this.x = new SimpleIntegerProperty(x);
-		this.y = new SimpleIntegerProperty(y);
+	public Zombie (Environnement env) {
+		Coordonnes coord = this.Lieuxspawn();
+		this.x = new SimpleIntegerProperty(coord.getX());
+		this.y = new SimpleIntegerProperty(coord.getY());
 		this.pv = 0;
 		this.vitesse = 0;
 		this.SommetsDest = null;
@@ -144,6 +151,18 @@ public abstract class Zombie {
 	
 	public Environnement getEnvironnement() {
 		return this.env;
+	}
+	
+	public Coordonnes Lieuxspawn() {
+		ArrayList<Coordonnes> listeSpawn = new ArrayList<Coordonnes>();
+		listeSpawn.add(new Coordonnes(0, 96));
+		listeSpawn.add(new Coordonnes(896, 96));
+		listeSpawn.add(new Coordonnes(448, 32));
+		
+		Random rand = new Random();
+		int i = rand.nextInt(3);
+		
+		return listeSpawn.get(i);
 	}
 	
 	

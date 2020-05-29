@@ -1,5 +1,7 @@
-package application.modele;
+package application.modele.tourelles;
 
+import application.modele.Environnement;
+import application.modele.ennemis.Zombie;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
@@ -75,6 +77,6 @@ public abstract class Tourelle {
 	public abstract void agir();
 	
 	public String toString() {
-		return "[ x= " + this.x + ", y= " + this.y + ", degat= " + this.degat + ", vitesse d'attaque= " + this.vitesseAttack + ", précision=" + this.precision + ", portée= " + this.portee +" ]";
+		return "[ x= " + this.x + ", y= " + this.y + ", degat= " + this.degat + ", vitesse d'attaque= " + this.vitesseAttack + ", prï¿½cision=" + this.precision + ", portï¿½e= " + this.portee +" ]";
 	}
 }

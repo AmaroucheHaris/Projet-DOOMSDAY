@@ -1,7 +1,8 @@
-package application.modele;
+package application.modele.tourelles;
 
 import java.util.ArrayList;
 import application.modele.Environnement;
+import application.modele.ennemis.Zombie;
 
 public class TireurDeBase extends Tourelle {
 
@@ -17,8 +18,8 @@ public class TireurDeBase extends Tourelle {
 	public Zombie detecter(Environnement env) {
 		ArrayList<Zombie> zombies = env.getListeZombies();
 		for (Zombie zombie : zombies) {
-			System.out.println("résultat x = " + (zombie.getXProperty().getValue() - this.getXProperty().getValue()));
-			System.out.println("résultat y =" + (zombie.getYProperty().getValue() - this.getYProperty().getValue()));
+			System.out.println("rï¿½sultat x = " + (zombie.getXProperty().getValue() - this.getXProperty().getValue()));
+			System.out.println("rï¿½sultat y =" + (zombie.getYProperty().getValue() - this.getYProperty().getValue()));
 			if(zombie.getXProperty().getValue() - this.getXProperty().getValue() >= -this.getPortee() && zombie.getXProperty().getValue() - this.getXProperty().getValue() <= this.getPortee() && zombie.getYProperty().getValue() - this.getYProperty().getValue() >= -this.getPortee() && zombie.getYProperty().getValue() - this.getYProperty().getValue() <= this.getPortee()) {	
 				return zombie;
 			}
@@ -29,7 +30,7 @@ public class TireurDeBase extends Tourelle {
 	@Override
 	public void agir() {
 		if (detecter(this.getEnv()) != null) {
-			//méthode atk
+			//mï¿½thode atk
 			this.setY(this.getY() + 1);
 		}
 	}

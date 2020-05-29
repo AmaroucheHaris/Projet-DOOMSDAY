@@ -1,4 +1,4 @@
-package application.modele;
+package application.modele.bfs;
 
 public class Coordonnes {
 	private int x,y;

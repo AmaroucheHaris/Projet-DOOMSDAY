@@ -1,9 +1,11 @@
-package application.modele;
+package application.modele.ennemis;
+
+import application.modele.Environnement;
 
 public class ZombieDeTroie extends Zombie{
 
-	public ZombieDeTroie(int x, int y, Environnement env) {
-		super(x, y, env);
+	public ZombieDeTroie(Environnement env) {
+		super(env);
 		this.setPv(30);
 		this.setVitesse(2);
 	}

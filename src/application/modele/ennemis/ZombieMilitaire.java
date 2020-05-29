@@ -1,11 +1,13 @@
-package application.modele;
+package application.modele.ennemis;
+
+import application.modele.Environnement;
 
 public class ZombieMilitaire extends Zombie{
 
 	private int probaAbsorbe;
 	
-	public ZombieMilitaire(int x, int y, Environnement env) {
-		super(x, y, env);
+	public ZombieMilitaire(Environnement env) {
+		super(env);
 		this.setVitesse(3);
 		this.probaAbsorbe = 20;
 	}
