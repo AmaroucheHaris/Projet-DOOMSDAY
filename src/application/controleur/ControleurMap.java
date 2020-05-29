@@ -2,14 +2,13 @@ package application.controleur;
 
 import java.io.FileNotFoundException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 import java.util.ResourceBundle;
 import application.modele.Environnement;
-import application.modele.TabMap1;
 import application.modele.ennemis.Sprinteur;
 import application.modele.ennemis.Zombie;
-import application.modele.tourelles.Militaire;
 import application.modele.tourelles.TireurDeBase;
 import application.modele.tourelles.Tourelle;
 import application.vue.ChargementMap;
@@ -48,7 +47,7 @@ public class ControleurMap implements Initializable {
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-
+		
 		linkSpriteZombie = new HashMap<Zombie, SpriteZombie>();
 		modeEdit = false;
 		tourelle = "";
@@ -78,6 +77,7 @@ public class ControleurMap implements Initializable {
 		KeyFrame keyframe = new KeyFrame(Duration.seconds(0.017), (ev -> {
 
 			env.unTour();
+			this.tuerZombiesMorts();
 			time++;
 		}));
 		gameloop.getKeyFrames().add(keyframe);
@@ -124,7 +124,7 @@ public class ControleurMap implements Initializable {
 //						e.printStackTrace();
 //					}
 //				}
-					Tourelle tour = new TireurDeBase(posX, posY, env, 10, 10, 10, 300);
+					Tourelle tour = new TireurDeBase(posX, posY, env, 10, 10, 10, 30);
 					SpriteTourelle spt;
 
 					try {
@@ -163,4 +163,14 @@ public class ControleurMap implements Initializable {
 			sz.suprimerSpriteZombie(paneCentrale);
 		}
 	}
+	
+	public void tuerZombiesMorts(){
+		ArrayList<Zombie> listeZombies = this.env.getListeZombies();
+		for (Zombie zombie : listeZombies) {
+			if (!zombie.estEnVie()) {
+				this.tuerZombie(zombie);
+			}
+		}
+	}
+	
 }

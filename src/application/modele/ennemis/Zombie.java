@@ -3,6 +3,7 @@ package application.modele.ennemis;
 import java.util.ArrayList;
 import java.util.Random;
 
+import application.controleur.ControleurMap;
 import application.modele.Environnement;
 import application.modele.bfs.Coordonnes;
 import application.modele.bfs.Sommet;

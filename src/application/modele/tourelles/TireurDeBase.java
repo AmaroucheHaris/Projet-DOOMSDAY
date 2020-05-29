@@ -27,14 +27,15 @@ public class TireurDeBase extends Tourelle {
 
 	@Override
 	public void agir() {
-		if (detecter(this.getEnv()) != null) {
-			
+		Zombie target = this.detecter(this.getEnv());
+		if (target != null) {
+			this.attaquer(target);
 		}
 	}
 
 	@Override
 	public void attaquer(Zombie target) {
-		
+		target.setPv(this.getDegat() - target.getPv());
 	}
 	
 }

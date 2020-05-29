@@ -6,7 +6,7 @@ public class Sprinteur extends Zombie{
 
 	public Sprinteur(Environnement env) {
 		super(env);
-		this.setPv(15);
+		this.setPv(20);
 		this.setVitesse(1);
 	}
 	
