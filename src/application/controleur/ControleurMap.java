@@ -47,7 +47,7 @@ public class ControleurMap implements Initializable {
 		tourelle = "";
 		mapAGenerer = new TabMap1();
 
-		mapAGenerer.genererMap(Tpane);
+		//mapAGenerer.genererMap(Tpane);
 		// env.initSommets();
 
 		this.env = new Environnement(960, 704);
