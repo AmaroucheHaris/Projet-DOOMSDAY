@@ -166,7 +166,10 @@ public abstract class Zombie {
 	}
 	
 	
-	
+	public boolean estEnVie() {
+		return this.pv > 0;
+
+	}
 	
 
 	

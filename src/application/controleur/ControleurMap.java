@@ -120,20 +120,18 @@ public class ControleurMap implements Initializable {
 //						e.printStackTrace();
 //					}
 //				}
-				Tourelle tour = new TireurDeBase(posX, posY, env, 10, 10, 10, 300);
-				SpriteTourelle spt;
+					Tourelle tour = new TireurDeBase(posX, posY, env, 10, 10, 10, 300);
+					SpriteTourelle spt;
 
-				try {
-					spt = new SpriteTourelle(tour, env, posX, posY);
-					spt.creerSpriteTourelle(paneCentrale, spt);
-				} catch (FileNotFoundException e) {
-					e.printStackTrace();
+					try {
+						spt = new SpriteTourelle(tour, env, posX, posY);
+						spt.creerSpriteTourelle(paneCentrale, spt);
+					} catch (FileNotFoundException e) {
+						e.printStackTrace();
+					}
 				}
-
 			}
-
 		}
-	}
 	}
 	
 	public void creerZombieAleatoire() throws FileNotFoundException {
@@ -150,5 +148,4 @@ public class ControleurMap implements Initializable {
 			sp.ajouterSpriteZombie(paneCentrale);
 		}
 	}
-
 }

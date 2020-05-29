@@ -2,8 +2,6 @@ package application.modele.tourelles;
 
 import application.modele.Environnement;
 import application.modele.ennemis.Zombie;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 
 public abstract class Tourelle {
 	
@@ -75,6 +73,9 @@ public abstract class Tourelle {
 	public abstract Zombie detecter(Environnement env);
 	
 	public abstract void agir();
+	
+	public abstract void attaquer(Zombie target);
+	
 	
 	public String toString() {
 		return "[ x= " + this.x + ", y= " + this.y + ", degat= " + this.degat + ", vitesse d'attaque= " + this.vitesseAttack + ", pr�cision=" + this.precision + ", port�e= " + this.portee +" ]";
