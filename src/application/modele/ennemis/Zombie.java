@@ -120,19 +120,21 @@ public abstract class Zombie {
 		
 		this.SommetsDest = this.env.getGraphe().getBfs().getAssociationPereFils().get(sommetCourant);
 		System.out.println(SommetsDest);
+		if(this.SommetsDest != null) {
+			if(this.getX() < this.SommetsDest.getCoordonnes().getX()) {
+				this.setX(getX() + this.getVitesse());
+			}
+			else if(this.getX() > this.SommetsDest.getCoordonnes().getX()) {
+				this.setX(getX() - this.getVitesse());
+			}
+			if(this.getY() < this.SommetsDest.getCoordonnes().getY()) {
+				this.setY(getY() + this.getVitesse());
+			}
+			else if(this.getY() > this.SommetsDest.getCoordonnes().getY()) {
+				this.setY(getY() - this.getVitesse());
+			}
+		}
 		
-		if(this.getX() < this.SommetsDest.getCoordonnes().getX()) {
-			this.setX(getX() + this.getVitesse());
-		}
-		else if(this.getX() > this.SommetsDest.getCoordonnes().getX()) {
-			this.setX(getX() - this.getVitesse());
-		}
-		if(this.getY() < this.SommetsDest.getCoordonnes().getY()) {
-			this.setY(getY() + this.getVitesse());
-		}
-		else if(this.getY() > this.SommetsDest.getCoordonnes().getY()) {
-			this.setY(getY() - this.getVitesse());
-		}
 	}
 	
 	public void agit() {
