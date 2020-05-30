@@ -32,6 +32,4 @@ public class TabMap1 {
 		public int[][] getTab(){
 			return this.tab;
 		}
-
-
 }
