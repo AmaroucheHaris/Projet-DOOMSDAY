@@ -35,6 +35,8 @@ public class ControleurMap implements Initializable {
 	private Timeline gameloop;
 	private int time;
 	private ChargementMap mapAGenener;
+	private int cycle;
+	private int cycleSpawnZombie;
 
 	@FXML
 	private ImageView imageMilitaire;
@@ -51,6 +53,8 @@ public class ControleurMap implements Initializable {
 		linkSpriteZombie = new HashMap<Zombie, SpriteZombie>();
 		modeEdit = false;
 		tourelle = "";
+		this.cycle = 200;
+		this.cycleSpawnZombie = 0;
 	
 		mapAGenener = new ChargementMap();
 
@@ -59,24 +63,16 @@ public class ControleurMap implements Initializable {
 
 		this.env = new Environnement(960, 704);
 
-		try {
-			creerZombieAleatoire();
-			creerZombieAleatoire();
-			creerZombieAleatoire();
-			creerZombieAleatoire();
-			creerZombieAleatoire();
-			creerZombieAleatoire();
-			creerZombieAleatoire();
-			creerZombieAleatoire();
-			creerZombieAleatoire();
-			creerZombieAleatoire();
-			creerZombieAleatoire();
-			creerZombieAleatoire();
-			creerZombieAleatoire();
-
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
+//		try {
+//			creerZombieAleatoire();
+//			creerZombieAleatoire();
+//			creerZombieAleatoire();
+//			creerZombieAleatoire();
+//		
+//
+//		} catch (FileNotFoundException e) {
+//			e.printStackTrace();
+//		}
 		animation();
 		gameloop.play();
 
@@ -86,9 +82,25 @@ public class ControleurMap implements Initializable {
 		this.gameloop = new Timeline();
 		this.time = 0;
 		this.gameloop.setCycleCount(Timeline.INDEFINITE);
-
+		
 		KeyFrame keyframe = new KeyFrame(Duration.seconds(0.017), (ev -> {
 
+			if(this.cycle == 0) {
+				if(this.cycleSpawnZombie == 0) {
+					try {
+						creerZombieAleatoire();
+					} catch (FileNotFoundException e) {
+						e.printStackTrace();
+					}
+					this.cycleSpawnZombie = 250;
+				}
+				else {
+					this.cycleSpawnZombie--;
+				}
+			}
+			else {
+				this.cycle--;
+			}
 			env.unTour();
 			tuerZombiesMorts();
 			time++;

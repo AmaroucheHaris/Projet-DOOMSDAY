@@ -20,244 +20,31 @@ public class Graphe {
 		initSommets();
 		this.bfs = new Bfs(this);
 	}
-//	public void initSommets() {
-//		
-//		Sommets sommet1 = new Sommets(new Coordonnes(105, 300));
-//		Sommets sommet2 = new Sommets(new Coordonnes(285, 300));
-//		Sommets sommet3 = new Sommets(new Coordonnes(470, 300));
-//		Sommets sommet4 = new Sommets(new Coordonnes(580, 300));
-//		Sommets sommet5 = new Sommets(new Coordonnes(760, 300));
-//		Sommets sommet6 = new Sommets(new Coordonnes(105, 520));
-//		Sommets sommet7 = new Sommets(new Coordonnes(470, 520));
-//		Sommets sommet8 = new Sommets(new Coordonnes(760, 520));
-//		Sommets sommet9 = new Sommets(new Coordonnes(580, 100));
-//		Sommets sommet10 = new Sommets(new Coordonnes(470, 100));
-//		Sommets sommet11 = new Sommets(new Coordonnes(285, 100));
-//		
-//
-//		// matrice d'adjacense 
-//		
-//		sommet1.ajouterListeSommetAccessible(sommet2);
-//		sommet1.ajouterListeSommetAccessible(sommet6);
-//		
-//		sommet2.ajouterListeSommetAccessible(sommet1);
-//		sommet2.ajouterListeSommetAccessible(sommet3);
-//		sommet2.ajouterListeSommetAccessible(sommet11);
-//
-//		sommet3.ajouterListeSommetAccessible(sommet2);
-//		sommet3.ajouterListeSommetAccessible(sommet4);
-//		sommet3.ajouterListeSommetAccessible(sommet7);
-//		
-//		sommet4.ajouterListeSommetAccessible(sommet3);
-//		sommet4.ajouterListeSommetAccessible(sommet5);
-//		sommet4.ajouterListeSommetAccessible(sommet9);
-//		
-//		sommet5.ajouterListeSommetAccessible(sommet4);
-//		sommet5.ajouterListeSommetAccessible(sommet8);
-//		
-//		sommet6.ajouterListeSommetAccessible(sommet7);
-//		sommet6.ajouterListeSommetAccessible(sommet1);
-//		
-//		sommet7.ajouterListeSommetAccessible(sommet6);
-//		sommet7.ajouterListeSommetAccessible(sommet8);
-//		sommet7.ajouterListeSommetAccessible(sommet3);
-//		
-//		sommet8.ajouterListeSommetAccessible(sommet7);
-//		sommet8.ajouterListeSommetAccessible(sommet5);
-//		
-//		sommet9.ajouterListeSommetAccessible(sommet4);
-//		sommet9.ajouterListeSommetAccessible(sommet10);
-//		
-//		sommet10.ajouterListeSommetAccessible(sommet9);
-//		sommet10.ajouterListeSommetAccessible(sommet11);
-//		
-//		sommet11.ajouterListeSommetAccessible(sommet10);
-//		sommet11.ajouterListeSommetAccessible(sommet2);
-//		
-//		this.listeSommets.add(sommet1);
-//		this.listeSommets.add(sommet2);
-//		this.listeSommets.add(sommet3);
-//		this.listeSommets.add(sommet4);
-//		this.listeSommets.add(sommet5);
-//		this.listeSommets.add(sommet6);
-//		this.listeSommets.add(sommet7);
-//		this.listeSommets.add(sommet8);
-//		this.listeSommets.add(sommet9);
-//		this.listeSommets.add(sommet10);
-//		this.listeSommets.add(sommet11);
-//	}
 
 	public void initSommets() {
-//		boolean continuer = true;
-//		System.out.println("Sommet de d�part V1 :  x= " + sommetDeDepart.getCoordonnes().getX() + " y = " + sommetDeDepart.getCoordonnes().getX());
-//		this.sommetDeDepart.setCoordonnes(new Coordonnes(448, 640));
-//		this.listeSommets.addLast(this.sommetDeDepart);
+
 
 		for (int ligne = 0; ligne < matrice.length; ligne++) {
 
 			for (int colonne = 0; colonne < matrice[ligne].length; colonne++) {
 
-				// Sommet verifSommet = new Sommet(new Coordonnes(32*colonne, 32*ligne));
 
 				if (matrice[ligne][colonne] == 2) {
 
-					// Sommet s1 = verifSommet;
 					Sommet s = new Sommet(new Coordonnes(32 * colonne, 32 * ligne));
 
-					// s1 = this.listeSommets.get(getIndice(s1));
 					this.listeSommets.add(s);
 				}
 			}
 		}
-		System.out.println(this.listeSommets);
-		System.out.println(this.listeSommets.size());
 		for (Sommet s : this.listeSommets) {
 			for (Sommet sommetTest : this.listeSommets) {
 				if (s.estAdjacent(sommetTest)) {
-					// System.out.println(sommetTest);
 					s.ajouterSommet(sommetTest);
 				}
 
 			}
-			// System.out.println(s);
 		}
-
-//					//this.listeSommets.addLast(s1);
-//					
-//					//regarde � gauche
-//					Coordonnes nouvelleCoordVerif = new Coordonnes(32*(colonne -1), 32*ligne);
-//					s.setCoordonnes(nouvelleCoordVerif);
-//					
-//					if(colonne - 1 >= 0 && matrice[ligne][colonne - 1] == 2) {
-//						if(contain(s1)) {
-//							s1 = this.listeSommets.get(getIndice(s1));
-//						}
-//						Sommet s2 = new Sommet(new Coordonnes(32*(colonne -1), 32*ligne));
-//						if(contain(s2)) {
-//							s2 = this.listeSommets.get(getIndice(s2));
-//						}
-//						s1.ajouterSommet(s2);
-//						s2.ajouterSommet(s1);
-//						if(contain(s1)==false) {
-//							this.listeSommets.addLast(s1);
-//						}
-//						else {
-//							listeSommets.remove(getIndice(s1));
-//							listeSommets.addLast(s1);
-//						}
-//						if(contain(s2)==false) {
-//							this.listeSommets.addLast(s2);
-//						}
-//						else {
-//							listeSommets.remove(getIndice(s2));
-//							listeSommets.addLast(s2);
-//						}
-//						
-//
-//					}
-//					
-//					//regarde � droite
-//					
-//					nouvelleCoordVerif = new Coordonnes(32*(colonne +1), 32*ligne);
-//					s.setCoordonnes(nouvelleCoordVerif);
-//					
-//					if(colonne+1 < matrice[ligne].length && matrice[ligne][colonne+1] == 2) {
-//						if(contain(s1)) {
-//							s1 = this.listeSommets.get(getIndice(s1));
-//						}
-//						Sommet s3 = new Sommet(new Coordonnes(32*(colonne +1), 32*ligne));
-//						if(contain(s3)) {
-//							s3 = this.listeSommets.get(getIndice(s3));
-//						}
-//						s1.ajouterSommet(s3);
-//						s3.ajouterSommet(s1);
-//						if(contain(s1)==false) {
-//							this.listeSommets.addLast(s1);
-//						}
-//						else {
-//							listeSommets.remove(getIndice(s1));
-//							listeSommets.addLast(s1);
-//						}
-//						if(contain(s3)==false) {
-//							this.listeSommets.addLast(s3);
-//						}
-//						else {
-//							listeSommets.remove(getIndice(s3));
-//							listeSommets.addLast(s3);
-//						}
-//
-//					}
-//					
-//					//regarde en haut
-//					
-//					nouvelleCoordVerif = new Coordonnes(32*colonne, 32*(ligne-1));
-//					s.setCoordonnes(nouvelleCoordVerif);
-//					
-//					if(ligne-1 >= 0 && matrice[ligne-1][colonne] == 2) {
-//						if(contain(s1)) {
-//							s1 = this.listeSommets.get(getIndice(s1));
-//						}
-//						Sommet s4 = new Sommet(new Coordonnes(32*colonne, 32*(ligne-1)));
-//						if(contain(s4)) {
-//							s4 = this.listeSommets.get(getIndice(s4));
-//						}
-//						s1.ajouterSommet(s4);
-//						s4.ajouterSommet(s1);
-//						if(contain(s1)==false) {
-//							this.listeSommets.addLast(s1);
-//						}
-//						else {
-//							listeSommets.remove(getIndice(s1));
-//							listeSommets.addLast(s1);
-//						}
-//						if(contain(s4)==false) {
-//							this.listeSommets.addLast(s4);
-//						}
-//						else {
-//							listeSommets.remove(getIndice(s4));
-//							listeSommets.addLast(s4);
-//						}
-//
-//					}
-//					
-//					//regarde en bas
-//					
-//					nouvelleCoordVerif = new Coordonnes(32*colonne, 32*(ligne+1));
-//					s.setCoordonnes(nouvelleCoordVerif);
-//					
-//					if(ligne+1 < matrice.length && matrice[ligne+1][colonne] == 2 ) {
-//						if(contain(s1)) {
-//							s1 = this.listeSommets.get(getIndice(s1));
-//						}
-//						Sommet s5 = new Sommet(new Coordonnes(32*colonne, 32*(ligne+1)));
-//						if(contain(s5)) {
-//							s5 = this.listeSommets.get(getIndice(s5));
-//						}
-//						s1.ajouterSommet(s5);
-//						s5.ajouterSommet(s1);
-//						if(contain(s1)==false) {
-//							this.listeSommets.addLast(s1);
-//						}
-//						else {
-//							listeSommets.remove(getIndice(s1));
-//							listeSommets.addLast(s1);
-//						}
-//						if(contain(s5)==false) {
-//							this.listeSommets.addLast(s5);
-//						}
-//						else {
-//							listeSommets.remove(getIndice(s5));
-//							listeSommets.addLast(s5);
-//						}
-//
-//
-//					}
-//				}
-//				
-//				
-//			}
-//		}
-
 	}
 
 	public Sommet plusProcheCoord(Zombie zombie) {

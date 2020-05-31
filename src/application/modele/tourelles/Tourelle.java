@@ -13,6 +13,7 @@ public abstract class Tourelle {
 	private String id;
 	private static int compteurId = 0;
 	private Environnement env;
+	protected int tpsRechargement;
 	
 	public Tourelle(int x, int y, Environnement env, int degat, int vitesseAttack, int precision, int portee) {
 		this.x = x;
@@ -24,6 +25,7 @@ public abstract class Tourelle {
 		this.portee = portee;
 		compteurId++;
 		this.id = "T" + compteurId;
+		this.tpsRechargement = 0;
 	}
 	
 	public int getX() {

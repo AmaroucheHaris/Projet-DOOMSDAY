@@ -6,12 +6,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 
 public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			BorderPane root = FXMLLoader.load(getClass().getClassLoader().getResource("application/vue/vue1.fxml"));
+			Pane root = FXMLLoader.load(getClass().getClassLoader().getResource("application/vue/menuPrincipal.fxml"));
 			Scene scene = new Scene(root,1100,704);
 			scene.getStylesheets().add(getClass().getResource("vue/application.css").toExternalForm());
 			primaryStage.setScene(scene);

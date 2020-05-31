@@ -29,7 +29,13 @@ public class TireurDeBase extends Tourelle {
 	public void agir() {
 		Zombie target = this.detecter(this.getEnv());
 		if (target != null) {
-			this.attaquer(target);
+			if(this.tpsRechargement == 0) {
+				this.attaquer(target);
+				this.tpsRechargement = 5;
+			}
+			else {
+				this.tpsRechargement -= 1;
+			}
 		}
 	}
 
