@@ -29,7 +29,7 @@ public class Sommet {
 	}
 
 	public boolean isExplore() {
-		return explore;
+		return this.explore;
 	}
 
 	public void setExplore(boolean explore) {
@@ -40,7 +40,6 @@ public class Sommet {
 		return listeSommetsAccessible;
 	}
 
-	
 
 //	public Sommet getSommetPere() {
 //		return this.sommetPere;

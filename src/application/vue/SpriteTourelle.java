@@ -54,6 +54,5 @@ public class SpriteTourelle {
 //		this.sprite.translateXProperty().bind(tourelle.getXProperty());
 //        this.sprite.translateYProperty().bind(tourelle.getYProperty());
 //        pane.getChildren().add(this.sprite);
-//	}
-			
+//	}			
 }

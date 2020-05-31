@@ -7,8 +7,11 @@ import java.util.HashMap;
 import java.util.Random;
 import java.util.ResourceBundle;
 import application.modele.Environnement;
+import application.modele.TabMap1;
+import application.modele.bfs.Coordonnes;
 import application.modele.ennemis.Sprinteur;
 import application.modele.ennemis.Zombie;
+import application.modele.tourelles.PlacementTourelle;
 import application.modele.tourelles.TireurDeBase;
 import application.modele.tourelles.Tourelle;
 import application.vue.ChargementMap;
@@ -46,16 +49,22 @@ public class ControleurMap implements Initializable {
 	private boolean modeEdit;
 	private String tourelle;
 	private HashMap<Zombie, SpriteZombie> linkSpriteZombie;
+	private ArrayList<PlacementTourelle> listePlacementsTourelles;
+	
+	private TabMap1 map1;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		
+		map1 = new TabMap1();
+		int[][] matriceMap1 = map1.getTab();
 		linkSpriteZombie = new HashMap<Zombie, SpriteZombie>();
+		listePlacementsTourelles = new ArrayList<PlacementTourelle>();
 		modeEdit = false;
 		tourelle = "";
 		this.cycle = 200;
 		this.cycleSpawnZombie = 0;
 	
+		boolean reponse;
 		mapAGenener = new ChargementMap();
 
 		mapAGenener.genererMap(Tpane);
@@ -73,6 +82,24 @@ public class ControleurMap implements Initializable {
 //		} catch (FileNotFoundException e) {
 //			e.printStackTrace();
 //		}
+//		try {
+//			creerZombieAleatoire();
+//			creerZombieAleatoire();
+//
+//
+//		} catch (FileNotFoundException e) {
+//			e.printStackTrace();
+//		}
+		Coordonnes c1 = new Coordonnes(420,0);
+		PlacementTourelle pt = new PlacementTourelle(c1, matriceMap1);
+		if (matriceMap1[pt.getTileY()][pt.getTileX()] == 1) {
+			this.addPlacementTourelle(pt);
+		}
+		else {
+			System.out.println("false");
+		}
+		
+
 		animation();
 		gameloop.play();
 
@@ -135,30 +162,35 @@ public class ControleurMap implements Initializable {
 			if (tourelle.equals("")) {
 				System.out.println("Aucune tourelle s�lectionn�e");
 			}
-
 			else {
-				if (tourelle.equals("militaire")) {
-					int posX = (int) event.getSceneX();
-					int posY = (int) event.getSceneY();
-//					SpriteTourelle spt;
-//
-//					try {
-//						spt = new SpriteTourelle(new Militaire(posX, posY, env, 10, 10, 10, 100), env);
-//						spt.creerSpriteTourelle(paneCentrale);
-//					} catch (FileNotFoundException e) {
-//						e.printStackTrace();
-//					}
-//				}
-					Tourelle tour = new TireurDeBase(posX, posY, env, 10, 10, 10, 30);
-					SpriteTourelle spt;
+				int posX = (int) event.getSceneX();
+				int posY = (int) event.getSceneY();
+				Coordonnes c = new Coordonnes(posX, posY);
+				for (PlacementTourelle placementTourelle : listePlacementsTourelles) {
+					if (posX/32 == placementTourelle.getTileX() && posY/32 == placementTourelle.getTileY() && !this.getEtatPlacementTourelle(c)) {
+						if (tourelle.equals("militaire")) {
 
-					try {
-						spt = new SpriteTourelle(tour, env, posX, posY);
-						spt.creerSpriteTourelle(paneCentrale, spt);
-					} catch (FileNotFoundException e) {
-						e.printStackTrace();
+//							SpriteTourelle spt;
+		//
+//							try {
+//								spt = new SpriteTourelle(new Militaire(posX, posY, env, 10, 10, 10, 100), env);
+//								spt.creerSpriteTourelle(paneCentrale);
+//							} catch (FileNotFoundException e) {
+//								e.printStackTrace();
+//							}
+//						}
+							Tourelle tour = new TireurDeBase(posX, posY, env, 10, 10, 10, 30);
+							SpriteTourelle spt;
+
+							try {
+								spt = new SpriteTourelle(tour, env, posX, posY);
+								spt.creerSpriteTourelle(paneCentrale, spt);
+							} catch (FileNotFoundException e) {
+								e.printStackTrace();
+							}
+						}
 					}
-				}
+				}			
 			}
 		}
 	}
@@ -171,15 +203,31 @@ public class ControleurMap implements Initializable {
 		// mettre à l'interieur de rand.nextInt() le nombre de type de zombie
 		int valRand = rand.nextInt(1);
 		
-		Zombie z;
+		Zombie z = null;
 		switch(valRand) {
 		case 0:
 			z = new Sprinteur(env);
-			sp = new SpriteZombie(z);
-			sp.ajouterSpriteZombie(paneCentrale);
-			linkSpriteZombie.put(z, sp);
+			
 		}
+		sp = new SpriteZombie(z);
+		sp.ajouterSpriteZombie(paneCentrale);
+		linkSpriteZombie.put(z, sp);
 	}
+
+//	public void creerZombie(String type, int start) throws FileNotFoundException {
+//		// 7 zombies
+//		
+//		SpriteZombie sp;
+//		Zombie z = null;
+//		
+//		switch(type) {
+//		case "Sprinteur":
+//			z = new Sprinteur(env);
+//		}
+//		sp = new SpriteZombie(z);
+//		sp.ajouterSpriteZombie(paneCentrale);
+//		linkSpriteZombie.put(z, sp);
+//	}
 	
 	public void tuerZombie(Zombie target) {
 		if (!target.estEnVie()) {
@@ -196,5 +244,30 @@ public class ControleurMap implements Initializable {
 				this.tuerZombie(listeZombies.get(i));
 			}
 		}	
+	}
+	
+	public ArrayList<PlacementTourelle> getAllPlacementsTourelles(){
+		return this.listePlacementsTourelles;
+	}
+	
+	public void addPlacementTourelle(PlacementTourelle pt) {
+		if (!this.listePlacementsTourelles.contains(pt)) {
+			this.listePlacementsTourelles.add(pt);
+		}
+	}
+	
+	public void removePlacementTourelle(PlacementTourelle pt) {
+		if (this.listePlacementsTourelles.contains(pt)) {
+			this.listePlacementsTourelles.remove(pt);
+		}
+	}
+	
+	public boolean getEtatPlacementTourelle(Coordonnes c){
+		for (PlacementTourelle placementTourelle : this.listePlacementsTourelles) {
+			if (placementTourelle.getTileX()/32 == c.getX() && placementTourelle.getTileY()/32 == c.getY()) {
+				return placementTourelle.getIsAvailable();
+			}
+		}
+		return false;
 	}
 }
