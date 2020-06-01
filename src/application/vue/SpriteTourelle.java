@@ -24,7 +24,7 @@ public class SpriteTourelle {
 		this.posX = posX;
 		this.posY = posY;
 		if(this.tourelle instanceof TireurDeBase) {
-			this.image = new Image(new FileInputStream("src/application/vue/ressources/tourelles/TourelleBase.png"));
+			this.image = new Image(new FileInputStream("src/application/vue/ressources/tourelles/TireurDeBase.jpg"));
 			this.sprite = new ImageView(this.image);
 		}
 	       this.sprite.setX(this.posX);
