@@ -20,7 +20,7 @@
       </Pane>
    </center>
    <right>
-      <VBox prefHeight="704.0" prefWidth="150.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="706.0" prefWidth="162.0" BorderPane.alignment="CENTER">
          <children>
             <Label text="Tourelles">
                <VBox.margin>
@@ -29,7 +29,7 @@
             </Label>
             <ImageView fx:id="imageMilitaire" fitHeight="63.0" fitWidth="86.0" onMouseClicked="#onMouseClickedMilitaire" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@ressources/tourelles/TireurDeBase.jpg" />
+                  <Image url="@ressources/tourelles/TireurDeBase.png" />
                </image>
                <VBox.margin>
                   <Insets left="50.0" top="10.0" />

@@ -21,7 +21,7 @@ public class SpriteZombie {
 		this.env = zombie.getEnvironnement();
 		this.env.getListeZombies().add(zombie);
 		if(this.zombie instanceof Sprinteur) {
-			this.image = new Image(new FileInputStream("src/application/vue/ressources/zombies/Sprinteur.jpg"));
+			this.image = new Image(new FileInputStream("src/application/vue/ressources/zombies/Sprinteur.png"));
 			this.sprite = new ImageView(this.image);
 		}
 	}
