@@ -100,7 +100,7 @@ public class ControleurMap implements Initializable {
 //			e.printStackTrace();
 //		}
 
-		CreerPlacementTourelle(10, 0);
+		creerPlacementTourelle(10, 0);
 
 		animation();
 		gameloop.play();
@@ -154,35 +154,35 @@ public class ControleurMap implements Initializable {
 	@FXML
 	void onMouseClickedMilitaire(MouseEvent event) {
 		if (modeEdit) {
-			tourelle = "militaire";
+			tourelle = "TireurDeBase";
 		}
 	}
 	
 	   @FXML
 	    void onMouseClickedBourrin(MouseEvent event) {
 		   if (modeEdit) {
-				tourelle = "bourrin";
+				tourelle = "Bourrin";
 			}
 	    }
 
 	    @FXML
 	    void onMouseClickedGrenadier(MouseEvent event) {
 	    	if (modeEdit) {
-				tourelle = "grenadier";
+				tourelle = "Grenadier";
 			}
 	    }
 
 	    @FXML
 	    void onMouseClickedRadar(MouseEvent event) {
 	    	if (modeEdit) {
-				tourelle = "radar";
+				tourelle = "Radar";
 			}
 	    }
 
 	    @FXML
 	    void onMouseClickedTireurPrecision(MouseEvent event) {
 	    	if (modeEdit) {
-				tourelle = "tireur";
+				tourelle = "TireurDePrecision";
 			}
 	    }
 
@@ -198,15 +198,9 @@ public class ControleurMap implements Initializable {
 				Coordonnes c = new Coordonnes(posX, posY);
 				for (PlacementTourelle placementTourelle : listePlacementsTourelles) {
 					if (this.getEtatPlacementTourelle(c) && posX/32 == placementTourelle.getTileX() && posY/32 == placementTourelle.getTileY()) {
-						if (tourelle.equals("militaire")) {
-							Tourelle tour = new TireurDeBase(posX, posY, env, 10, 10, 10, 30);
-							SpriteTourelle spt;
-							try {
-								spt = new SpriteTourelle(tour, env, placementTourelle.getTileX()*32, placementTourelle.getTileY()*32);
-								spt.creerSpriteTourelle(paneCentrale, spt);
-							} catch (FileNotFoundException e) {
-								e.printStackTrace();
-							}
+						if (tourelle.equals("TireurDeBase")) {
+							this.creerTourelle("TireurDeBase", placementTourelle.getTileX()*32, placementTourelle.getTileY()*32);
+							placementTourelle.setIsAvailable(false);
 						}
 					}
 				}			
@@ -290,7 +284,7 @@ public class ControleurMap implements Initializable {
 		return false;
 	}
 	
-	public void CreerPlacementTourelle(int x, int y){
+	public void creerPlacementTourelle(int x, int y){
 		Coordonnes c1 = new Coordonnes(x*32,y*32);
 		PlacementTourelle pt = new PlacementTourelle(c1, matriceMap1);
 		if (matriceMap1[pt.getTileY()][pt.getTileX()] == 1) {
@@ -300,5 +294,27 @@ public class ControleurMap implements Initializable {
 		else {
 			System.out.println("Erreur : Mauvais endroit");
 		}
+	}
+	
+	
+	public void creerTourelle(String type, int posX, int posY) {
+		switch (type) {
+		case "TireurDeBase":
+			Tourelle tour = new TireurDeBase(posX, posY, env, 10, 10, 10, 30);
+			SpriteTourelle spt;
+			try {
+				spt = new SpriteTourelle(tour, env, posX, posY);
+				spt.creerSpriteTourelle(paneCentrale, spt);
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			}
+			break;
+
+		default:
+			break;
+		}
+		
+		
+		
 	}
 }
