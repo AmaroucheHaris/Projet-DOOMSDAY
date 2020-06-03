@@ -27,10 +27,8 @@ public class ControlerMainMenu implements Initializable {
     @FXML
     void commencerPartie(ActionEvent event) throws IOException {
 		Pane root = FXMLLoader.load(getClass().getClassLoader().getResource("application/vue/vue1.fxml"));
-
-    	//    	AnchorPane aPane = FXMLLoader.load(getClass().getResource("application/vue/vue1.fxml"));
-//    	Stage stage = new Stage();
-    	rootPane.getChildren().setAll(root);
+    	
+		rootPane.getChildren().setAll(root);
     }
 
     @FXML
