@@ -43,6 +43,19 @@ public class ControleurMap implements Initializable {
 
 	@FXML
 	private ImageView imageMilitaire;
+	
+	@FXML
+	private ImageView imageTireurPrecision;
+
+	@FXML
+	private ImageView imageBourrin;
+
+	@FXML
+	private ImageView imageGrenadier;
+
+	@FXML
+	private ImageView imageRadar;
+    
 	@FXML
 	private ImageView target;
 
@@ -59,7 +72,7 @@ public class ControleurMap implements Initializable {
 		listePlacementsTourelles = new ArrayList<PlacementTourelle>();
 		modeEdit = false;
 		tourelle = "";
-		this.cycle = 200;
+		this.cycle = 400;
 		this.cycleSpawnZombie = 0;
 		mapAGenener = new ChargementMap();
 
@@ -144,6 +157,34 @@ public class ControleurMap implements Initializable {
 			tourelle = "militaire";
 		}
 	}
+	
+	   @FXML
+	    void onMouseClickedBourrin(MouseEvent event) {
+		   if (modeEdit) {
+				tourelle = "bourrin";
+			}
+	    }
+
+	    @FXML
+	    void onMouseClickedGrenadier(MouseEvent event) {
+	    	if (modeEdit) {
+				tourelle = "grenadier";
+			}
+	    }
+
+	    @FXML
+	    void onMouseClickedRadar(MouseEvent event) {
+	    	if (modeEdit) {
+				tourelle = "radar";
+			}
+	    }
+
+	    @FXML
+	    void onMouseClickedTireurPrecision(MouseEvent event) {
+	    	if (modeEdit) {
+				tourelle = "tireur";
+			}
+	    }
 
 	@FXML
 	void onMouseClickedPane(MouseEvent event) {
@@ -158,18 +199,7 @@ public class ControleurMap implements Initializable {
 				for (PlacementTourelle placementTourelle : listePlacementsTourelles) {
 					if (this.getEtatPlacementTourelle(c) && posX/32 == placementTourelle.getTileX() && posY/32 == placementTourelle.getTileY()) {
 						if (tourelle.equals("militaire")) {
-
-//							SpriteTourelle spt;
-		//
-//							try {
-//								spt = new SpriteTourelle(new Militaire(posX, posY, env, 10, 10, 10, 100), env);
-//								spt.creerSpriteTourelle(paneCentrale);
-//							} catch (FileNotFoundException e) {
-//								e.printStackTrace();
-//							}
-//						}
-							placementTourelle.setIsAvailable(false);
-							Tourelle tour = new TireurDeBase(placementTourelle.getTileX()*32, placementTourelle.getTileY()*32, env, 10, 10, 10, 30);
+							Tourelle tour = new TireurDeBase(posX, posY, env, 10, 10, 10, 30);
 							SpriteTourelle spt;
 							try {
 								spt = new SpriteTourelle(tour, env, placementTourelle.getTileX()*32, placementTourelle.getTileY()*32);

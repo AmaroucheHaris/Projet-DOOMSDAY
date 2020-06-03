@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 
@@ -19,6 +20,10 @@ public class ControlerRegles implements Initializable{
 	 
 	 @FXML
 	    private AnchorPane rootPane;
+	 
+	 @FXML
+	    private TextArea areaRegles;
+
 
 	    @FXML
 	    void chargeMenuPrecedent(ActionEvent event) throws IOException {
