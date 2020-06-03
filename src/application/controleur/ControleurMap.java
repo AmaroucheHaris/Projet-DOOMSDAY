@@ -43,6 +43,19 @@ public class ControleurMap implements Initializable {
 
 	@FXML
 	private ImageView imageMilitaire;
+	
+	@FXML
+	private ImageView imageTireurPrecision;
+
+	@FXML
+	private ImageView imageBourrin;
+
+	@FXML
+	private ImageView imageGrenadier;
+
+	@FXML
+	private ImageView imageRadar;
+    
 	@FXML
 	private ImageView target;
 
@@ -155,6 +168,34 @@ public class ControleurMap implements Initializable {
 			tourelle = "militaire";
 		}
 	}
+	
+	   @FXML
+	    void onMouseClickedBourrin(MouseEvent event) {
+		   if (modeEdit) {
+				tourelle = "bourrin";
+			}
+	    }
+
+	    @FXML
+	    void onMouseClickedGrenadier(MouseEvent event) {
+	    	if (modeEdit) {
+				tourelle = "grenadier";
+			}
+	    }
+
+	    @FXML
+	    void onMouseClickedRadar(MouseEvent event) {
+	    	if (modeEdit) {
+				tourelle = "radar";
+			}
+	    }
+
+	    @FXML
+	    void onMouseClickedTireurPrecision(MouseEvent event) {
+	    	if (modeEdit) {
+				tourelle = "tireur";
+			}
+	    }
 
 	@FXML
 	void onMouseClickedPane(MouseEvent event) {

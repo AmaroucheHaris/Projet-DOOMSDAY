@@ -24,29 +24,67 @@
          <children>
             <Label text="Tourelles">
                <VBox.margin>
-                  <Insets left="50.0" />
+                  <Insets left="40.0" />
                </VBox.margin>
             </Label>
-            <ImageView fx:id="imageMilitaire" fitHeight="63.0" fitWidth="86.0" onMouseClicked="#onMouseClickedMilitaire" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imageMilitaire" fitHeight="63.0" fitWidth="63.0" onMouseClicked="#onMouseClickedMilitaire" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@ressources/tourelles/TireurDeBase.png" />
                </image>
                <VBox.margin>
-                  <Insets left="50.0" top="10.0" />
+                  <Insets left="35.0" top="10.0" />
                </VBox.margin>
             </ImageView>
-            <HBox prefHeight="100.0" prefWidth="200.0">
+            <ImageView fx:id="imageTireurPrecision" fitHeight="63.0" fitWidth="63.0" onMouseClicked="#onMouseClickedTireurPrecision" pickOnBounds="true" preserveRatio="true">
+               <VBox.margin>
+                  <Insets left="35.0" top="10.0" />
+               </VBox.margin>
+               <image>
+                  <Image url="@ressources/tourelles/TireurDePrecision.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="imageBourrin" fitHeight="63.0" fitWidth="63.0" onMouseClicked="#onMouseClickedBourrin" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@ressources/tourelles/Bourrin.png" />
+               </image>
+               <VBox.margin>
+                  <Insets left="35.0" top="10.0" />
+               </VBox.margin>
+            </ImageView>
+            <ImageView fx:id="imageGrenadier" fitHeight="63.0" fitWidth="63.0" onMouseClicked="#onMouseClickedGrenadier" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@ressources/tourelles/Grenadier.png" />
+               </image>
+               <VBox.margin>
+                  <Insets left="35.0" top="10.0" />
+               </VBox.margin>
+            </ImageView>
+            <ImageView fx:id="imageRadar" fitHeight="63.0" fitWidth="63.0" onMouseClicked="#onMouseClickedRadar" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@ressources/tourelles/Radar.png" />
+               </image>
+               <VBox.margin>
+                  <Insets left="35.0" top="10.0" />
+               </VBox.margin>
+            </ImageView>
+            <HBox prefHeight="8.0" prefWidth="162.0">
                <children>
                   <Button mnemonicParsing="false" onMouseClicked="#onMouseClickedOn" text="ON">
                      <HBox.margin>
-                        <Insets left="35.0" right="25.0" />
+                        <Insets left="20.0" right="25.0" />
                      </HBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" onMouseClicked="#onMouseClickedOff" text="OFF" />
+                  <Button mnemonicParsing="false" onMouseClicked="#onMouseClickedOff" text="OFF">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin></Button>
                </children>
                <VBox.margin>
-                  <Insets top="550.0" />
+                  <Insets />
                </VBox.margin>
+               <padding>
+                  <Insets top="250.0" />
+               </padding>
             </HBox>
          </children>
       </VBox>
