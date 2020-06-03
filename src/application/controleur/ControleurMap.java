@@ -61,7 +61,7 @@ public class ControleurMap implements Initializable {
 		listePlacementsTourelles = new ArrayList<PlacementTourelle>();
 		modeEdit = false;
 		tourelle = "";
-		this.cycle = 200;
+		this.cycle = 400;
 		this.cycleSpawnZombie = 0;
 	
 		boolean reponse;
