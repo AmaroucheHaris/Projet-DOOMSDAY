@@ -210,16 +210,6 @@ public class ControleurMap implements Initializable {
 				for (PlacementTourelle placementTourelle : listePlacementsTourelles) {
 					if (posX/32 == placementTourelle.getTileX() && posY/32 == placementTourelle.getTileY() && !this.getEtatPlacementTourelle(c)) {
 						if (tourelle.equals("militaire")) {
-
-//							SpriteTourelle spt;
-		//
-//							try {
-//								spt = new SpriteTourelle(new Militaire(posX, posY, env, 10, 10, 10, 100), env);
-//								spt.creerSpriteTourelle(paneCentrale);
-//							} catch (FileNotFoundException e) {
-//								e.printStackTrace();
-//							}
-//						}
 							Tourelle tour = new TireurDeBase(posX, posY, env, 10, 10, 10, 30);
 							SpriteTourelle spt;
 
