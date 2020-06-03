@@ -50,21 +50,17 @@ public class ControleurMap implements Initializable {
 	private String tourelle;
 	private HashMap<Zombie, SpriteZombie> linkSpriteZombie;
 	private ArrayList<PlacementTourelle> listePlacementsTourelles;
-	
-	private TabMap1 map1;
+	TabMap1 map1 = new TabMap1();
+	int[][] matriceMap1 = map1.getTab();
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		map1 = new TabMap1();
-		int[][] matriceMap1 = map1.getTab();
 		linkSpriteZombie = new HashMap<Zombie, SpriteZombie>();
 		listePlacementsTourelles = new ArrayList<PlacementTourelle>();
 		modeEdit = false;
 		tourelle = "";
 		this.cycle = 200;
 		this.cycleSpawnZombie = 0;
-	
-		boolean reponse;
 		mapAGenener = new ChargementMap();
 
 		mapAGenener.genererMap(Tpane);
@@ -90,15 +86,8 @@ public class ControleurMap implements Initializable {
 //		} catch (FileNotFoundException e) {
 //			e.printStackTrace();
 //		}
-		Coordonnes c1 = new Coordonnes(420,0);
-		PlacementTourelle pt = new PlacementTourelle(c1, matriceMap1);
-		if (matriceMap1[pt.getTileY()][pt.getTileX()] == 1) {
-			this.addPlacementTourelle(pt);
-		}
-		else {
-			System.out.println("false");
-		}
-		
+
+		CreerPlacementTourelle(10, 0);
 
 		animation();
 		gameloop.play();
@@ -160,14 +149,14 @@ public class ControleurMap implements Initializable {
 	void onMouseClickedPane(MouseEvent event) {
 		if (modeEdit) {
 			if (tourelle.equals("")) {
-				System.out.println("Aucune tourelle s�lectionn�e");
+				System.out.println("Aucune tourelle sélectionnée");
 			}
 			else {
 				int posX = (int) event.getSceneX();
 				int posY = (int) event.getSceneY();
 				Coordonnes c = new Coordonnes(posX, posY);
 				for (PlacementTourelle placementTourelle : listePlacementsTourelles) {
-					if (posX/32 == placementTourelle.getTileX() && posY/32 == placementTourelle.getTileY() && !this.getEtatPlacementTourelle(c)) {
+					if (this.getEtatPlacementTourelle(c) && posX/32 == placementTourelle.getTileX() && posY/32 == placementTourelle.getTileY()) {
 						if (tourelle.equals("militaire")) {
 
 //							SpriteTourelle spt;
@@ -179,11 +168,11 @@ public class ControleurMap implements Initializable {
 //								e.printStackTrace();
 //							}
 //						}
-							Tourelle tour = new TireurDeBase(posX, posY, env, 10, 10, 10, 30);
+							placementTourelle.setIsAvailable(false);
+							Tourelle tour = new TireurDeBase(placementTourelle.getTileX()*32, placementTourelle.getTileY()*32, env, 10, 10, 10, 30);
 							SpriteTourelle spt;
-
 							try {
-								spt = new SpriteTourelle(tour, env, posX, posY);
+								spt = new SpriteTourelle(tour, env, placementTourelle.getTileX()*32, placementTourelle.getTileY()*32);
 								spt.creerSpriteTourelle(paneCentrale, spt);
 							} catch (FileNotFoundException e) {
 								e.printStackTrace();
@@ -264,10 +253,22 @@ public class ControleurMap implements Initializable {
 	
 	public boolean getEtatPlacementTourelle(Coordonnes c){
 		for (PlacementTourelle placementTourelle : this.listePlacementsTourelles) {
-			if (placementTourelle.getTileX()/32 == c.getX() && placementTourelle.getTileY()/32 == c.getY()) {
+			if (placementTourelle.getTileX() == c.getX()/32 && placementTourelle.getTileY() == c.getY()/32) {
 				return placementTourelle.getIsAvailable();
 			}
 		}
 		return false;
+	}
+	
+	public void CreerPlacementTourelle(int x, int y){
+		Coordonnes c1 = new Coordonnes(x*32,y*32);
+		PlacementTourelle pt = new PlacementTourelle(c1, matriceMap1);
+		if (matriceMap1[pt.getTileY()][pt.getTileX()] == 1) {
+			this.addPlacementTourelle(pt);
+			System.out.println("Endroit crée avec succès");
+		}
+		else {
+			System.out.println("Erreur : Mauvais endroit");
+		}
 	}
 }
