@@ -81,6 +81,7 @@ public abstract class Zombie {
 		Sommet SommetsDest = this.env.getGraphe().getBfs().getAssociationPereFils().get(sommetCourant);
 		System.out.println(SommetsDest);
 		if(SommetsDest != null) {
+			//erreur bléssé vient peut-être de getX();
 			if(this.getX() < SommetsDest.getCoordonnes().getX()) {
 				this.setX(getX() + this.getVitesse());
 			}
