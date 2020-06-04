@@ -12,4 +12,8 @@ public class Tank extends Zombie{
 	public String toString() {
 		return this.getClass().getSimpleName() + super.toString(); 
 	}
+	
+	public void agit() {
+		this.seDeplacer();
+	}
 }

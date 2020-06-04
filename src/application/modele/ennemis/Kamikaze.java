@@ -10,4 +10,9 @@ public class Kamikaze extends Zombie{
 		this.setVitesse(2);
 	}
 
+	
+	public void agit() {
+		this.seDeplacer();
+	}
+
 }
