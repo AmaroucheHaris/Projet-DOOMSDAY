@@ -19,7 +19,9 @@ public class TireurDeBase extends Tourelle {
 	public Zombie detecter(Environnement env) {
 		ArrayList<Zombie> zombies = env.getListeZombies();
 		for (Zombie zombie : zombies) {
-			if(zombie.estEnVie() && zombie.getXProperty().getValue() - this.getX() >= -this.getPortee() && zombie.getXProperty().getValue() - this.getX() <= this.getPortee() && zombie.getYProperty().getValue() - this.getY() >= -this.getPortee() && zombie.getYProperty().getValue() - this.getY() <= this.getPortee()) {	
+			int posXZombie =  zombie.getXProperty().getValue();
+			int posYZombie =  zombie.getYProperty().getValue();
+			if(zombie.estEnVie() && posXZombie - this.getX() >= -this.getPortee() && posXZombie - this.getX() <= this.getPortee() && posYZombie - this.getY() >= -this.getPortee() && posYZombie - this.getY() <= this.getPortee()) {	
 				return zombie;
 			}
 		}
