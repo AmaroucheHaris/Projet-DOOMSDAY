@@ -102,9 +102,7 @@ public abstract class Zombie {
 		
 	}
 	
-	public void agit() {
-		this.seDeplacer();
-	}
+	public abstract void agit();
 	
 	
 	public double distance(Coordonnes c1) {

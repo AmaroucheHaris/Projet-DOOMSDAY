@@ -4,8 +4,14 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
 import application.modele.Environnement;
+import application.modele.ennemis.Blesses;
+import application.modele.ennemis.Kamikaze;
+import application.modele.ennemis.Majin;
 import application.modele.ennemis.Sprinteur;
+import application.modele.ennemis.Tank;
 import application.modele.ennemis.Zombie;
+import application.modele.ennemis.ZombieDeTroie;
+import application.modele.ennemis.ZombieMilitaire;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -20,8 +26,39 @@ public class SpriteZombie {
 		this.zombie = zombie;
 		this.env = zombie.getEnvironnement();
 		this.env.getListeZombies().add(zombie);
+		
 		if(this.zombie instanceof Sprinteur) {
 			this.image = new Image(new FileInputStream("src/application/vue/ressources/zombies/Sprinteur.png"));
+			this.sprite = new ImageView(this.image);
+		}
+		
+		else if(this.zombie instanceof Blesses) {
+			this.image = new Image(new FileInputStream("src/application/vue/ressources/zombies/Blesse.png"));
+			this.sprite = new ImageView(this.image);
+		}
+		
+		else if(this.zombie instanceof Kamikaze) {
+			this.image = new Image(new FileInputStream("src/application/vue/ressources/zombies/Kamikaze.png"));
+			this.sprite = new ImageView(this.image);
+		}
+		
+		else if(this.zombie instanceof Majin) {
+			this.image = new Image(new FileInputStream("src/application/vue/ressources/zombies/Majin.png"));
+			this.sprite = new ImageView(this.image);
+		}
+		
+		else if(this.zombie instanceof Tank) {
+			this.image = new Image(new FileInputStream("src/application/vue/ressources/zombies/Tank.png"));
+			this.sprite = new ImageView(this.image);
+		}
+		
+		else if(this.zombie instanceof ZombieDeTroie) {
+			this.image = new Image(new FileInputStream("src/application/vue/ressources/zombies/ZombieDeTrois.png"));
+			this.sprite = new ImageView(this.image);
+		}
+		
+		else if(this.zombie instanceof ZombieMilitaire) {
+			this.image = new Image(new FileInputStream("src/application/vue/ressources/zombies/ZombieMilitaire.png"));
 			this.sprite = new ImageView(this.image);
 		}
 	}

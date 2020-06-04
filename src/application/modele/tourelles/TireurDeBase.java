@@ -3,6 +3,7 @@ package application.modele.tourelles;
 import java.util.ArrayList;
 import application.modele.Environnement;
 import application.modele.ennemis.Zombie;
+import application.modele.ennemis.ZombieMilitaire;
 
 public class TireurDeBase extends Tourelle {
 
@@ -41,7 +42,15 @@ public class TireurDeBase extends Tourelle {
 
 	@Override
 	public void attaquer(Zombie target) {
-		target.setPv(this.getDegat() - target.getPv());
+		if(target instanceof ZombieMilitaire) {
+			boolean tirAbsorbe = ((ZombieMilitaire) target).tirAbsorbe();
+			if(!tirAbsorbe) {
+				target.setPv(target.getPv() - this.getDegat());
+			}
+		}
+		else {
+			target.setPv(target.getPv() - this.getDegat());
+		}
 	}
 	
 }

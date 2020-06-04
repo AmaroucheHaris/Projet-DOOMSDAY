@@ -14,4 +14,19 @@ public class Blesses extends Zombie{
 		
 	}
 
+	
+	public void agit() {
+		this.seDeplacer();
+	}
+
+
+	public boolean isEstDetecter() {
+		return estDetecter;
+	}
+
+
+	public void setEstDetecter(boolean estDetecter) {
+		this.estDetecter = estDetecter;
+	}
+
 }

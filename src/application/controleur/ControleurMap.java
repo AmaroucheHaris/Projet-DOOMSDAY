@@ -9,8 +9,14 @@ import java.util.ResourceBundle;
 import application.modele.Environnement;
 import application.modele.TabMap1;
 import application.modele.bfs.Coordonnes;
+import application.modele.ennemis.Blesses;
+import application.modele.ennemis.Kamikaze;
+import application.modele.ennemis.Majin;
 import application.modele.ennemis.Sprinteur;
+import application.modele.ennemis.Tank;
 import application.modele.ennemis.Zombie;
+import application.modele.ennemis.ZombieDeTroie;
+import application.modele.ennemis.ZombieMilitaire;
 import application.modele.tourelles.PlacementTourelle;
 import application.modele.tourelles.TireurDeBase;
 import application.modele.tourelles.Tourelle;
@@ -131,7 +137,11 @@ public class ControleurMap implements Initializable {
 				this.cycle--;
 			}
 			env.unTour();
-			tuerZombiesMorts();
+			try {
+				tuerZombiesMorts();
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			}
 			time++;
 		}));
 		gameloop.getKeyFrames().add(keyframe);
@@ -214,14 +224,39 @@ public class ControleurMap implements Initializable {
 		SpriteZombie sp;
 		Random rand = new Random();
 		// mettre à l'interieur de rand.nextInt() le nombre de type de zombie
-		int valRand = rand.nextInt(1);
+		int valRand = rand.nextInt(7);
 		
 		Zombie z = null;
 		switch(valRand) {
 		case 0:
 			z = new Sprinteur(env);
-			
+		break;
+		
+		case 1:
+			z = new Blesses(env);
+		break;
+		
+		case 2:
+			z = new Kamikaze(env);
+		break;
+		
+		case 3:
+			z = new Majin(env);
+		break;
+		
+		case 4:
+			z = new Tank(env);
+		break;
+		
+		case 5:
+			z = new ZombieDeTroie(env);
+		break;
+		
+		case 6:
+			z = new ZombieMilitaire(env);
+		break;
 		}
+		
 		sp = new SpriteZombie(z);
 		sp.ajouterSpriteZombie(paneCentrale);
 		linkSpriteZombie.put(z, sp);
@@ -242,15 +277,21 @@ public class ControleurMap implements Initializable {
 //		linkSpriteZombie.put(z, sp);
 //	}
 	
-	public void tuerZombie(Zombie target) {
+	public void tuerZombie(Zombie target) throws FileNotFoundException {
 		if (!target.estEnVie()) {
+			// if target instanceof Zombie de troies ----> creerZombieAléatoire;
+			if(target instanceof ZombieDeTroie) {
+				for(int i = 0; i < 3; i++) {
+					creerZombieAleatoire();
+				}
+			}
 			target.suprimerZombie();
 			SpriteZombie sz = linkSpriteZombie.get(target);
 			sz.suprimerSpriteZombie(paneCentrale);
 		}
 	}
 	
-	public void tuerZombiesMorts(){
+	public void tuerZombiesMorts() throws FileNotFoundException{
 		ArrayList<Zombie> listeZombies = this.env.getListeZombies();
 		for (int i = 0; i < listeZombies.size(); i++) {
 			if (!listeZombies.get(i).estEnVie()) {
