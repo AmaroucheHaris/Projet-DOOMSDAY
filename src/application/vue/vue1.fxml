@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -11,7 +16,7 @@
 <?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controleur.ControleurMap">
+<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controleur.ControleurMap">
    <center>
       <Pane fx:id="paneCentrale" onMouseClicked="#onMouseClickedPane">
          <children>
@@ -20,7 +25,7 @@
       </Pane>
    </center>
    <right>
-      <VBox prefHeight="706.0" prefWidth="162.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="599.0" prefWidth="162.0" BorderPane.alignment="CENTER">
          <children>
             <Label text="Tourelles">
                <VBox.margin>
@@ -29,7 +34,15 @@
             </Label>
             <ImageView fx:id="imageMilitaire" fitHeight="63.0" fitWidth="63.0" onMouseClicked="#onMouseClickedMilitaire" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@ressources/tourelles/TireurDeBase.png" />
+                  <Image url="@ressources/tourelles/Militaire.png" />
+               </image>
+               <VBox.margin>
+                  <Insets left="35.0" top="10.0" />
+               </VBox.margin>
+            </ImageView>
+            <ImageView fitHeight="63.0" fitWidth="63.0" onMouseClicked="#onMouseClickedArcher" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@ressources/tourelles/Archer.png" />
                </image>
                <VBox.margin>
                   <Insets left="35.0" top="10.0" />
@@ -67,7 +80,7 @@
                   <Insets left="35.0" top="10.0" />
                </VBox.margin>
             </ImageView>
-            <HBox prefHeight="8.0" prefWidth="162.0">
+            <HBox prefHeight="64.0" prefWidth="162.0">
                <children>
                   <Button mnemonicParsing="false" onMouseClicked="#onMouseClickedOn" text="ON">
                      <HBox.margin>
@@ -80,11 +93,8 @@
                      </HBox.margin></Button>
                </children>
                <VBox.margin>
-                  <Insets />
+                  <Insets top="200.0" />
                </VBox.margin>
-               <padding>
-                  <Insets top="250.0" />
-               </padding>
             </HBox>
          </children>
       </VBox>

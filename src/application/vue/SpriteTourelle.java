@@ -4,6 +4,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
 import application.modele.Environnement;
+import application.modele.tourelles.Archer;
+import application.modele.tourelles.Militaire;
 import application.modele.tourelles.TireurDeBase;
 import application.modele.tourelles.Tourelle;
 import javafx.scene.image.Image;
@@ -23,12 +25,18 @@ public class SpriteTourelle {
 		this.env.getListeTourelles().add(tourelle);
 		this.posX = posX;
 		this.posY = posY;
-		if(this.tourelle instanceof TireurDeBase) {
-			this.image = new Image(new FileInputStream("src/application/vue/ressources/tourelles/TireurDeBase.png"));
+		if(this.tourelle instanceof Militaire) {
+			System.out.println("cas 1");
+			this.image = new Image(new FileInputStream("src/application/vue/ressources/tourelles/Militaire.png"));
 			this.sprite = new ImageView(this.image);
 		}
-	       this.sprite.setX(this.posX);
-	       this.sprite.setY(this.posY);
+		else if(this.tourelle instanceof Archer) {
+			System.out.println("test");
+			this.image = new Image(new FileInputStream("src/application/vue/ressources/tourelles/Archer.png"));
+			this.sprite = new ImageView(this.image);
+		}
+		this.sprite.setX(this.posX);
+		this.sprite.setY(this.posY);
 	}
 		
 	public void creerSpriteTourelle(Pane pane, SpriteTourelle tour) {

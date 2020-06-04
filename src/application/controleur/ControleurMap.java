@@ -13,6 +13,8 @@ import application.modele.TabMap1;
 import application.modele.bfs.Coordonnes;
 import application.modele.ennemis.Sprinteur;
 import application.modele.ennemis.Zombie;
+import application.modele.tourelles.Archer;
+import application.modele.tourelles.Militaire;
 import application.modele.tourelles.PlacementTourelle;
 import application.modele.tourelles.TireurDeBase;
 import application.modele.tourelles.Tourelle;
@@ -170,37 +172,44 @@ public class ControleurMap implements Initializable {
 	@FXML
 	void onMouseClickedMilitaire(MouseEvent event) {
 		if (modeEdit) {
-			tourelle = "TireurDeBase";
+			tourelle = "Militaire";
 		}
 	}
 	
-	   @FXML
-	    void onMouseClickedBourrin(MouseEvent event) {
-		   if (modeEdit) {
-				tourelle = "Bourrin";
-			}
-	    }
+	@FXML
+	void onMouseClickedArcher(MouseEvent event) {
+		if (modeEdit) {
+			tourelle = "Archer";
+		}
+	}
+	
+	@FXML
+	void onMouseClickedBourrin(MouseEvent event) {
+		if (modeEdit) {
+			tourelle = "Bourrin";
+		}
+	}
 
-	    @FXML
-	    void onMouseClickedGrenadier(MouseEvent event) {
-	    	if (modeEdit) {
-				tourelle = "Grenadier";
-			}
-	    }
+	@FXML
+	void onMouseClickedGrenadier(MouseEvent event) {
+		if (modeEdit) {
+			tourelle = "Grenadier";
+		}
+	}
 
-	    @FXML
-	    void onMouseClickedRadar(MouseEvent event) {
-	    	if (modeEdit) {
-				tourelle = "Radar";
-			}
-	    }
+	@FXML
+	void onMouseClickedRadar(MouseEvent event) {
+		if (modeEdit) {
+			tourelle = "Radar";
+		}
+	}
 
-	    @FXML
-	    void onMouseClickedTireurPrecision(MouseEvent event) {
-	    	if (modeEdit) {
-				tourelle = "TireurDePrecision";
-			}
-	    }
+	@FXML
+	void onMouseClickedTireurPrecision(MouseEvent event) {
+		if (modeEdit) {
+			tourelle = "TireurDePrecision";
+		}
+	}
 
 	@FXML
 	void onMouseClickedPane(MouseEvent event) {
@@ -211,13 +220,17 @@ public class ControleurMap implements Initializable {
 			else {
 				int posX = (int) event.getSceneX();
 				int posY = (int) event.getSceneY();
+				System.out.println(tourelle);
 				for (PlacementTourelle pt : listePlacementsTourelles) {
 					if (pt.getIsAvailable() && posX/32 == pt.getTileX() && posY/32 == pt.getTileY()) {
-						if (tourelle.equals("TireurDeBase")) {
-							this.creerTourelle("TireurDeBase", pt.getTileX()*32, pt.getTileY()*32);
+						if (tourelle.equals("Militaire")) {
+							this.creerTourelle("Militaire", pt.getTileX()*32, pt.getTileY()*32);
 							pt.setIsAvailable(false);
 						}
-					
+						if (tourelle.equals("Archer")) {
+							this.creerTourelle("Archer", pt.getTileX()*32, pt.getTileY()*32);
+							pt.setIsAvailable(false);
+						}
 					
 					}
 				}			
@@ -277,23 +290,22 @@ public class ControleurMap implements Initializable {
 	}
 	
 	public void creerTourelle(String type, int posX, int posY) {
+		Tourelle tour = null;
 		switch (type) {
-		case "TireurDeBase":
-			Tourelle tour = new TireurDeBase(posX+8, posY, env, 10, 10, 10, 300);
-			SpriteTourelle spt;
-			try {
-				spt = new SpriteTourelle(tour, env, posX+8, posY);
-				spt.creerSpriteTourelle(paneCentrale, spt);
-			} catch (FileNotFoundException e) {
-				e.printStackTrace();
-			}
+		case "Militaire":
+			tour = new Militaire(posX+8, posY, env);
 			break;
-
-		default:
+		
+		case "Archer":
+			tour = new Archer(posX+8, posY, env);
 			break;
 		}
-		
-		
-		
+		SpriteTourelle spt;
+		try {
+			spt = new SpriteTourelle(tour, env, posX+8, posY);
+			spt.creerSpriteTourelle(paneCentrale, spt);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
 	}
 }
