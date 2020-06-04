@@ -17,12 +17,14 @@ public class ChargementMap {
 		Image i1 = null;
 		Image i2 = null;
 		Image i3 = null;
+		Image i4 = null;
 		
 		
 		try {
 			 i1 = new Image(new FileInputStream("src/application/vue/ressources/tiles/sol.png"));
 			 i2 = new Image(new FileInputStream("src/application/vue/ressources/tiles/route.png"));
 			 i3 = new Image(new FileInputStream("src/application/vue/ressources/tiles/lave.png"));
+			 i4 = new Image(new FileInputStream("src/application/vue/ressources/tiles/solTourelle.png"));
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -47,6 +49,10 @@ public class ChargementMap {
 
 					case 3: 
 						img.setImage(i3);
+						break;
+					
+					case 4: 
+						img.setImage(i4);
 						break;
 				}
 

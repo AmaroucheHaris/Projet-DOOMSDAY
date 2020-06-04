@@ -6,20 +6,18 @@ public class PlacementTourelle {
 
 	private Coordonnes c;
 	private boolean isAvailable;
-	private int[][] matrice;
 	
-	public PlacementTourelle(Coordonnes c, int[][] matrice) {
+	public PlacementTourelle(Coordonnes c) {
 		this.c = c;
 		this.isAvailable = true;
-		this.matrice = matrice;
 	}
 	
 	public int getTileX() {
-		return this.c.getX()/32;
+		return this.c.getX();
 	}
 	
 	public int getTileY() {
-		return this.c.getY()/32;
+		return this.c.getY();
 	}
 	
 	public boolean getIsAvailable() {
@@ -29,6 +27,4 @@ public class PlacementTourelle {
 	public void setIsAvailable(boolean etat) {
 		this.isAvailable = etat;
 	}
-	
-
 }

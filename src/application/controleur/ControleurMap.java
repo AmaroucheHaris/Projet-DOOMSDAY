@@ -1,6 +1,8 @@
 package application.controleur;
 
 import java.io.FileNotFoundException;
+
+
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -81,6 +83,22 @@ public class ControleurMap implements Initializable {
 
 		this.env = new Environnement(960, 704);
 
+		for(int ligne = 0; ligne<matriceMap1.length; ligne++) {
+			for(int colonne = 0; colonne < matriceMap1[ligne].length; colonne++) {
+				if (matriceMap1[ligne][colonne] == 4) {
+					Coordonnes c = new Coordonnes(colonne, ligne);
+					PlacementTourelle pt = new PlacementTourelle(c);
+					listePlacementsTourelles.add(pt);
+				}
+			}
+		}
+		
+		for (int i = 0; i < listePlacementsTourelles.size(); i++) {
+			System.out.println("X : " + listePlacementsTourelles.get(i).getTileX());
+			System.out.println("X : " + listePlacementsTourelles.get(i).getTileY());
+		}
+		
+		
 //		try {
 //			creerZombieAleatoire();
 //			creerZombieAleatoire();
@@ -99,8 +117,6 @@ public class ControleurMap implements Initializable {
 //		} catch (FileNotFoundException e) {
 //			e.printStackTrace();
 //		}
-
-		creerPlacementTourelle(10, 0);
 
 		animation();
 		gameloop.play();
@@ -195,13 +211,14 @@ public class ControleurMap implements Initializable {
 			else {
 				int posX = (int) event.getSceneX();
 				int posY = (int) event.getSceneY();
-				Coordonnes c = new Coordonnes(posX, posY);
-				for (PlacementTourelle placementTourelle : listePlacementsTourelles) {
-					if (this.getEtatPlacementTourelle(c) && posX/32 == placementTourelle.getTileX() && posY/32 == placementTourelle.getTileY()) {
+				for (PlacementTourelle pt : listePlacementsTourelles) {
+					if (pt.getIsAvailable() && posX/32 == pt.getTileX() && posY/32 == pt.getTileY()) {
 						if (tourelle.equals("TireurDeBase")) {
-							this.creerTourelle("TireurDeBase", placementTourelle.getTileX()*32, placementTourelle.getTileY()*32);
-							placementTourelle.setIsAvailable(false);
+							this.creerTourelle("TireurDeBase", pt.getTileX()*32, pt.getTileY()*32);
+							pt.setIsAvailable(false);
 						}
+					
+					
 					}
 				}			
 			}
@@ -259,51 +276,13 @@ public class ControleurMap implements Initializable {
 		}	
 	}
 	
-	public ArrayList<PlacementTourelle> getAllPlacementsTourelles(){
-		return this.listePlacementsTourelles;
-	}
-	
-	public void addPlacementTourelle(PlacementTourelle pt) {
-		if (!this.listePlacementsTourelles.contains(pt)) {
-			this.listePlacementsTourelles.add(pt);
-		}
-	}
-	
-	public void removePlacementTourelle(PlacementTourelle pt) {
-		if (this.listePlacementsTourelles.contains(pt)) {
-			this.listePlacementsTourelles.remove(pt);
-		}
-	}
-	
-	public boolean getEtatPlacementTourelle(Coordonnes c){
-		for (PlacementTourelle placementTourelle : this.listePlacementsTourelles) {
-			if (placementTourelle.getTileX() == c.getX()/32 && placementTourelle.getTileY() == c.getY()/32) {
-				return placementTourelle.getIsAvailable();
-			}
-		}
-		return false;
-	}
-	
-	public void creerPlacementTourelle(int x, int y){
-		Coordonnes c1 = new Coordonnes(x*32,y*32);
-		PlacementTourelle pt = new PlacementTourelle(c1, matriceMap1);
-		if (matriceMap1[pt.getTileY()][pt.getTileX()] == 1) {
-			this.addPlacementTourelle(pt);
-			System.out.println("Endroit crée avec succès");
-		}
-		else {
-			System.out.println("Erreur : Mauvais endroit");
-		}
-	}
-	
-	
 	public void creerTourelle(String type, int posX, int posY) {
 		switch (type) {
 		case "TireurDeBase":
-			Tourelle tour = new TireurDeBase(posX, posY, env, 10, 10, 10, 30);
+			Tourelle tour = new TireurDeBase(posX+8, posY, env, 10, 10, 10, 300);
 			SpriteTourelle spt;
 			try {
-				spt = new SpriteTourelle(tour, env, posX, posY);
+				spt = new SpriteTourelle(tour, env, posX+8, posY);
 				spt.creerSpriteTourelle(paneCentrale, spt);
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
