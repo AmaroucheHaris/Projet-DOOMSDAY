@@ -31,6 +31,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -50,6 +51,9 @@ public class ControleurMap implements Initializable {
 	private ChargementMap mapAGenener;
 	private int cycle;
 	private int cycleSpawnZombie;
+
+    @FXML
+    private Label labelMoney;
 
 	@FXML
 	private ImageView imageMilitaire;
@@ -350,4 +354,23 @@ public class ControleurMap implements Initializable {
 			e.printStackTrace();
 		}
 	}
+	
+	public void updateMoneyUp(Zombie zombie) {
+		int money = Integer.parseInt(this.labelMoney.getText());
+		if(zombie instanceof Sprinteur) {
+			labelMoney.setText(String.valueOf(money + 10));
+		}
+	}
+	
+	public boolean checkMoneyDown(Tourelle tourelle) {
+		int money = Integer.parseInt(this.labelMoney.getText());
+		if(money - tourelle.getValeurAchat() < 0) {
+			System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+			return true;
+		}
+		System.out.println("zajhbfiefneoiajfoaj^fpâzejifà");
+		return false;
+		
+	}
+
 }
