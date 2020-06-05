@@ -255,10 +255,10 @@ public class ControleurMap implements Initializable {
 		SpriteZombie sp;
 		Random rand = new Random();
 		// mettre à l'interieur de rand.nextInt() le nombre de type de zombie
-		//int valRand = rand.nextInt(7);
+		int valRand = rand.nextInt(7);
 		
 		Zombie z = null;
-		int valRand = 1;
+		//int valRand = 1;
 		switch(valRand) {
 		case 0:
 			z = new Sprinteur(env);
