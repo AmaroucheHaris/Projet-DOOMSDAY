@@ -5,9 +5,7 @@ import application.modele.Environnement;
 public class Sprinteur extends Zombie{
 
 	public Sprinteur(Environnement env) {
-		super(env);
-		this.setPv(20);
-		this.setVitesse(1);
+		super(env, 10, 20);
 	}
 	
 	public String toString() {

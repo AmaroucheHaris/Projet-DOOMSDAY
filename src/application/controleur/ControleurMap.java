@@ -406,9 +406,7 @@ public class ControleurMap implements Initializable {
 		target.suprimerTourelle();
 		SpriteTourelle st = linkSpriteTourelle.get(target);
 		st.supprimerSpriteTourelle(paneCentrale);
-		this.env.moneyAsc(target);
-		
-		
+		this.env.moneyAsc(target);	
 	}
 //	for (Map.Entry<Tourelle, SpriteTourelle> entree : linkSpriteTourelle.entrySet()) {
 //		if (posX == entree.getKey().getX() && posY == entree.getKey().getY()) {

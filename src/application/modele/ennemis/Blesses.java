@@ -7,11 +7,8 @@ public class Blesses extends Zombie{
 	boolean estDetecter;
 
 	public Blesses(Environnement env) {
-		super(env);
-		this.setPv(5);
-		this.setVitesse(1);
+		super(env, 10, 20);
 		this.estDetecter = false;
-		
 	}
 
 	
