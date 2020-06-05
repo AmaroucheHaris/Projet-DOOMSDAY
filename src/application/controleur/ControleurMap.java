@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 import java.util.ResourceBundle;
 import application.modele.Environnement;
@@ -70,8 +71,10 @@ public class ControleurMap implements Initializable {
 	private ImageView target;
 
 	private boolean modeEdit;
+	private boolean modeVente;
 	private String tourelle;
 	private HashMap<Zombie, SpriteZombie> linkSpriteZombie;
+	private Map<Tourelle, SpriteTourelle> linkSpriteTourelle;
 	private ArrayList<PlacementTourelle> listePlacementsTourelles;
 	TabMap1 map1 = new TabMap1();
 	int[][] matriceMap1 = map1.getTab();
@@ -79,8 +82,10 @@ public class ControleurMap implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		linkSpriteZombie = new HashMap<Zombie, SpriteZombie>();
+		linkSpriteTourelle = new HashMap<Tourelle, SpriteTourelle>();
 		listePlacementsTourelles = new ArrayList<PlacementTourelle>();
 		modeEdit = false;
+		modeVente = false;
 		tourelle = "";
 		this.cycle = 400;
 		this.cycleSpawnZombie = 0;
@@ -167,15 +172,27 @@ public class ControleurMap implements Initializable {
 	}
 
 	@FXML
-	void onMouseClickedOn(MouseEvent event) {
+	void onMouseClickedOnEdit(MouseEvent event) {
 		modeEdit = true;
 
 	}
 
 	@FXML
-	void onMouseClickedOff(MouseEvent event) {
+	void onMouseClickedOffEdit(MouseEvent event) {
 		tourelle = "";
 		modeEdit = false;
+
+	}
+	
+	@FXML
+	void onMouseClickedOnSell(MouseEvent event) {
+		modeVente = true;
+
+	}
+
+	@FXML
+	void onMouseClickedOffSell(MouseEvent event) {
+		modeVente = false;
 
 	}
 
@@ -223,28 +240,39 @@ public class ControleurMap implements Initializable {
 
 	@FXML
 	void onMouseClickedPane(MouseEvent event) {
+		int posX = (int) event.getSceneX();
+		int posY = (int) event.getSceneY();
 		if (modeEdit) {
-			if (tourelle.equals("")) {
-				System.out.println("Aucune tourelle sélectionnée");
+			if(modeVente) {
+				for (Map.Entry<Tourelle, SpriteTourelle> entree : linkSpriteTourelle.entrySet()) {
+					for (PlacementTourelle pt : listePlacementsTourelles) {
+						if (posX/32 == entree.getKey().getX()/32 && posY/32 == entree.getKey().getY()/32) {
+							this.detruireTourelle(entree.getKey());
+							pt.setIsAvailable(true);
+						}
+					}
+				}
 			}
 			else {
-				int posX = (int) event.getSceneX();
-				int posY = (int) event.getSceneY();
-				System.out.println(tourelle);
-				for (PlacementTourelle pt : listePlacementsTourelles) {
-					if (pt.getIsAvailable() && posX/32 == pt.getTileX() && posY/32 == pt.getTileY()) {
-						if (tourelle.equals("Militaire")) {
-							this.creerTourelle("Militaire", pt.getTileX()*32, pt.getTileY()*32);
-							pt.setIsAvailable(false);
+				if (tourelle.equals("")) {
+					System.out.println("Aucune tourelle sélectionnée");
+				}
+				else {
+					System.out.println(tourelle);
+					for (PlacementTourelle pt : listePlacementsTourelles) {
+						if (pt.getIsAvailable() && posX/32 == pt.getTileX() && posY/32 == pt.getTileY()) {
+							if (tourelle.equals("Militaire")) {
+								this.creerTourelle("Militaire", pt.getTileX()*32, pt.getTileY()*32);
+								pt.setIsAvailable(false);
+							}
+							if (tourelle.equals("Archer")) {
+								this.creerTourelle("Archer", pt.getTileX()*32, pt.getTileY()*32);
+								pt.setIsAvailable(false);
+							}
+							// rajouter les autres tourelles
 						}
-						if (tourelle.equals("Archer")) {
-							this.creerTourelle("Archer", pt.getTileX()*32, pt.getTileY()*32);
-							pt.setIsAvailable(false);
-						}
-					
-					
-					}
-				}			
+					}			
+				}
 			}
 		}
 	}
@@ -342,12 +370,27 @@ public class ControleurMap implements Initializable {
 			tour = new Archer(posX+8, posY, env);
 			break;
 		}
-		SpriteTourelle spt;
+		SpriteTourelle spt = null;
 		try {
 			spt = new SpriteTourelle(tour, env, posX+8, posY);
-			spt.creerSpriteTourelle(paneCentrale, spt);
+			spt.creerSpriteTourelle(paneCentrale);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
+		linkSpriteTourelle.put(tour, spt);
 	}
+	
+	public void detruireTourelle(Tourelle target) {
+		target.suprimerTourelle();
+		SpriteTourelle st = linkSpriteTourelle.get(target);
+		st.supprimerSpriteTourelle(paneCentrale);
+		
+		
+		
+	}
+//	for (Map.Entry<Tourelle, SpriteTourelle> entree : linkSpriteTourelle.entrySet()) {
+//		if (posX == entree.getKey().getX() && posY == entree.getKey().getY()) {
+//			
+//		}
+//	}
 }

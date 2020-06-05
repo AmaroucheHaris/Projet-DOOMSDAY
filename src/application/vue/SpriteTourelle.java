@@ -26,12 +26,10 @@ public class SpriteTourelle {
 		this.posX = posX;
 		this.posY = posY;
 		if(this.tourelle instanceof Militaire) {
-			System.out.println("cas 1");
 			this.image = new Image(new FileInputStream("src/application/vue/ressources/tourelles/Militaire.png"));
 			this.sprite = new ImageView(this.image);
 		}
 		else if(this.tourelle instanceof Archer) {
-			System.out.println("test");
 			this.image = new Image(new FileInputStream("src/application/vue/ressources/tourelles/Archer.png"));
 			this.sprite = new ImageView(this.image);
 		}
@@ -39,8 +37,12 @@ public class SpriteTourelle {
 		this.sprite.setY(this.posY);
 	}
 		
-	public void creerSpriteTourelle(Pane pane, SpriteTourelle tour) {
+	public void creerSpriteTourelle(Pane pane) {
 	       pane.getChildren().add(this.sprite);
+	}
+	
+	public void supprimerSpriteTourelle(Pane pane) {
+	       pane.getChildren().remove(this.sprite);
 	}
 	
 //	private Tourelle tourelle;

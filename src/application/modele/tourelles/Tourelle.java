@@ -82,4 +82,8 @@ public abstract class Tourelle {
 	public String toString() {
 		return "[ x= " + this.x + ", y= " + this.y + ", degat= " + this.degat + ", vitesse d'attaque= " + this.vitesseAttack + ", pr�cision=" + this.precision + ", port�e= " + this.portee +" ]";
 	}
+	
+	public void suprimerTourelle() {
+		this.env.getListeTourelles().remove(this);
+	}
 }
