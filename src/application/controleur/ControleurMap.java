@@ -45,13 +45,6 @@ public class ControleurMap implements Initializable {
 	@FXML
 	private Pane paneCentrale;
 
-	private Environnement env;
-	private Timeline gameloop;
-	private int time;
-	private ChargementMap mapAGenener;
-	private int cycle;
-	private int cycleSpawnZombie;
-
     @FXML
     private Label labelMoney;
 
@@ -72,6 +65,13 @@ public class ControleurMap implements Initializable {
     
 	@FXML
 	private ImageView target;
+
+	private Environnement env;
+	private Timeline gameloop;
+	private int time;
+	private ChargementMap mapAGenener;
+	private int cycle;
+	private int cycleSpawnZombie;
 
 	private boolean modeEdit;
 	private boolean modeVente;
@@ -133,7 +133,9 @@ public class ControleurMap implements Initializable {
 //		} catch (FileNotFoundException e) {
 //			e.printStackTrace();
 //		}
-
+		
+		this.labelMoney.textProperty().bind(this.env.getMoneyProperty().asString());
+		
 		animation();
 		gameloop.play();
 
@@ -353,7 +355,7 @@ public class ControleurMap implements Initializable {
 			target.suprimerZombie();
 			SpriteZombie sz = linkSpriteZombie.get(target);
 			sz.suprimerSpriteZombie(paneCentrale);
-			this.updateMoneyUp(target);
+			this.env.updateMoneyUp(target);
 		}
 	}
 	
@@ -367,7 +369,6 @@ public class ControleurMap implements Initializable {
 	}
 	
 	public boolean creerTourelle(String type, int posX, int posY) {
-		int money = Integer.parseInt(this.labelMoney.getText());
 		Tourelle tour = null;
 		switch (type) {
 		case "Militaire":
@@ -379,11 +380,12 @@ public class ControleurMap implements Initializable {
 			break;
 		
 		}
-		if (this.checkMoneyDown(tour)) {
+		if (this.env.checkMoneyDown(tour)) {
 			tour = null;
 		}
 		if (tour != null) {	
-			labelMoney.setText(String.valueOf(money - tour.getValeurAchat()));
+			
+//			labelMoney.setText(String.valueOf((this.env.getMoney() - tour.getValeurAchat())));
 			SpriteTourelle spt = null;
 			try {
 				spt = new SpriteTourelle(tour, env, posX+8, posY);
@@ -392,18 +394,19 @@ public class ControleurMap implements Initializable {
 				e.printStackTrace();
 			}
 			linkSpriteTourelle.put(tour, spt);
+			this.env.moneyDesc(tour);
 			return true;
+			
 		}
 		return false;
 		
 	}
 	
 	public void detruireTourelle(Tourelle target) {
-		int money = Integer.parseInt(this.labelMoney.getText());
 		target.suprimerTourelle();
 		SpriteTourelle st = linkSpriteTourelle.get(target);
 		st.supprimerSpriteTourelle(paneCentrale);
-		labelMoney.setText(String.valueOf(money + 1));
+		this.env.moneyAsc(target);
 		
 		
 	}
@@ -413,22 +416,6 @@ public class ControleurMap implements Initializable {
 //		}
 //	}
 	
-	public void updateMoneyUp(Zombie zombie) {
-		int money = Integer.parseInt(this.labelMoney.getText());
-		if(zombie instanceof Sprinteur) {
-			labelMoney.setText(String.valueOf(money + 10));
-		}
-	}
-	
-	public boolean checkMoneyDown(Tourelle tourelle) {
-		int money = Integer.parseInt(this.labelMoney.getText());
-		if(money - tourelle.getValeurAchat() < 0) {
-			System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-			return true;
-		}
-		System.out.println("zajhbfiefneoiajfoaj^fpâzejifà");
-		return false;
-		
-	}
+
 
 }
