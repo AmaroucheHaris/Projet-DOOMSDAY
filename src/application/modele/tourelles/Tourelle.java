@@ -77,6 +77,8 @@ public abstract class Tourelle {
 	public int getValeurAchat() {
 		return this.valeurAchat;
 	}
+	
+	
 	public abstract Zombie detecter(Environnement env);
 	
 	public abstract void agir();
