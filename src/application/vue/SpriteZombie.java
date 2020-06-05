@@ -70,8 +70,6 @@ public class SpriteZombie {
 	}
 	
 	public void suprimerSpriteZombie(Pane pane) {
-		this.sprite.translateXProperty().unbind();
-        this.sprite.translateYProperty().unbind();
 		pane.getChildren().remove(this.sprite);
 	}
 	

@@ -12,7 +12,7 @@ public class ZombieMilitaire extends Zombie{
 	
 	public ZombieMilitaire(Environnement env) {
 		super(env);
-		this.setVitesse(3);
+		this.setVitesse(2);
 		this.probaAbsorbe = 20;
 	}
 	

@@ -11,7 +11,7 @@ public class Majin extends Zombie{
 		super(env);
 		this.cycle = 0;
 		this.pvMax = this.getPv();
-		this.setVitesse(1);
+		this.setVitesse(2);
 	}
 
 	
