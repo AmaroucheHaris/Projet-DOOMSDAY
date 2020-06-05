@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+
+
+<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #E57F1D;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controleur.ControlerMainMenu">
+   <children>
+      <VBox alignment="TOP_CENTER" layoutX="109.0" layoutY="107.0" prefHeight="200.0" prefWidth="405.0">
+         <children>
+            <Button fx:id="lancerJeu" alignment="TOP_CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#commencerPartie" text="Lancer le jeu" />
+            <Button fx:id="regles" mnemonicParsing="false" onAction="#afficherRegles" prefHeight="27.0" prefWidth="96.0" text="Règles" />
+         </children>
+      </VBox>
+      <TextField alignment="TOP_CENTER" layoutX="134.0" layoutY="14.0" prefHeight="27.0" prefWidth="356.0" text="Nom du jeu" />
+   </children>
+</AnchorPane>
