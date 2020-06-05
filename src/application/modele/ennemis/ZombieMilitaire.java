@@ -11,9 +11,7 @@ public class ZombieMilitaire extends Zombie{
 	private int probaAbsorbe;
 	
 	public ZombieMilitaire(Environnement env) {
-		super(env);
-		this.setVitesse(3);
-		this.probaAbsorbe = 20;
+		super(env, 3, 20);
 	}
 	
 	public String toString() {

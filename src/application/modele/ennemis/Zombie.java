@@ -17,14 +17,13 @@ public abstract class Zombie {
 	private Environnement env;
 	
 	
-	public Zombie (Environnement env) {
+	public Zombie (Environnement env, double pv, int vitesse) {
 		Coordonnes coord = this.Lieuxspawn();
 		this.x = new SimpleIntegerProperty(coord.getX());
 		this.y = new SimpleIntegerProperty(coord.getY());
-		this.pv = 0;
-		this.vitesse = 0;
+		this.pv = pv;
+		this.vitesse = vitesse;
 		this.env = env;
-		
 	}
 
 	public double getPv() {
