@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controleur.ControleurMap">
+<BorderPane prefHeight="710.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controleur.ControleurMap">
    <center>
       <Pane fx:id="paneCentrale" onMouseClicked="#onMouseClickedPane">
          <children>
@@ -26,7 +26,7 @@
       </Pane>
    </center>
    <right>
-      <VBox prefHeight="599.0" prefWidth="162.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="710.0" prefWidth="284.0" BorderPane.alignment="CENTER">
          <children>
             <Label text="Tourelles">
                <VBox.margin>
