@@ -21,8 +21,8 @@ public abstract class Zombie {
 		Coordonnes coord = this.Lieuxspawn();
 		this.x = new SimpleIntegerProperty(coord.getX());
 		this.y = new SimpleIntegerProperty(coord.getY());
-		this.pv = 0;
-		this.vitesse = 0;
+		this.pv = 1;
+		this.vitesse = 1;
 		this.env = env;
 		
 	}

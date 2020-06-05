@@ -292,7 +292,7 @@ public class ControleurMap implements Initializable {
 		//int valRand = rand.nextInt(7);
 		
 		Zombie z = null;
-		int valRand = 0;
+		int valRand = 3;
 		switch(valRand) {
 		case 0:
 			z = new Sprinteur(env);
