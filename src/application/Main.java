@@ -13,7 +13,7 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		try {
 			Pane root = FXMLLoader.load(getClass().getClassLoader().getResource("application/vue/menuPrincipal.fxml"));
-			Scene scene = new Scene(root,1100,704);
+			Scene scene = new Scene(root,1150,704);
 			scene.getStylesheets().add(getClass().getResource("vue/application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.show();
