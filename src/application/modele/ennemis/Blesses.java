@@ -9,7 +9,7 @@ public class Blesses extends Zombie{
 	public Blesses(Environnement env) {
 		super(env);
 		this.setPv(5);
-		this.setVitesse(3);
+		this.setVitesse(1);
 		this.estDetecter = false;
 		
 	}

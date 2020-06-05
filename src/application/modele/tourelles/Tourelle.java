@@ -13,9 +13,10 @@ public abstract class Tourelle {
 	private String id;
 	private static int compteurId = 0;
 	private Environnement env;
+	private int valeurAchat;
 	protected int tpsRechargement;
 	
-	public Tourelle(int x, int y, Environnement env, int degat, int vitesseAttack, int precision, int portee) {
+	public Tourelle(int x, int y, Environnement env, int degat, int vitesseAttack, int precision, int portee, int valeurAchat) {
 		this.x = x;
 		this.y = y;
 		this.env = env;
@@ -26,6 +27,7 @@ public abstract class Tourelle {
 		compteurId++;
 		this.id = "T" + compteurId;
 		this.tpsRechargement = 0;
+		this.valeurAchat = valeurAchat;
 	}
 	
 	public int getX() {
@@ -72,6 +74,9 @@ public abstract class Tourelle {
 		return this.portee;
 	}
 	
+	public int getValeurAchat() {
+		return this.valeurAchat;
+	}
 	public abstract Zombie detecter(Environnement env);
 	
 	public abstract void agir();

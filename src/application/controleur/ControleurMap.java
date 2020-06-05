@@ -23,7 +23,6 @@ import application.modele.ennemis.ZombieMilitaire;
 import application.modele.tourelles.Archer;
 import application.modele.tourelles.Militaire;
 import application.modele.tourelles.PlacementTourelle;
-import application.modele.tourelles.TireurDeBase;
 import application.modele.tourelles.Tourelle;
 import application.vue.ChargementMap;
 import application.vue.SpriteTourelle;
@@ -32,6 +31,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -51,6 +51,9 @@ public class ControleurMap implements Initializable {
 	private ChargementMap mapAGenener;
 	private int cycle;
 	private int cycleSpawnZombie;
+
+    @FXML
+    private Label labelMoney;
 
 	@FXML
 	private ImageView imageMilitaire;
@@ -242,11 +245,12 @@ public class ControleurMap implements Initializable {
 	void onMouseClickedPane(MouseEvent event) {
 		int posX = (int) event.getSceneX();
 		int posY = (int) event.getSceneY();
+		boolean answer = false;
 		if (modeEdit) {
 			if(modeVente) {
 				for (Map.Entry<Tourelle, SpriteTourelle> entree : linkSpriteTourelle.entrySet()) {
 					for (PlacementTourelle pt : listePlacementsTourelles) {
-						if (posX/32 == entree.getKey().getX()/32 && posY/32 == entree.getKey().getY()/32) {
+						if (posX/32 == entree.getKey().getX()/32 && posY/32 == entree.getKey().getY()/32 && pt.getTileX() == posX/32 && posY/32 == pt.getTileY()) {
 							this.detruireTourelle(entree.getKey());
 							pt.setIsAvailable(true);
 						}
@@ -258,19 +262,21 @@ public class ControleurMap implements Initializable {
 					System.out.println("Aucune tourelle sélectionnée");
 				}
 				else {
-					System.out.println(tourelle);
 					for (PlacementTourelle pt : listePlacementsTourelles) {
 						if (pt.getIsAvailable() && posX/32 == pt.getTileX() && posY/32 == pt.getTileY()) {
 							if (tourelle.equals("Militaire")) {
 								this.creerTourelle("Militaire", pt.getTileX()*32, pt.getTileY()*32);
-								pt.setIsAvailable(false);
 							}
 							if (tourelle.equals("Archer")) {
 								this.creerTourelle("Archer", pt.getTileX()*32, pt.getTileY()*32);
+							}
+							
+							// rajouter les autres tourelles
+							if(answer) {
 								pt.setIsAvailable(false);
 							}
-							// rajouter les autres tourelles
 						}
+						
 					}			
 				}
 			}
@@ -347,6 +353,7 @@ public class ControleurMap implements Initializable {
 			target.suprimerZombie();
 			SpriteZombie sz = linkSpriteZombie.get(target);
 			sz.suprimerSpriteZombie(paneCentrale);
+			this.updateMoneyUp(target);
 		}
 	}
 	
@@ -359,7 +366,8 @@ public class ControleurMap implements Initializable {
 		}	
 	}
 	
-	public void creerTourelle(String type, int posX, int posY) {
+	public boolean creerTourelle(String type, int posX, int posY) {
+		int money = Integer.parseInt(this.labelMoney.getText());
 		Tourelle tour = null;
 		switch (type) {
 		case "Militaire":
@@ -369,22 +377,33 @@ public class ControleurMap implements Initializable {
 		case "Archer":
 			tour = new Archer(posX+8, posY, env);
 			break;
+		
 		}
-		SpriteTourelle spt = null;
-		try {
-			spt = new SpriteTourelle(tour, env, posX+8, posY);
-			spt.creerSpriteTourelle(paneCentrale);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+		if (this.checkMoneyDown(tour)) {
+			tour = null;
 		}
-		linkSpriteTourelle.put(tour, spt);
+		if (tour != null) {	
+			labelMoney.setText(String.valueOf(money - tour.getValeurAchat()));
+			SpriteTourelle spt = null;
+			try {
+				spt = new SpriteTourelle(tour, env, posX+8, posY);
+				spt.creerSpriteTourelle(paneCentrale);
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			}
+			linkSpriteTourelle.put(tour, spt);
+			return true;
+		}
+		return false;
+		
 	}
 	
 	public void detruireTourelle(Tourelle target) {
+		int money = Integer.parseInt(this.labelMoney.getText());
 		target.suprimerTourelle();
 		SpriteTourelle st = linkSpriteTourelle.get(target);
 		st.supprimerSpriteTourelle(paneCentrale);
-		
+		labelMoney.setText(String.valueOf(money + 1));
 		
 		
 	}
@@ -393,4 +412,23 @@ public class ControleurMap implements Initializable {
 //			
 //		}
 //	}
+	
+	public void updateMoneyUp(Zombie zombie) {
+		int money = Integer.parseInt(this.labelMoney.getText());
+		if(zombie instanceof Sprinteur) {
+			labelMoney.setText(String.valueOf(money + 10));
+		}
+	}
+	
+	public boolean checkMoneyDown(Tourelle tourelle) {
+		int money = Integer.parseInt(this.labelMoney.getText());
+		if(money - tourelle.getValeurAchat() < 0) {
+			System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+			return true;
+		}
+		System.out.println("zajhbfiefneoiajfoaj^fpâzejifà");
+		return false;
+		
+	}
+
 }
