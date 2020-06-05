@@ -39,7 +39,7 @@ public class SpriteTourelle {
 		this.sprite.setY(this.posY);
 	}
 		
-	public void creerSpriteTourelle(Pane pane, SpriteTourelle tour) {
+	public void creerSpriteTourelle(Pane pane) {
 	       pane.getChildren().add(this.sprite);
 	}
 	

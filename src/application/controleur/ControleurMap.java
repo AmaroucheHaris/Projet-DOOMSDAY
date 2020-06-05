@@ -379,16 +379,18 @@ public class ControleurMap implements Initializable {
 			tour = new Archer(posX+8, posY, env);
 			break;
 		
+		
 		}
 		if (this.checkMoneyDown(tour)) {
 			tour = null;
 		}
+	
 		if (tour != null) {	
 			labelMoney.setText(String.valueOf(money - tour.getValeurAchat()));
 			SpriteTourelle spt = null;
 			try {
 				spt = new SpriteTourelle(tour, env, posX+8, posY);
-				spt.creerSpriteTourelle(paneCentrale, spt);
+				spt.creerSpriteTourelle(paneCentrale);
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
 			}
@@ -396,7 +398,7 @@ public class ControleurMap implements Initializable {
 			return true;
 		}
 		return false;
-		
+				
 	}
 	
 	public void detruireTourelle(Tourelle target) {
@@ -404,10 +406,12 @@ public class ControleurMap implements Initializable {
 		target.suprimerTourelle();
 		SpriteTourelle st = linkSpriteTourelle.get(target);
 		st.supprimerSpriteTourelle(paneCentrale);
-		labelMoney.setText(String.valueOf(money + 1));
+		labelMoney.setText(String.valueOf(money + (target.getValeurAchat()/2)));
 		
 		
 	}
+	
+	
 //	for (Map.Entry<Tourelle, SpriteTourelle> entree : linkSpriteTourelle.entrySet()) {
 //		if (posX == entree.getKey().getX() && posY == entree.getKey().getY()) {
 //			
