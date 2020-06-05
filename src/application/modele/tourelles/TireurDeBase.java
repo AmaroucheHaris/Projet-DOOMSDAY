@@ -7,8 +7,8 @@ import application.modele.ennemis.ZombieMilitaire;
 
 public abstract class TireurDeBase extends Tourelle {
 
-	public TireurDeBase(int x, int y, Environnement env, int degat, int vitesseAttack, int precision, int portee) {
-		super(x, y, env, degat, vitesseAttack, precision, portee);
+	public TireurDeBase(int x, int y, Environnement env, int degat, int vitesseAttack, int precision, int portee, int valeurAchat) {
+		super(x, y, env, degat, vitesseAttack, precision, portee, valeurAchat);
 	}
 	
 	@Override
