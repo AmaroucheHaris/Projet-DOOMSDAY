@@ -403,7 +403,7 @@ public class ControleurMap implements Initializable {
 		target.suprimerTourelle();
 		SpriteTourelle st = linkSpriteTourelle.get(target);
 		st.supprimerSpriteTourelle(paneCentrale);
-		labelMoney.setText(String.valueOf(money + 1));
+		labelMoney.setText(String.valueOf(money + (target.getValeurAchat()/2)));
 		
 		
 	}
