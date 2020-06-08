@@ -158,7 +158,6 @@ public class Environnement {
 //        }
 //        System.out.println("zajhbfiefneoiajfoaj^fpâzejifà");
 //        return false;
-        
         if(this.getMoney() - tourelle.getValeurAchat() < 0) {
             return true;
         }

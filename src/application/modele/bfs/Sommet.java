@@ -89,10 +89,10 @@ public class Sommet {
 		return true;
 	}
 
-	@Override
-	public String toString() {
-		return "Sommet [coordonnes=" + coordonnes + ", listeSommetsAccessible=" + listeSommetsAccessible.size() + "]";
-	}
+//	@Override
+//	public String toString() {
+//		return "Sommet [coordonnes=" + coordonnes + ", listeSommetsAccessible=" + listeSommetsAccessible.size() + "]";
+//	}
 
 //	public boolean contain(Sommet s) {
 //		if(s.getCoordonnes().getX() == this.coordonnes.getX() && s.getCoordonnes().getY() == this.coordonnes.getY()) {

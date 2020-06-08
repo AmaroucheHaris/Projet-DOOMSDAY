@@ -49,10 +49,10 @@ public class Coordonnes {
 		return true;
 	}
 
-	@Override
-	public String toString() {
-		return "Coordonnes [x=" + x + ", y=" + y + "]";
-	}
+//	@Override
+//	public String toString() {
+//		return "Coordonnes [x=" + x + ", y=" + y + "]";
+//	}
 	
 	public boolean estAdjacent(Coordonnes coord) {
 		if(this.x - 32 == coord.x && this.y == coord.y) {
