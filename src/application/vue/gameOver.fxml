@@ -12,12 +12,12 @@
 
 <AnchorPane fx:id="aPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="375.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controleur.ControlerGameOverMenu">
    <children>
-      <ImageView fitHeight="376.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="730.0" fitWidth="1170.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@ressources/background/gameOver.png" />
          </image>
       </ImageView>
-      <Button fx:id="menuPrincipalButton" layoutX="209.0" layoutY="270.0" mnemonicParsing="false" onAction="#chargerMenuPrincipal" style="-fx-background-color: #1F201C;" text="menu principal">
+      <Button fx:id="menuPrincipalButton" layoutX="509.0" layoutY="567.0" mnemonicParsing="false" onAction="#chargerMenuPrincipal" style="-fx-background-color: #1F201C;" text="menu principal">
          <font>
             <Font name="Herculanum" size="19.0" />
          </font>
