@@ -4,8 +4,13 @@ import java.util.ArrayList;
 
 
 import application.modele.bfs.Graphe;
+import application.modele.ennemis.Blesses;
+import application.modele.ennemis.Kamikaze;
 import application.modele.ennemis.Sprinteur;
+import application.modele.ennemis.Tank;
 import application.modele.ennemis.Zombie;
+import application.modele.ennemis.ZombieDeTroie;
+import application.modele.ennemis.ZombieMilitaire;
 import application.modele.tourelles.Tourelle;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -140,24 +145,30 @@ public class Environnement {
     }
     
     public void updateMoneyUp(Zombie zombie) {
-//        int money = Integer.parseInt(this.labelMoney.getText());
-//        if(zombie instanceof Sprinteur) {
-//            labelMoney.setText(String.valueOf(money + 10));
-//        }
-        
         if(zombie instanceof Sprinteur) {
              this.setMoney((this.getMoney() + 10));
+        }
+        else if(zombie instanceof ZombieMilitaire) {
+        	this.setMoney((this.getMoney() + 15));
+        }
+        else if(zombie instanceof Blesses) {
+        	this.setMoney((this.getMoney() + 20));
+        }
+        else if(zombie instanceof Kamikaze) {
+        	this.setMoney((this.getMoney() + 20));
+        }
+        else if(zombie instanceof Tank) {
+        	this.setMoney((this.getMoney() + 25));
+        }
+        else if(zombie instanceof ZombieDeTroie) {
+        	this.setMoney((this.getMoney() + 30));
+        }
+        else {
+        	this.setMoney((this.getMoney() + 30));  
         }
     }
     
     public boolean checkMoneyDown(Tourelle tourelle) {
-//        int money = Integer.parseInt(this.labelMoney.getText());
-//        if(money - tourelle.getValeurAchat() < 0) {
-//            System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-//            return true;
-//        }
-//        System.out.println("zajhbfiefneoiajfoaj^fpâzejifà");
-//        return false;
         if(this.getMoney() - tourelle.getValeurAchat() < 0) {
             return true;
         }
@@ -175,8 +186,4 @@ public class Environnement {
     public IntegerProperty getPvBunkerProperty() {
     	return this.pvBunker;
     }
-
-	
-	
-	
 }

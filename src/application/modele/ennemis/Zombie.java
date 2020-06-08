@@ -9,6 +9,8 @@ import application.modele.bfs.Coordonnes;
 import application.modele.bfs.Sommet;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.layout.Pane;
 
 public abstract class Zombie {
 	private double pv;
