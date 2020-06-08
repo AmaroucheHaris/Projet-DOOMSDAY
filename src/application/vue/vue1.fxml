@@ -144,6 +144,19 @@
                         <Insets top="20.0" />
                      </VBox.margin>
                   </VBox>
+                  <Label text="PV bunker" textFill="#f0a110">
+                     <VBox.margin>
+                        <Insets left="60.0" top="20.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label fx:id="PVBunker" text="5" textFill="RED">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                     <padding>
+                        <Insets left="55.0" top="10.0" />
+                     </padding>
+                  </Label>
                </children>
                <VBox.margin>
                   <Insets top="30.0" />

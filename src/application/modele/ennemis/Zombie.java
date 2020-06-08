@@ -97,10 +97,11 @@ public abstract class Zombie {
 		}
 		else {
 			// si retirer point de vie au bunker, faire ici
-			
+			if(this.env.getPvBunkerProperty().getValue() > 0) {
+				this.env.getPvBunkerProperty().setValue(this.env.getPvBunkerProperty().getValue()-1);
+			}
 			this.pv = 0;
 		}
-		
 	}
 	
 	public abstract void agit();

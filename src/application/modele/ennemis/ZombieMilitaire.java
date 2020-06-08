@@ -12,7 +12,7 @@ public class ZombieMilitaire extends Zombie{
 	
 	public ZombieMilitaire(Environnement env) {
 
-		super(env, 3, 20);
+		super(env, 30, 1);
 	}
 	
 	public String toString() {

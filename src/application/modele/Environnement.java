@@ -23,6 +23,7 @@ public class Environnement {
 	private Graphe graphe;
 	private TabMap1 tab;
 	private IntegerProperty money;
+	private IntegerProperty pvBunker;
 	
 	public Environnement(int width, int height) {
 		this.width = width;
@@ -33,6 +34,7 @@ public class Environnement {
 	//	listeTourelle = new ArrayList<Tourelle>();
 		listeTourelle = new ArrayList<Tourelle>();
 		this.money = new SimpleIntegerProperty(100);
+		this.pvBunker = new SimpleIntegerProperty(5);
 		//this.nbTours = 0;
 		//this.listeCoordonnes = new ArrayList<Coordonnes>();
 		System.out.println("construction graphe");
@@ -170,6 +172,11 @@ public class Environnement {
     public void moneyDesc(Tourelle tourelle) {
             this.setMoney((this.getMoney() - tourelle.getValeurAchat()));
     }
+    
+    public IntegerProperty getPvBunkerProperty() {
+    	return this.pvBunker;
+    }
+
 	
 	
 	
