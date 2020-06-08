@@ -1,12 +1,11 @@
 package application.vue;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 
+import java.io.FileNotFoundException;
 import application.modele.Environnement;
 import application.modele.tourelles.Archer;
 import application.modele.tourelles.Militaire;
-import application.modele.tourelles.TireurDeBase;
 import application.modele.tourelles.Tourelle;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;

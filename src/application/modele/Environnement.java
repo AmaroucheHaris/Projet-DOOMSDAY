@@ -2,10 +2,10 @@ package application.modele;
 
 import java.util.ArrayList;
 
+
 import application.modele.bfs.Graphe;
 import application.modele.ennemis.Sprinteur;
 import application.modele.ennemis.Zombie;
-import application.modele.tourelles.Militaire;
 import application.modele.tourelles.Tourelle;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;

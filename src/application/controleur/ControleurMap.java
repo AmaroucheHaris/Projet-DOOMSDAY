@@ -403,6 +403,7 @@ public class ControleurMap implements Initializable {
 	}
 	
 	public boolean creerTourelle(String type, int posX, int posY) {
+		//test
 		Tourelle tour = null;
 		switch (type) {
 		case "Militaire":
