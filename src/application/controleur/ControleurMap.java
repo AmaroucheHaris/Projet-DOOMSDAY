@@ -399,8 +399,8 @@ public class ControleurMap implements Initializable {
 	public void creerTourelle(String type, PlacementTourelle pt) {
 		//test
 		Tourelle tour = null;
-		int posX = (pt.getTileX()*32)+8;
-		int posY = (pt.getTileY()*32);
+		int posX = (pt.getTileX()*32)+4;
+		int posY = (pt.getTileY()*32)+2;
 		switch (type) {
 		case "Militaire":
 			tour = new Militaire(posX, posY, env);
