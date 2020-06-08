@@ -46,13 +46,6 @@ public class ControleurMap implements Initializable {
 	@FXML
 	private Pane paneCentrale;
 
-	private Environnement env;
-	private Timeline gameloop;
-	private int time;
-	private ChargementMap mapAGenener;
-	private int cycle;
-	private int cycleSpawnZombie;
-
     @FXML
     private Label labelMoney;
 
@@ -86,9 +79,15 @@ public class ControleurMap implements Initializable {
 	@FXML
 	private ImageView target;
 
-	private boolean modeEdit;
-	private boolean modeVente;
+	private Environnement env;
+	private Timeline gameloop;
+	private int time;
+	private ChargementMap mapAGenener;
+	private int cycle;
+	private int cycleSpawnZombie;
+
 	private boolean modeAchat;
+	private boolean modeVente;
 	private String tourelle;
 	private HashMap<Zombie, SpriteZombie> linkSpriteZombie;
 	private Map<Tourelle, SpriteTourelle> linkSpriteTourelle;
@@ -109,10 +108,10 @@ public class ControleurMap implements Initializable {
 		mapAGenener = new ChargementMap();
 		mapAGenener.genererMap(Tpane);
 		// env.initSommets();
-
 		this.env = new Environnement(960, 704);
 		this.disableModeAchat();
 		this.disableModeVente();
+		
 		for(int ligne = 0; ligne<matriceMap1.length; ligne++) {
 			for(int colonne = 0; colonne < matriceMap1[ligne].length; colonne++) {
 				if (matriceMap1[ligne][colonne] == 4) {
@@ -159,7 +158,7 @@ public class ControleurMap implements Initializable {
 		this.gameloop = new Timeline();
 		this.time = 0;
 		this.gameloop.setCycleCount(Timeline.INDEFINITE);
-		
+
 		KeyFrame keyframe = new KeyFrame(Duration.seconds(0.017), (ev -> {
 
 			if(this.cycle == 0) {
@@ -204,13 +203,11 @@ public class ControleurMap implements Initializable {
 	}
 	
 	
-	
 	@FXML
 	void onMouseClickedOnAchat(MouseEvent event) {
 		this.enableModeAchat();
 	}
-	
-	
+
 	@FXML
 	void onMouseClickedOffAchat(MouseEvent event) {
 		this.disableModeAchat();
@@ -221,12 +218,14 @@ public class ControleurMap implements Initializable {
 		boutonVenteOn.setStyle("-fx-background-color: Green");
 		boutonVenteOff.setStyle("-fx-background-color: Red");
 	}
-
+	
 	void disableModeVente() {
 		modeVente = false;
 		boutonVenteOff.setStyle("-fx-background-color: Green");
 		boutonVenteOn.setStyle("-fx-background-color: Red");
 	}
+	
+	
 	
 	@FXML
 	void onMouseClickedOnSell(MouseEvent event) {
@@ -241,84 +240,84 @@ public class ControleurMap implements Initializable {
 
 	@FXML
 	void onMouseClickedMilitaire(MouseEvent event) {
-		if (modeEdit) {
+		if (modeAchat) {
 			tourelle = "Militaire";
 		}
 	}
 	
 	@FXML
 	void onMouseClickedArcher(MouseEvent event) {
-		if (modeEdit) {
+		if (modeAchat) {
 			tourelle = "Archer";
 		}
 	}
 	
 	   @FXML
 	    void onMouseClickedBourrin(MouseEvent event) {
-		   if (modeEdit) {
+		   if (modeAchat) {
 				tourelle = "Bourrin";
 			}
 	    }
 
 	    @FXML
 	    void onMouseClickedGrenadier(MouseEvent event) {
-	    	if (modeEdit) {
+	    	if (modeAchat) {
 				tourelle = "Grenadier";
 			}
 	    }
 
 	    @FXML
 	    void onMouseClickedRadar(MouseEvent event) {
-	    	if (modeEdit) {
+	    	if (modeAchat) {
 				tourelle = "Radar";
 			}
 	    }
 
 	    @FXML
 	    void onMouseClickedTireurPrecision(MouseEvent event) {
-	    	if (modeEdit) {
+	    	if (modeAchat) {
 				tourelle = "TireurDePrecision";
 			}
 	    }
 
-	    @FXML
-		void onMouseClickedPane(MouseEvent event) {
-			int posX = (int) event.getSceneX();
-			int posY = (int) event.getSceneY();
-			boolean answer = false;
-			if (modeAchat && !modeVente) {
-				for (PlacementTourelle pt : listePlacementsTourelles) {
-					if (pt.getIsAvailable() && posX/32 == pt.getTileX() && posY/32 == pt.getTileY()) {
-						if (tourelle.equals("Militaire")) {
-							this.creerTourelle("Militaire", pt.getTileX()*32, pt.getTileY()*32);
-						}
-						if (tourelle.equals("Archer")) {
-							this.creerTourelle("Archer", pt.getTileX()*32, pt.getTileY()*32);
-						}
-							
-							// rajouter les autres tourelles
-						if(answer) {
-							pt.setIsAvailable(false);
-						}
-										
+	@FXML
+	void onMouseClickedPane(MouseEvent event) {
+		int posX = (int) event.getSceneX();
+		int posY = (int) event.getSceneY();
+		boolean answer = false;
+		if (modeAchat && !modeVente) {
+			for (PlacementTourelle pt : listePlacementsTourelles) {
+				if (pt.getIsAvailable() && posX/32 == pt.getTileX() && posY/32 == pt.getTileY()) {
+					if (tourelle.equals("Militaire")) {
+						this.creerTourelle("Militaire", pt.getTileX()*32, pt.getTileY()*32);
 					}
-				}
-			}
-			if(modeVente && !modeAchat) {
-				for (Map.Entry<Tourelle, SpriteTourelle> entree : linkSpriteTourelle.entrySet()) {
-					for (PlacementTourelle pt : listePlacementsTourelles) {
-						if (posX/32 == entree.getKey().getX()/32 && posY/32 == entree.getKey().getY()/32 && pt.getTileX() == posX/32 && posY/32 == pt.getTileY()) {
-							this.detruireTourelle(entree.getKey());
-							pt.setIsAvailable(true);
-						}
+					if (tourelle.equals("Archer")) {
+						this.creerTourelle("Archer", pt.getTileX()*32, pt.getTileY()*32);
 					}
+						
+						// rajouter les autres tourelles
+					if(answer) {
+						pt.setIsAvailable(false);
+					}
+									
 				}
-			}
-			if (modeVente && modeAchat) {
-				this.disableModeAchat();
-				this.disableModeVente();
 			}
 		}
+		if(modeVente && !modeAchat) {
+			for (Map.Entry<Tourelle, SpriteTourelle> entree : linkSpriteTourelle.entrySet()) {
+				for (PlacementTourelle pt : listePlacementsTourelles) {
+					if (posX/32 == entree.getKey().getX()/32 && posY/32 == entree.getKey().getY()/32 && pt.getTileX() == posX/32 && posY/32 == pt.getTileY()) {
+						this.detruireTourelle(entree.getKey());
+						pt.setIsAvailable(true);
+					}
+				}
+			}
+		}
+		if (modeVente && modeAchat) {
+			this.disableModeAchat();
+			this.disableModeVente();
+		}
+	}
 	
 	public void creerZombieAleatoire() throws FileNotFoundException {
 		// 7 zombies
@@ -329,7 +328,6 @@ public class ControleurMap implements Initializable {
 		int valRand = rand.nextInt(7);
 		
 		Zombie z = null;
-		//int valRand = 3;
 		switch(valRand) {
 		case 0:
 			z = new Sprinteur(env);
@@ -414,13 +412,12 @@ public class ControleurMap implements Initializable {
 		
 		case "Archer":
 			tour = new Archer(posX+8, posY, env);
-		break;
+			break;
 		
 		}
 		if (this.env.checkMoneyDown(tour)) {
 			tour = null;
 		}
-	
 		if (tour != null) {	
 			SpriteTourelle spt = null;
 			try {
@@ -432,9 +429,10 @@ public class ControleurMap implements Initializable {
 			linkSpriteTourelle.put(tour, spt);
 			this.env.moneyDesc(tour);
 			return true;
+			
 		}
 		return false;
-				
+		
 	}
 	
 	public void detruireTourelle(Tourelle target) {
