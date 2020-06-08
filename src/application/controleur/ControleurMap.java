@@ -23,6 +23,7 @@ import application.modele.ennemis.ZombieMilitaire;
 import application.modele.tourelles.Archer;
 import application.modele.tourelles.Militaire;
 import application.modele.tourelles.PlacementTourelle;
+import application.modele.tourelles.Sniper;
 import application.modele.tourelles.Tourelle;
 import application.vue.ChargementMap;
 import application.vue.SpriteTourelle;
@@ -252,33 +253,33 @@ public class ControleurMap implements Initializable {
 		}
 	}
 	
-	   @FXML
-	    void onMouseClickedBourrin(MouseEvent event) {
-		   if (modeAchat) {
-				tourelle = "Bourrin";
-			}
-	    }
+	@FXML
+	void onMouseClickedSniper(MouseEvent event) {
+		if (modeAchat) {
+			tourelle = "Sniper";
+		}
+	}
+	
+	@FXML
+	void onMouseClickedBourrin(MouseEvent event) {
+		if (modeAchat) {
+			tourelle = "Bourrin";
+		}
+	}
 
-	    @FXML
-	    void onMouseClickedGrenadier(MouseEvent event) {
-	    	if (modeAchat) {
-				tourelle = "Grenadier";
-			}
-	    }
+	@FXML
+	void onMouseClickedGrenadier(MouseEvent event) {
+		if (modeAchat) {
+			tourelle = "Grenadier";
+		}
+	}
 
-	    @FXML
-	    void onMouseClickedRadar(MouseEvent event) {
-	    	if (modeAchat) {
-				tourelle = "Radar";
-			}
-	    }
-
-	    @FXML
-	    void onMouseClickedTireurPrecision(MouseEvent event) {
-	    	if (modeAchat) {
-				tourelle = "TireurDePrecision";
-			}
-	    }
+	@FXML
+	void onMouseClickedRadar(MouseEvent event) {
+		if (modeAchat) {
+			tourelle = "Radar";
+		}
+	}
 
 	@FXML
 	void onMouseClickedPane(MouseEvent event) {
@@ -293,6 +294,9 @@ public class ControleurMap implements Initializable {
 					}
 					if (tourelle.equals("Archer")) {
 						this.creerTourelle("Archer", pt.getTileX()*32, pt.getTileY()*32);
+					}
+					if (tourelle.equals("Sniper")) {
+						this.creerTourelle("Sniper", pt.getTileX()*32, pt.getTileY()*32);
 					}
 						
 						// rajouter les autres tourelles
@@ -412,6 +416,10 @@ public class ControleurMap implements Initializable {
 		
 		case "Archer":
 			tour = new Archer(posX+8, posY, env);
+			break;
+		
+		case "Sniper":
+			tour = new Sniper(posX+8, posY, env);
 			break;
 		
 		}

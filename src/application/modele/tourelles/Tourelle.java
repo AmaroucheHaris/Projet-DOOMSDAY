@@ -8,7 +8,6 @@ public abstract class Tourelle {
 	private int x, y;
 	private int degat;
 	private int vitesseAttack;
-	private int precision;
 	private int portee;
 	private String id;
 	private static int compteurId = 0;
@@ -16,13 +15,12 @@ public abstract class Tourelle {
 	private int valeurAchat;
 	protected int tpsRechargement;
 	
-	public Tourelle(int x, int y, Environnement env, int degat, int vitesseAttack, int precision, int portee, int valeurAchat) {
+	public Tourelle(int x, int y, Environnement env, int degat, int vitesseAttack, int portee, int valeurAchat) {
 		this.x = x;
 		this.y = y;
 		this.env = env;
 		this.degat = degat;
 		this.vitesseAttack = vitesseAttack;
-		this.precision = precision;
 		this.portee = portee;
 		compteurId++;
 		this.id = "T" + compteurId;
@@ -65,10 +63,7 @@ public abstract class Tourelle {
 	public int getVitesseAttack() {
 		return this.vitesseAttack;
 	}
-	
-	public int getPrecision() {
-		return this.precision;
-	}
+
 	
 	public int getPortee() {
 		return this.portee;
@@ -85,7 +80,7 @@ public abstract class Tourelle {
 	
 	
 	public String toString() {
-		return "[ x= " + this.x + ", y= " + this.y + ", degat= " + this.degat + ", vitesse d'attaque= " + this.vitesseAttack + ", pr�cision=" + this.precision + ", port�e= " + this.portee +" ]";
+		return "[ x= " + this.x + ", y= " + this.y + ", degat= " + this.degat + ", vitesse d'attaque= " + this.vitesseAttack + ", pr�cision=" + ", port�e= " + this.portee +" ]";
 	}
 	
 	public void suprimerTourelle() {
