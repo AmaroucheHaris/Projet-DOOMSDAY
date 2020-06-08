@@ -13,6 +13,7 @@ public class ZombieMilitaire extends Zombie{
 	public ZombieMilitaire(Environnement env) {
 
 		super(env, 30, 1);
+		this.probaAbsorbe = 20;
 	}
 	
 	public String toString() {
