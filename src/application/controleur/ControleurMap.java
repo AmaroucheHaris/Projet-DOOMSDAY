@@ -79,6 +79,9 @@ public class ControleurMap implements Initializable {
     
 	@FXML
 	private ImageView target;
+	
+	@FXML
+    private Label PVBunker;
 
 	private Environnement env;
 	private Timeline gameloop;
@@ -149,7 +152,7 @@ public class ControleurMap implements Initializable {
 //		}
 		
 		this.labelMoney.textProperty().bind(this.env.getMoneyProperty().asString());
-		
+		this.PVBunker.textProperty().bind(this.env.getPvBunkerProperty().asString());
 		animation();
 		gameloop.play();
 
