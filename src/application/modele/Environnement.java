@@ -3,8 +3,11 @@ package application.modele;
 import java.util.ArrayList;
 
 import application.modele.bfs.Graphe;
+import application.modele.ennemis.Sprinteur;
 import application.modele.ennemis.Zombie;
 import application.modele.tourelles.Tourelle;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 
 public class Environnement {
 	
@@ -18,6 +21,7 @@ public class Environnement {
 	//private ArrayList<Coordonnes> listeCoordonnes;
 	private Graphe graphe;
 	private TabMap1 tab;
+	private IntegerProperty money;
 	
 	public Environnement(int width, int height) {
 		this.width = width;
@@ -27,6 +31,7 @@ public class Environnement {
 		listeZombie = new ArrayList<Zombie>();
 	//	listeTourelle = new ArrayList<Tourelle>();
 		listeTourelle = new ArrayList<Tourelle>();
+		this.money = new SimpleIntegerProperty(100);
 		//this.nbTours = 0;
 		//this.listeCoordonnes = new ArrayList<Coordonnes>();
 		System.out.println("construction graphe");
@@ -119,6 +124,51 @@ public class Environnement {
 	public Graphe getGraphe() {
 		return this.graphe;
 	}
+	public IntegerProperty getMoneyProperty() {
+        return money;
+    }
+    
+    public int getMoney() {
+        return this.money.getValue();
+    }
+    
+    public void setMoney(int money) {
+        this.money.setValue(money);
+    }
+    
+    public void updateMoneyUp(Zombie zombie) {
+//        int money = Integer.parseInt(this.labelMoney.getText());
+//        if(zombie instanceof Sprinteur) {
+//            labelMoney.setText(String.valueOf(money + 10));
+//        }
+        
+        if(zombie instanceof Sprinteur) {
+             this.setMoney((this.getMoney() + 10));
+        }
+    }
+    
+    public boolean checkMoneyDown(Tourelle tourelle) {
+//        int money = Integer.parseInt(this.labelMoney.getText());
+//        if(money - tourelle.getValeurAchat() < 0) {
+//            System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+//            return true;
+//        }
+//        System.out.println("zajhbfiefneoiajfoaj^fpâzejifà");
+//        return false;
+        
+        if(this.getMoney() - tourelle.getValeurAchat() < 0) {
+            return true;
+        }
+        return false;
+    }
+    
+    public void moneyAsc(Tourelle tourelle) {
+            this.setMoney((this.getMoney() + (tourelle.getValeurAchat()/2)));
+    }
+    
+    public void moneyDesc(Tourelle tourelle) {
+            this.setMoney((this.getMoney() - tourelle.getValeurAchat()));
+    }
 	
 	
 	
