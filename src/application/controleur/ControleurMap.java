@@ -153,7 +153,6 @@ public class ControleurMap implements Initializable {
 //
 //		} catch (FileNotFoundException e) {
 //			e.printStackTrace();
-//		}
 		
 		this.labelMoney.textProperty().bind(this.env.getMoneyProperty().asString());
 		this.PVBunker.textProperty().bind(this.env.getPvBunkerProperty().asString());
