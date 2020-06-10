@@ -26,6 +26,7 @@ public class ChargementMap {
 			 i3 = new Image(new FileInputStream("src/application/vue/ressources/tiles/lave.png"));
 			 i4 = new Image(new FileInputStream("src/application/vue/ressources/tiles/solTourelle.png"));
 		} catch (FileNotFoundException e) {
+			System.out.println("L'une des ressources est introuvable");
 			e.printStackTrace();
 		}
 		

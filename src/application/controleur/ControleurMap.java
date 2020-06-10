@@ -161,6 +161,7 @@ public class ControleurMap implements Initializable {
 					Pane root = FXMLLoader.load(getClass().getClassLoader().getResource("application/vue/gameOver.fxml"));
 			    	borderPane.getChildren().setAll(root);
 				} catch (IOException e1) {
+					System.out.println("gameOver.fxml est introuvable");
 					e1.printStackTrace();
 				}
 

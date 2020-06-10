@@ -25,14 +25,26 @@ public class ControlerMainMenu implements Initializable {
     private Button regles;
 
     @FXML
-    void commencerPartie(ActionEvent event) throws IOException {
-		Pane root = FXMLLoader.load(getClass().getClassLoader().getResource("application/vue/vue1.fxml"));
+    void commencerPartie(ActionEvent event) {
+		Pane root = null;
+		try {
+			root = FXMLLoader.load(getClass().getClassLoader().getResource("application/vue/vue1.fxml"));
+		} catch (IOException e) {
+			System.out.println("vue1.fxml est introuvable");
+			e.printStackTrace();
+		}
 		rootPane.getChildren().setAll(root);
     }
 
     @FXML
-    void afficherRegles(ActionEvent event) throws IOException {
-    	Pane root = FXMLLoader.load(getClass().getClassLoader().getResource("application/vue/regles.fxml"));
+    void afficherRegles(ActionEvent event){
+    	Pane root = null;
+		try {
+			root = FXMLLoader.load(getClass().getClassLoader().getResource("application/vue/regles.fxml"));
+		} catch (IOException e) {
+			System.out.println("regles.fxml est introuvable");
+			e.printStackTrace();
+		}
     	rootPane.getChildren().setAll(root);
 
     }

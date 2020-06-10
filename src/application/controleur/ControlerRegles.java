@@ -26,8 +26,14 @@ public class ControlerRegles implements Initializable{
 
 
 	    @FXML
-	    void chargeMenuPrecedent(ActionEvent event) throws IOException {
-			Pane root = FXMLLoader.load(getClass().getClassLoader().getResource("application/vue/menuPrincipal.fxml"));
+	    void chargeMenuPrecedent(ActionEvent event){
+			Pane root = null;
+			try {
+				root = FXMLLoader.load(getClass().getClassLoader().getResource("application/vue/menuPrincipal.fxml"));
+			} catch (IOException e) {
+				System.out.println("menuPrincipal.fxml est introuvable");
+				e.printStackTrace();
+			}
 	    	rootPane.getChildren().setAll(root);
 
 	    }

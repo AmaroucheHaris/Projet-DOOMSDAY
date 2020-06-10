@@ -27,16 +27,14 @@ public class SpriteTourelle {
 		this.posY = posY;
 		if(this.tourelle instanceof Militaire) {
 			this.image = new Image(new FileInputStream("src/application/vue/ressources/tourelles/Militaire.png"));
-			this.sprite = new ImageView(this.image);
 		}
 		else if(this.tourelle instanceof Archer) {
 			this.image = new Image(new FileInputStream("src/application/vue/ressources/tourelles/Archer.png"));
-			this.sprite = new ImageView(this.image);
 		}
 		else if(this.tourelle instanceof Sniper) {
 			this.image = new Image(new FileInputStream("src/application/vue/ressources/tourelles/TireurDePrecision.png"));
-			this.sprite = new ImageView(this.image);
 		}
+		this.sprite = new ImageView(this.image);
 		this.sprite.setX(this.posX);
 		this.sprite.setY(this.posY);
 	}

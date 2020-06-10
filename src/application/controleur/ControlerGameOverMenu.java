@@ -26,8 +26,14 @@ public class ControlerGameOverMenu implements Initializable {
 	}
 	
 	@FXML
-	public void chargerMenuPrincipal(ActionEvent event) throws IOException {
-		Pane root = FXMLLoader.load(getClass().getClassLoader().getResource("application/vue/menuPrincipal.fxml"));
+	public void chargerMenuPrincipal(ActionEvent event){
+		Pane root = null;
+		try {
+			root = FXMLLoader.load(getClass().getClassLoader().getResource("application/vue/menuPrincipal.fxml"));
+		} catch (IOException e) {
+			System.out.println("menuPrincipal.fxml est introuvable");
+			e.printStackTrace();
+		}
 		aPane.getChildren().setAll(root);
 	}
 

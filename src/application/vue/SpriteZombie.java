@@ -29,38 +29,33 @@ public class SpriteZombie {
 		
 		if(this.zombie instanceof Sprinteur) {
 			this.image = new Image(new FileInputStream("src/application/vue/ressources/zombies/Sprinteur.png"));
-			this.sprite = new ImageView(this.image);
 		}
 		
 		else if(this.zombie instanceof Blesses) {
 			this.image = new Image(new FileInputStream("src/application/vue/ressources/zombies/Blesse.png"));
-			this.sprite = new ImageView(this.image);
 		}
 		
 		else if(this.zombie instanceof Kamikaze) {
 			this.image = new Image(new FileInputStream("src/application/vue/ressources/zombies/Kamikaze.png"));
-			this.sprite = new ImageView(this.image);
 		}
 		
 		else if(this.zombie instanceof Majin) {
 			this.image = new Image(new FileInputStream("src/application/vue/ressources/zombies/Majin.png"));
-			this.sprite = new ImageView(this.image);
 		}
 		
 		else if(this.zombie instanceof Tank) {
 			this.image = new Image(new FileInputStream("src/application/vue/ressources/zombies/Tank.png"));
-			this.sprite = new ImageView(this.image);
 		}
 		
 		else if(this.zombie instanceof ZombieDeTroie) {
 			this.image = new Image(new FileInputStream("src/application/vue/ressources/zombies/ZombieDeTrois.png"));
-			this.sprite = new ImageView(this.image);
 		}
 		
 		else if(this.zombie instanceof ZombieMilitaire) {
 			this.image = new Image(new FileInputStream("src/application/vue/ressources/zombies/ZombieMilitaire.png"));
-			this.sprite = new ImageView(this.image);
 		}
+		this.sprite = new ImageView(this.image);
+
 	}
 	
 	public void ajouterSpriteZombie(Pane pane) {
