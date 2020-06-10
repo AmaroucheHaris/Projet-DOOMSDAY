@@ -75,7 +75,7 @@
                               </HBox>
                               <HBox onMouseClicked="#onMouseClickedSniper" prefHeight="71.0" prefWidth="191.0" style="-fx-border-color: f0a110;">
                                  <children>
-                                    <ImageView fx:id="imageMilitaire" fitHeight="63.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fx:id="imageMilitaire1" fitHeight="63.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@ressources/tourelles/TireurDePrecision.png" />
                                        </image>

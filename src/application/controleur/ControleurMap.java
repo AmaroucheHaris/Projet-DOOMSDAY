@@ -31,11 +31,13 @@ import application.vue.SpriteZombie;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.util.Duration;
@@ -82,6 +84,9 @@ public class ControleurMap implements Initializable {
 	
 	@FXML
     private Label PVBunker;
+	
+	@FXML 
+	private BorderPane borderPane;
 
 	private Environnement env;
 	private Timeline gameloop;
@@ -149,6 +154,19 @@ public class ControleurMap implements Initializable {
 		
 		this.labelMoney.textProperty().bind(this.env.getMoneyProperty().asString());
 		this.PVBunker.textProperty().bind(this.env.getPvBunkerProperty().asString());
+		this.env.getPvBunkerProperty().addListener(e -> {
+			if(this.env.getPvBunkerProperty().getValue() == 0) {
+				gameloop.stop();
+				try {
+					Pane root = FXMLLoader.load(getClass().getClassLoader().getResource("application/vue/gameOver.fxml"));
+			    	borderPane.getChildren().setAll(root);
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+
+				
+			}
+		});
 		animation();
 		gameloop.play();
 
