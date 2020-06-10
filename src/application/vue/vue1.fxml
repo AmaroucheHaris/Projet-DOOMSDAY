@@ -39,7 +39,7 @@
                      <children>
                         <VBox prefHeight="265.0" prefWidth="220.0" spacing="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <HBox onMouseClicked="#onMouseClickedArcher" prefHeight="65.0" prefWidth="200.0" style="-fx-border-color: f0a110;">
+                              <HBox fx:id="Archer" onMouseClicked="#onMouseClickedArcher" prefHeight="65.0" prefWidth="200.0" style="-fx-border-color: #f0a110;">
                                  <children>
                                     <ImageView fx:id="imageMilitaire" fitHeight="63.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -56,7 +56,7 @@
                                     </Label>
                                  </children>
                               </HBox>
-                              <HBox onMouseClicked="#onMouseClickedMilitaire" prefHeight="73.0" prefWidth="191.0" style="-fx-border-color: #f0a110;">
+                              <HBox fx:id="Militaire" onMouseClicked="#onMouseClickedMilitaire" prefHeight="73.0" prefWidth="191.0" style="-fx-border-color: #f0a110;">
                                  <children>
                                     <ImageView fx:id="imageMilitaire" fitHeight="63.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -73,9 +73,9 @@
                                     </Label>
                                  </children>
                               </HBox>
-                              <HBox onMouseClicked="#onMouseClickedSniper" prefHeight="71.0" prefWidth="191.0" style="-fx-border-color: f0a110;">
+                              <HBox fx:id="Sniper" onMouseClicked="#onMouseClickedSniper" prefHeight="71.0" prefWidth="191.0" style="-fx-border-color: f0a110;">
                                  <children>
-                                    <ImageView fx:id="imageMilitaire1" fitHeight="63.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fx:id="imageMilitaire" fitHeight="63.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@ressources/tourelles/TireurDePrecision.png" />
                                        </image>

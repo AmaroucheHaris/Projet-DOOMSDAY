@@ -38,6 +38,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.util.Duration;
@@ -69,6 +70,15 @@ public class ControleurMap implements Initializable {
 	
 	@FXML
 	private ImageView imageTireurPrecision;
+	
+	@FXML
+	private HBox Archer;
+	
+	@FXML
+	private HBox Militaire;
+	
+	@FXML
+	private HBox Sniper;
 
 	@FXML
 	private ImageView imageBourrin;
@@ -102,6 +112,7 @@ public class ControleurMap implements Initializable {
 	private Map<Tourelle, SpriteTourelle> linkSpriteTourelle;
 	private ArrayList<PlacementTourelle> listePlacementsTourelles;
 	private Map<Tourelle, PlacementTourelle> linkPlacementTourelles;
+	private ArrayList<HBox> listeHBox;
 	TabMap1 map1 = new TabMap1();
 	int[][] matriceMap1 = map1.getTab();
 
@@ -111,6 +122,10 @@ public class ControleurMap implements Initializable {
 		linkSpriteTourelle = new HashMap<Tourelle, SpriteTourelle>();
 		listePlacementsTourelles = new ArrayList<PlacementTourelle>();
 		linkPlacementTourelles = new HashMap<Tourelle, PlacementTourelle>();
+		listeHBox = new ArrayList<HBox>();
+		listeHBox.add(Archer);
+		listeHBox.add(Militaire);
+		listeHBox.add(Sniper);
 		modeAchat = false;
 		modeVente = false;
 		tourelle = "";
@@ -132,7 +147,6 @@ public class ControleurMap implements Initializable {
 				}
 			}
 		}
-		
 		
 //		try {
 //			creerZombieAleatoire();
@@ -218,9 +232,24 @@ public class ControleurMap implements Initializable {
 		modeAchat = false;
 		boutonAchatOff.setStyle("-fx-background-color: Green");
 		boutonAchatOn.setStyle("-fx-background-color: Red");
+		for (HBox hBox : this.listeHBox) {
+			hBox.setStyle("-fx-border-color: #f0a110");
+		}
 		tourelle = "";
 	}
 	
+	
+	public void onMouseClickedHbox() {
+		for (HBox hBox : this.listeHBox) {
+			if (hBox.getId().equals(tourelle)) {
+				hBox.setStyle("-fx-border-color: red");
+			}
+			else {
+				hBox.setStyle("-fx-border-color: #f0a110");
+			}
+		}
+		return;
+	}
 	
 	@FXML
 	void onMouseClickedOnAchat(MouseEvent event) {
@@ -230,6 +259,7 @@ public class ControleurMap implements Initializable {
 	@FXML
 	void onMouseClickedOffAchat(MouseEvent event) {
 		this.disableModeAchat();
+		
 	}
 	
 	void enableModeVente() {
@@ -244,8 +274,6 @@ public class ControleurMap implements Initializable {
 		boutonVenteOn.setStyle("-fx-background-color: Red");
 	}
 	
-	
-	
 	@FXML
 	void onMouseClickedOnSell(MouseEvent event) {
 		this.enableModeVente();
@@ -256,18 +284,22 @@ public class ControleurMap implements Initializable {
 		this.disableModeVente();
 
 	}
-
-	@FXML
-	void onMouseClickedMilitaire(MouseEvent event) {
-		if (modeAchat) {
-			tourelle = "Militaire";
-		}
-	}
 	
 	@FXML
 	void onMouseClickedArcher(MouseEvent event) {
 		if (modeAchat) {
 			tourelle = "Archer";
+			this.onMouseClickedHbox();
+
+		}
+	}
+	
+	@FXML
+	void onMouseClickedMilitaire(MouseEvent event) {
+		if (modeAchat) {
+			tourelle = "Militaire";
+			this.onMouseClickedHbox();
+			
 		}
 	}
 	
@@ -275,6 +307,7 @@ public class ControleurMap implements Initializable {
 	void onMouseClickedSniper(MouseEvent event) {
 		if (modeAchat) {
 			tourelle = "Sniper";
+			this.onMouseClickedHbox();
 		}
 	}
 	
