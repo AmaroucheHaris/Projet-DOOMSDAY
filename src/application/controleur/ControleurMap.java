@@ -1,5 +1,6 @@
 package application.controleur;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 
 
@@ -119,6 +120,9 @@ public class ControleurMap implements Initializable {
 	private ArrayList<PlacementTourelle> listePlacementsTourelles;
 	private Map<Tourelle, PlacementTourelle> linkPlacementTourelles;
 	private ArrayList<HBox> listeHBox;
+	private MediaPlayer mpDeathZombie;
+	private Media deathZombie;
+	
 	TabMap1 map1 = new TabMap1();
 	int[][] matriceMap1 = map1.getTab();
 
@@ -144,6 +148,8 @@ public class ControleurMap implements Initializable {
 		this.env = new Environnement(960, 704);
 		this.disableModeAchat();
 		this.disableModeVente();
+		this.deathZombie = new Media(new File("src/application/vue/ressources/sounds/death.mp3").toURI().toString());
+		mpDeathZombie = new MediaPlayer(deathZombie);
 		
 		for(int ligne = 0; ligne<matriceMap1.length; ligne++) {
 			for(int colonne = 0; colonne < matriceMap1[ligne].length; colonne++) {
@@ -154,6 +160,7 @@ public class ControleurMap implements Initializable {
 				}
 			}
 		}
+		
 		
 //		try {
 //			creerZombieAleatoire();
@@ -420,6 +427,7 @@ public class ControleurMap implements Initializable {
 	
 	public void tuerZombie(Zombie target) throws FileNotFoundException {
 		if (!target.estEnVie()) {
+			this.mpDeathZombie.play();
 			// if target instanceof Zombie de troies ----> creerZombieAléatoire;
 			if(target instanceof ZombieDeTroie) {
 				for(int i = 0; i < 3; i++) {
