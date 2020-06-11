@@ -8,19 +8,12 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
 import java.util.ResourceBundle;
 import application.modele.Environnement;
 import application.modele.TabMap1;
 import application.modele.bfs.Coordonnes;
-import application.modele.ennemis.Blesses;
-import application.modele.ennemis.Kamikaze;
-import application.modele.ennemis.Majin;
-import application.modele.ennemis.Sprinteur;
-import application.modele.ennemis.Tank;
 import application.modele.ennemis.Zombie;
 import application.modele.ennemis.ZombieDeTroie;
-import application.modele.ennemis.ZombieMilitaire;
 import application.modele.tourelles.Archer;
 import application.modele.tourelles.Militaire;
 import application.modele.tourelles.PlacementTourelle;
@@ -154,6 +147,8 @@ public class ControleurMap implements Initializable {
 				}
 			}
 		}
+		paneCentrale.setStyle("-fx-background-image: none");
+		paneCentrale.setStyle("-fx-background-color: #202020");
 		
 //		try {
 //			creerZombieAleatoire();
