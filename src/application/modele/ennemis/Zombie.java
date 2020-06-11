@@ -107,14 +107,6 @@ public abstract class Zombie {
 	
 	public abstract void agit();
 	
-	
-	public double distance(Coordonnes c1) {
-		double x = (c1.getX() - this.getX())*(c1.getX() - this.getX());
-		double y = (c1.getY() - this.getY())*(c1.getY() - this.getY());
-		y += x; 
-		return Math.sqrt(y);
-	}
-	
 	public Environnement getEnvironnement() {
 		return this.env;
 	}

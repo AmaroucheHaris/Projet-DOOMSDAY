@@ -18,8 +18,6 @@ public class Bfs {
 		while(file.size() != 0) {
 			
 			Sommet s = 	file.removeLast();
-//			System.out.println(s);
-//			System.out.println(s.getListeSommetsAccessible());
 
 			for(Sommet sommetFils : s.getListeSommetsAccessible()) {
 				if(!sommetFils.isExplore()) {
@@ -29,7 +27,6 @@ public class Bfs {
 				}
 			}
 		}
-//		System.out.println(this.associationPereFils);
 	}
 	
 	public HashMap<Sommet, Sommet> getAssociationPereFils() {
