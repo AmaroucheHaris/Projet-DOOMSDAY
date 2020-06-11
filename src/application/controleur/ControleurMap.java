@@ -2,6 +2,7 @@ package application.controleur;
 
 import java.io.FileNotFoundException;
 
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -24,6 +25,7 @@ import application.modele.tourelles.Archer;
 import application.modele.tourelles.Militaire;
 import application.modele.tourelles.PlacementTourelle;
 import application.modele.tourelles.Sniper;
+import application.modele.tourelles.SniperPenetrant;
 import application.modele.tourelles.Tourelle;
 import application.vue.ChargementMap;
 import application.vue.SpriteTourelle;
@@ -41,6 +43,8 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
 
 public class ControleurMap implements Initializable {
@@ -79,6 +83,9 @@ public class ControleurMap implements Initializable {
 	
 	@FXML
 	private HBox Sniper;
+	
+	@FXML
+	private HBox SniperPenetrant;
 
 	@FXML
 	private ImageView imageBourrin;
@@ -104,7 +111,6 @@ public class ControleurMap implements Initializable {
 	private ChargementMap mapAGenener;
 	private int cycle;
 	private int cycleSpawnZombie;
-
 	private boolean modeAchat;
 	private boolean modeVente;
 	private String tourelle;
@@ -126,6 +132,7 @@ public class ControleurMap implements Initializable {
 		listeHBox.add(Archer);
 		listeHBox.add(Militaire);
 		listeHBox.add(Sniper);
+		listeHBox.add(SniperPenetrant);
 		modeAchat = false;
 		modeVente = false;
 		tourelle = "";
@@ -169,7 +176,19 @@ public class ControleurMap implements Initializable {
 		this.labelMoney.textProperty().bind(this.env.getMoneyProperty().asString());
 		this.PVBunker.textProperty().bind(this.env.getPvBunkerProperty().asString());
 		this.env.getPvBunkerProperty().addListener(e -> {
-			if(this.env.getPvBunkerProperty().getValue() == 0) {
+			if (this.env.getPvBunkerProperty().getValue() == 4) {
+				PVBunker.setStyle("-fx-text-fill: #1f7f1f");
+			}
+			else if(this.env.getPvBunkerProperty().getValue() == 3) {
+				PVBunker.setStyle("-fx-text-fill: orange");
+			}
+			else if(this.env.getPvBunkerProperty().getValue() == 2) {
+				PVBunker.setStyle("-fx-text-fill: red");
+			}
+			else if(this.env.getPvBunkerProperty().getValue() == 1) {
+				PVBunker.setStyle("-fx-text-fill: #7f0000");
+			}
+			else if(this.env.getPvBunkerProperty().getValue() == 0) {
 				gameloop.stop();
 				try {
 					Pane root = FXMLLoader.load(getClass().getClassLoader().getResource("application/vue/gameOver.fxml"));
@@ -178,8 +197,6 @@ public class ControleurMap implements Initializable {
 					System.out.println("gameOver.fxml est introuvable");
 					e1.printStackTrace();
 				}
-
-				
 			}
 		});
 		animation();
@@ -307,6 +324,14 @@ public class ControleurMap implements Initializable {
 	void onMouseClickedSniper(MouseEvent event) {
 		if (modeAchat) {
 			tourelle = "Sniper";
+			this.onMouseClickedHbox();
+		}
+	}
+	
+	@FXML
+	void onMouseClickedSniperPenetrant(MouseEvent event) {
+		if (modeAchat) {
+			tourelle = "SniperPenetrant";
 			this.onMouseClickedHbox();
 		}
 	}
@@ -454,17 +479,21 @@ public class ControleurMap implements Initializable {
 		int posX = (pt.getTileX()*32)+4;
 		int posY = (pt.getTileY()*32)+2;
 		switch (type) {
-		case "Militaire":
-			tour = new Militaire(posX, posY, env);
-			break;
-		
-		case "Archer":
-			tour = new Archer(posX, posY, env);
-			break;
-		
-		case "Sniper":
-			tour = new Sniper(posX, posY, env);
-			break;
+			case "Militaire":
+				tour = new Militaire(posX, posY, env);
+				break;
+			
+			case "Archer":
+				tour = new Archer(posX, posY, env);
+				break;
+			
+			case "Sniper":
+				tour = new Sniper(posX, posY, env);
+				break;
+			
+			case "SniperPenetrant":
+				tour = new SniperPenetrant(posX, posY, env);
+				break;
 		}
 		if (this.env.checkMoneyDown(tour)) {
 			tour = null;

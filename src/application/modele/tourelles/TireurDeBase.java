@@ -30,7 +30,7 @@ public abstract class TireurDeBase extends Tourelle {
 		if (target != null) {
 			if(this.tpsRechargement == 0) {
 				this.attaquer(target);
-				this.tpsRechargement = 5;
+				this.tpsRechargement = this.getVitesseAttack();
 			}
 			else {
 				this.tpsRechargement -= 1;

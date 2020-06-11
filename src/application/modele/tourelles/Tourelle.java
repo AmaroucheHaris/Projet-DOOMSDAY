@@ -74,6 +74,7 @@ public abstract class Tourelle {
 	}
 	public abstract Zombie detecter(Environnement env);
 	
+	
 	public abstract void agir();
 	
 	public abstract void attaquer(Zombie target);
