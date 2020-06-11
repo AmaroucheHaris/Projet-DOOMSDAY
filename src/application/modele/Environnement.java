@@ -1,11 +1,13 @@
 package application.modele;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
-
+import java.util.Random;
 
 import application.modele.bfs.Graphe;
 import application.modele.ennemis.Blesses;
 import application.modele.ennemis.Kamikaze;
+import application.modele.ennemis.Majin;
 import application.modele.ennemis.Sprinteur;
 import application.modele.ennemis.Tank;
 import application.modele.ennemis.Zombie;
@@ -176,14 +178,54 @@ public class Environnement {
     }
     
     public void moneyAsc(Tourelle tourelle) {
-            this.setMoney((this.getMoney() + (tourelle.getValeurAchat()/2)));
+    	this.setMoney((this.getMoney() + (tourelle.getValeurAchat()/2)));
     }
     
     public void moneyDesc(Tourelle tourelle) {
-            this.setMoney((this.getMoney() - tourelle.getValeurAchat()));
+    	this.setMoney((this.getMoney() - tourelle.getValeurAchat()));
     }
     
     public IntegerProperty getPvBunkerProperty() {
     	return this.pvBunker;
     }
+    
+	public Zombie creerTypeZombieAleatoire() throws FileNotFoundException {
+		Random rand = new Random();
+		// mettre à l'interieur de rand.nextInt() le nombre de type de zombie
+		int valRand = rand.nextInt(7);
+		
+		Zombie z = null;
+		
+		switch(valRand) {
+		case 0:
+			z = new Sprinteur(this);
+		break;
+		
+		case 1:
+			z = new Blesses(this);
+		break;
+		
+		case 2:
+			z = new Kamikaze(this);
+		break;
+		
+		case 3:
+			z = new Majin(this);
+		break;
+		
+		case 4:
+			z = new Tank(this);
+		break;
+		
+		case 5:
+			z = new ZombieDeTroie(this);
+		break;
+		
+		case 6:
+			z = new ZombieMilitaire(this);
+		break;
+		}
+		
+		return z;
+	}
 }

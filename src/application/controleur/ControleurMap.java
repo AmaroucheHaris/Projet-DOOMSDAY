@@ -393,40 +393,10 @@ public class ControleurMap implements Initializable {
 		// 7 zombies
 		
 		SpriteZombie sp;
-		Random rand = new Random();
-		// mettre à l'interieur de rand.nextInt() le nombre de type de zombie
-		int valRand = rand.nextInt(7);
 		
 		Zombie z = null;
-		switch(valRand) {
-		case 0:
-			z = new Sprinteur(env);
-		break;
 		
-		case 1:
-			z = new Blesses(env);
-		break;
-		
-		case 2:
-			z = new Kamikaze(env);
-		break;
-		
-		case 3:
-			z = new Majin(env);
-		break;
-		
-		case 4:
-			z = new Tank(env);
-		break;
-		
-		case 5:
-			z = new ZombieDeTroie(env);
-		break;
-		
-		case 6:
-			z = new ZombieMilitaire(env);
-		break;
-		}
+		z = this.env.creerTypeZombieAleatoire();
 		
 		sp = new SpriteZombie(z);
 		sp.ajouterSpriteZombie(paneCentrale);
