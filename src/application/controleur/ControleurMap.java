@@ -172,6 +172,8 @@ public class ControleurMap implements Initializable {
 			else if(this.env.getPvBunkerProperty().getValue() == 0) {
 				gameloop.stop();
 				try {
+					ControlerMainMenu.mpMusiqueDuJeu.setAutoPlay(false);
+					ControlerMainMenu.mpMusiqueDuJeu.stop();
 					Pane root = FXMLLoader.load(getClass().getClassLoader().getResource("application/vue/gameOver.fxml"));
 			    	borderPane.getChildren().setAll(root);
 				} catch (IOException e1) {
@@ -461,5 +463,6 @@ public class ControleurMap implements Initializable {
 	public void creerMediaPlayerZombieMort() {
 		this.deathZombie = new Media(new File("src/application/vue/ressources/sounds/death.mp3").toURI().toString());
 		this.mpDeathZombie = new MediaPlayer(this.deathZombie);
+		this.mpDeathZombie.setVolume(0.2);
 	}
 }

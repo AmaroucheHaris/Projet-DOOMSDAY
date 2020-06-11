@@ -1,5 +1,6 @@
 package application.controleur;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -11,6 +12,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
 public class ControlerMainMenu implements Initializable {
@@ -23,6 +26,9 @@ public class ControlerMainMenu implements Initializable {
 
     @FXML
     private Button regles;
+    
+    protected Media musiqueDuJeu;
+    protected static MediaPlayer mpMusiqueDuJeu;
 
     @FXML
     void commencerPartie(ActionEvent event) {
@@ -54,6 +60,14 @@ public class ControlerMainMenu implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		rootPane.setStyle("-fx-background-image: none");
 		rootPane.setStyle("-fx-background-color: #202020");
+		this.creerMpMusiqueDuJeu();
+		this.mpMusiqueDuJeu.setAutoPlay(true);
+		
+	}
+	
+	public void creerMpMusiqueDuJeu() {
+		this.musiqueDuJeu = new Media(new File("src/application/vue/ressources/sounds/in-the-house-in-the-heartbeat.mp3").toURI().toString());
+		this.mpMusiqueDuJeu = new MediaPlayer(musiqueDuJeu);
 	}
 
 }
