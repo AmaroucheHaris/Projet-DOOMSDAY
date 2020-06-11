@@ -40,7 +40,7 @@ public class ControlerRegles implements Initializable{
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		
+		rootPane.setStyle("-fx-background-image: url('file:src/application/vue/ressources/background/background-rules.jpg')");
 	}
 
 }

@@ -52,7 +52,8 @@ public class ControlerMainMenu implements Initializable {
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		
+		rootPane.setStyle("-fx-background-image: none");
+		rootPane.setStyle("-fx-background-color: #202020");
 	}
 
 }

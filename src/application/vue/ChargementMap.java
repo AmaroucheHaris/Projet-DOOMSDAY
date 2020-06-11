@@ -18,6 +18,7 @@ public class ChargementMap {
 		Image i2 = null;
 		Image i3 = null;
 		Image i4 = null;
+		Image i5 = null;
 		
 		
 		try {
@@ -25,6 +26,7 @@ public class ChargementMap {
 			 i2 = new Image(new FileInputStream("src/application/vue/ressources/tiles/route.png"));
 			 i3 = new Image(new FileInputStream("src/application/vue/ressources/tiles/lave.png"));
 			 i4 = new Image(new FileInputStream("src/application/vue/ressources/tiles/solTourelle.png"));
+			 i5 = new Image(new FileInputStream("src/application/vue/ressources/tiles/bunker.jpg"));
 		} catch (FileNotFoundException e) {
 			System.out.println("L'une des ressources est introuvable");
 			e.printStackTrace();
@@ -45,7 +47,13 @@ public class ChargementMap {
 						break;
 
 					case 2: 
-						img.setImage(i2);
+						if ((colonne == 14 || colonne == 15) && ligne == 21) {
+							img.setImage(i5);
+						}
+						else {
+							img.setImage(i2);
+						}
+						
 						break;
 
 					case 3: 
