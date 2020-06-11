@@ -61,13 +61,13 @@ public class ControlerMainMenu implements Initializable {
 		rootPane.setStyle("-fx-background-image: none");
 		rootPane.setStyle("-fx-background-color: #202020");
 		this.creerMpMusiqueDuJeu();
-		this.mpMusiqueDuJeu.setAutoPlay(true);
+		mpMusiqueDuJeu.setAutoPlay(true);
 		
 	}
 	
 	public void creerMpMusiqueDuJeu() {
 		this.musiqueDuJeu = new Media(new File("src/application/vue/ressources/sounds/in-the-house-in-the-heartbeat.mp3").toURI().toString());
-		this.mpMusiqueDuJeu = new MediaPlayer(musiqueDuJeu);
+		mpMusiqueDuJeu = new MediaPlayer(musiqueDuJeu);
 	}
 
 }
