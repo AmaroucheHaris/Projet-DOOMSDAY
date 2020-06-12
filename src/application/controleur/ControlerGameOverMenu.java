@@ -38,6 +38,7 @@ public class ControlerGameOverMenu implements Initializable {
 	public void chargerMenuPrincipal(ActionEvent event){
 		Pane root = null;
 		try {
+			this.mpMusiqueGameOver.stop();
 			ControlerMainMenu.mpBruitSelectionMenu.play();
 			ControlerMainMenu.mpMusiqueDuJeu.setAutoPlay(true);
 			root = FXMLLoader.load(getClass().getClassLoader().getResource("application/vue/menuPrincipal.fxml"));

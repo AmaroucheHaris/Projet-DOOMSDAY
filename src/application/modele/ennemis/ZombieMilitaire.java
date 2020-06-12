@@ -1,7 +1,6 @@
 package application.modele.ennemis;
 
 import java.util.Random;
-
 import application.modele.Environnement;
 
 public class ZombieMilitaire extends Zombie{
