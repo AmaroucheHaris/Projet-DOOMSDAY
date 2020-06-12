@@ -38,7 +38,7 @@ public class SpriteTourelle {
 			this.image = new Image(new FileInputStream("src/application/vue/ressources/tourelles/TireurDePrecision.png"));
 		}
 		else if(this.tourelle instanceof SniperPenetrant) {
-			this.image = new Image(new FileInputStream("src/application/vue/ressources/tourelles/TireurDePrecisionPénétrant.png"));
+			this.image = new Image(new FileInputStream("src/application/vue/ressources/tourelles/TireurDePrecisionPenetrant.png"));
 		}
 		else if(this.tourelle instanceof Grenadier) {
 			this.image = new Image(new FileInputStream("src/application/vue/ressources/tourelles/Grenadier.png"));

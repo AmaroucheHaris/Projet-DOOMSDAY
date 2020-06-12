@@ -19,10 +19,13 @@ public abstract class TireursDeBase extends Tourelle {
 			if(zombie instanceof Blesses ) {
 				return null;
 			}
+			
 			else {
-				int posXZombie =  zombie.getXProperty().getValue();
-				int posYZombie =  zombie.getYProperty().getValue();
-				if(zombie.estEnVie() && posXZombie - this.getX() >= -this.getPortee() && posXZombie - this.getX() <= this.getPortee() && posYZombie - this.getY() >= -this.getPortee() && posYZombie - this.getY() <= this.getPortee()) {	
+				int differenceXZombieTourelle = zombie.getXProperty().getValue() - this.getX();
+				int differenceYZombieTourelle = zombie.getYProperty().getValue() - this.getY();
+				int distance = (int) Math.sqrt((differenceXZombieTourelle * differenceXZombieTourelle) + (differenceYZombieTourelle * differenceYZombieTourelle));
+				
+				if((zombie.estEnVie() && distance <= this.getPortee())) {	
 					return zombie;
 				}
 			}
