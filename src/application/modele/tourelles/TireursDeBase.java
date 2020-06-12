@@ -6,9 +6,9 @@ import application.modele.ennemis.Blesses;
 import application.modele.ennemis.Zombie;
 import application.modele.ennemis.ZombieMilitaire;
 
-public abstract class TireurDeBase extends Tourelle {
+public abstract class TireursDeBase extends Tourelle {
 
-	public TireurDeBase(int x, int y, Environnement env, int degat, int vitesseAttack, int portee, int valeurAchat) {
+	public TireursDeBase(int x, int y, Environnement env, int degat, int vitesseAttack, int portee, int valeurAchat) {
 		super(x, y, env, degat, vitesseAttack, portee, valeurAchat);
 	}
 	
@@ -17,9 +17,7 @@ public abstract class TireurDeBase extends Tourelle {
 		ArrayList<Zombie> zombies = env.getListeZombies();
 		for (Zombie zombie : zombies) {
 			if(zombie instanceof Blesses ) {
-				if(env.getListeTourelles().getClass().getName().contains("Radar") && ((Blesses) zombie).isEstDetecter()) {
-					return zombie;
-				}
+				return null;
 			}
 			else {
 				int posXZombie =  zombie.getXProperty().getValue();
@@ -51,6 +49,13 @@ public abstract class TireurDeBase extends Tourelle {
 		if(target instanceof ZombieMilitaire) {
 			boolean tirAbsorbe = ((ZombieMilitaire) target).tirAbsorbe();
 			if(!tirAbsorbe) {
+				target.setPv(target.getPv() - this.getDegat());
+			}
+		}
+		else if(target instanceof Blesses ) {
+			System.out.println("AHHHHHHHHHHHHHHHHHHHHHHH");
+			if(((Blesses) target).isEstDetecter()) {
+				System.out.println("BAKANAAAAAAAAAAAAAAAAAAAA");
 				target.setPv(target.getPv() - this.getDegat());
 			}
 		}

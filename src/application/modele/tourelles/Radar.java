@@ -21,7 +21,6 @@ public class Radar extends Tourelle {
 				int posYZombie =  zombie.getYProperty().getValue();
 				if(zombie.estEnVie() && posXZombie - this.getX() >= -this.getPortee() && posXZombie - this.getX() <= this.getPortee() && posYZombie - this.getY() >= -this.getPortee() && posYZombie - this.getY() <= this.getPortee()) {
 					((Blesses) zombie).setEstDetecter(true);
-					
 					return zombie;
 				}
 			}
@@ -31,6 +30,7 @@ public class Radar extends Tourelle {
 
 	@Override
 	public void agir() {
+		this.detecter(this.getEnv());
 	}
 
 	@Override

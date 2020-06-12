@@ -71,6 +71,8 @@ public class ControlerMainMenu implements Initializable {
 	public static void creerMpMusiqueDuJeu() {
 		musiqueDuJeu = new Media(new File("src/application/vue/ressources/sounds/in-the-house-in-the-heartbeat.mp3").toURI().toString());
 		mpMusiqueDuJeu = new MediaPlayer(musiqueDuJeu);
+		mpMusiqueDuJeu.setVolume(1);
+		
 	}
 	
 	public static void creerMpBruitSelectionMenu() {

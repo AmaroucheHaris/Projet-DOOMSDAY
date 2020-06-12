@@ -37,7 +37,7 @@ public class Environnement {
 		this.mancheEnCours = false;
 		listeZombie = new ArrayList<Zombie>();
 		listeTourelle = new ArrayList<Tourelle>();
-		this.money = new SimpleIntegerProperty(100);
+		this.money = new SimpleIntegerProperty(1000);
 		this.pvBunker = new SimpleIntegerProperty(5);
 		this.graphe = new Graphe(tab.getTab());
 				
@@ -149,7 +149,7 @@ public class Environnement {
 	public Zombie creerTypeZombieAleatoire() throws FileNotFoundException {
 		Random rand = new Random();
 		// mettre à l'interieur de rand.nextInt() le nombre de type de zombie
-		int valRand = rand.nextInt(7);
+		int valRand = rand.nextInt(2);
 		
 		Zombie z = null;
 		
@@ -162,27 +162,28 @@ public class Environnement {
 			z = new Blesses(this);
 		break;
 		
-		case 2:
-			z = new Kamikaze(this);
-		break;
+//		case 2:
+//			z = new Kamikaze(this);
+//		break;
+//		
+//		case 3:
+//			z = new Majin(this);
+//		break;
+//		
+//		case 4:
+//			z = new Tank(this);
+//		break;
+//		
+//		case 5:
+//			z = new ZombieDeTroie(this);
+//		break;
+//		
+//		case 6:
+//			z = new ZombieMilitaire(this);
+//		break;
+//		}
 		
-		case 3:
-			z = new Majin(this);
-		break;
-		
-		case 4:
-			z = new Tank(this);
-		break;
-		
-		case 5:
-			z = new ZombieDeTroie(this);
-		break;
-		
-		case 6:
-			z = new ZombieMilitaire(this);
-		break;
-		}
-		
-		return z;
 	}
+		return z;
+}
 }
