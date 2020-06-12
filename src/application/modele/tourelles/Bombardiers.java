@@ -8,7 +8,7 @@ import application.modele.ennemis.Zombie;
 public abstract class Bombardiers extends Tourelle {
 
 	
-	private static int porteeLimite = 96;
+	private final static int porteeLimite = 32;
 	private static int porteeDegatZone = 64;
 	public Bombardiers(int x, int y, Environnement env, int degat, int vitesseAttack, int portee, int valeurAchat) {
 		super(x, y, env, degat, vitesseAttack, portee, valeurAchat);
@@ -20,8 +20,12 @@ public abstract class Bombardiers extends Tourelle {
 		for (Zombie zombie : zombies) {
 			int posXZombie =  zombie.getXProperty().getValue();
 			int posYZombie =  zombie.getYProperty().getValue();
-			if(zombie.estEnVie() && this.detecterAxes(posXZombie, posYZombie)) {	
-				System.out.println("FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF");
+			int differenceXZombieTourelle = posXZombie - this.getX();
+			int differenceYZombieTourelle = posYZombie - this.getY();
+			int distance = (int) Math.sqrt((differenceXZombieTourelle * differenceXZombieTourelle) + (differenceYZombieTourelle * differenceYZombieTourelle));
+			System.out.println(distance);
+			if(zombie.estEnVie() && distance <= this.getPortee() && distance >= porteeLimite) {
+				
 				return zombie;
 			}
 		}
@@ -34,6 +38,7 @@ public abstract class Bombardiers extends Tourelle {
 		ArrayList<Zombie> targets = new ArrayList<Zombie>();
 		Zombie z = this.detecter(env);
 		if (z != null) {
+			
 			targets.add(z);
 			int posXFirstTarget = z.getXProperty().getValue();
 			int posYFirstTarget = z.getYProperty().getValue();
@@ -41,10 +46,11 @@ public abstract class Bombardiers extends Tourelle {
 				if (zombie != z) {
 					int posXSecondTarget = zombie.getXProperty().getValue();
 					int posYSecondTarget = zombie.getYProperty().getValue();				
-					if(zombie.estEnVie() && posXSecondTarget - posXFirstTarget >= -porteeDegatZone && posXSecondTarget - posXFirstTarget <= porteeDegatZone && posYSecondTarget - posYFirstTarget >= -porteeDegatZone && posYSecondTarget - posYFirstTarget <= porteeDegatZone) {	
-						System.out.println("allah wakbar");
+					int differenceXZombies = posXSecondTarget - posXFirstTarget;
+					int differenceYZombies = posYSecondTarget - posYFirstTarget;
+					int distance = (int) Math.sqrt((differenceXZombies * differenceXZombies) + (differenceYZombies * differenceYZombies));
+					if(zombie.estEnVie() && distance <= porteeDegatZone) {
 						targets.add(zombie);
-						
 					}
 				}
 			}
@@ -70,38 +76,4 @@ public abstract class Bombardiers extends Tourelle {
 	}
 	
 	public abstract void attaquer(Zombie target);
-
-	public boolean detecterAxes(int posXZombie, int posYZombie) {
-		int resultatX = posXZombie - this.getX();
-		int resultatY = posYZombie - this.getY();
-		System.out.println("posX Tourelle: "+ this.getX());
-		System.out.println("posX Zombie: "+ posXZombie);
-		System.out.println("posY Zombie: "+ posYZombie);
-		System.out.println("posY Tourelle: "+ this.getY());
-		System.out.println("X resultat:" + resultatX);
-		System.out.println("Y resultat:" + resultatY);
-		if (resultatX >= 0 && resultatY >= 0) {
-//			System.out.println("cas droit max: " + (posXZombie - this.getX() <= this.getPortee()));
-//			System.out.println("cas droit sécurité: " + (posXZombie - this.getX() >= porteeLimite));
-			return posXZombie - this.getX() <= this.getPortee() && posXZombie - this.getX() >= porteeLimite && posYZombie - this.getY() <= this.getPortee() && posYZombie - this.getY() >= porteeLimite;
-		}
-		else if (resultatX >= 0 && resultatY < 0) {
-//			System.out.println("cas droit max: " + (posXZombie - this.getX() <= this.getPortee()));
-//			System.out.println("cas droit sécurité: " + (posXZombie - this.getX() >= porteeLimite));
-			return posXZombie - this.getX() <= this.getPortee() && posXZombie - this.getX() >= porteeLimite && posYZombie - this.getY() >= -this.getPortee() && posYZombie - this.getY() <= -porteeLimite;
-		}
-		else if (resultatX < 0 && resultatY >= 0) {
-//			System.out.println("cas droit max: " + (posXZombie - this.getX() <= this.getPortee()));
-//			System.out.println("cas droit sécurité: " + (posXZombie - this.getX() >= porteeLimite));
-			return posXZombie - this.getX() >= -this.getPortee() && posXZombie - this.getX() <= -porteeLimite && posYZombie - this.getY() >= -this.getPortee() && posYZombie - this.getY() <= -porteeLimite;
-		}
-		else if (resultatX < 0 && resultatY < 0){
-//			System.out.println("cas gauche max: " + (posXZombie - this.getX() >= -this.getPortee()));
-//			System.out.println("cas gauche sécurité: " + (posXZombie - this.getX() <= -porteeLimite));
-			return posXZombie - this.getX() >= -this.getPortee() && posXZombie - this.getX() <= -porteeLimite && posYZombie - this.getY() <= this.getPortee() && posYZombie - this.getY() >= porteeLimite;
-		}
-		return false;
-	}
-	
-	
 }

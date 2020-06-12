@@ -7,7 +7,7 @@ import application.modele.ennemis.ZombieMilitaire;
 public class Grenadier extends Bombardiers {
 
 	public Grenadier(int x, int y, Environnement env) {
-		super(x, y, env, 1, 10, 192, 100);
+		super(x, y, env, 1, 10, 600, 100);
 	}
 
 	@Override
