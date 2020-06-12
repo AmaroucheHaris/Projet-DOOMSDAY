@@ -51,7 +51,7 @@ public class ControlerGameOverMenu implements Initializable {
 	public void creerMpMusiqueGameOver() {
 		this.musiqueGameOver = new Media(new File("src/application/vue/ressources/sounds/call-of-duty-black-ops-2-zombies-green-run-game-over-song.mp3").toURI().toString());
 		this.mpMusiqueGameOver = new MediaPlayer(this.musiqueGameOver);
-		this.mpMusiqueGameOver.setVolume(0.1);
+		this.mpMusiqueGameOver.setVolume(0.5);
 	}
 
 }
