@@ -46,6 +46,9 @@ public class SpriteTourelle {
 		else if(this.tourelle instanceof Radar) {
 			this.image = new Image(new FileInputStream("src/application/vue/ressources/tourelles/Radar.png"));
 		}
+		else {
+			this.image = new Image(new FileInputStream("src/application/vue/ressources/tourelles/Bourrin.png"));
+		}
 		this.sprite = new ImageView(this.image);
 		this.sprite.setX(this.posX);
 		this.sprite.setY(this.posY);

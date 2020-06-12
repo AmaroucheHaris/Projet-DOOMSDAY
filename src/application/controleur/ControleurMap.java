@@ -17,6 +17,7 @@ import application.modele.bfs.Coordonnes;
 import application.modele.ennemis.Zombie;
 import application.modele.ennemis.ZombieDeTroie;
 import application.modele.tourelles.Archer;
+import application.modele.tourelles.Bourrin;
 import application.modele.tourelles.Militaire;
 import application.modele.tourelles.PlacementTourelle;
 import application.modele.tourelles.Sniper;
@@ -458,7 +459,10 @@ public class ControleurMap implements Initializable {
 				break;
 			case "Radar":
 				tour = new Radar(posX, posY, env);
-				break;			
+				break;
+			case "Bourrin":
+				tour = new Bourrin(posX, posY, env);
+				break;
 		}
 		if (this.env.checkMoneyDown(tour)) {
 			tour = null;
