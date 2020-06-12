@@ -85,11 +85,22 @@ public abstract class Bombardiers extends Tourelle {
 //			System.out.println("cas droit sécurité: " + (posXZombie - this.getX() >= porteeLimite));
 			return posXZombie - this.getX() <= this.getPortee() && posXZombie - this.getX() >= porteeLimite && posYZombie - this.getY() <= this.getPortee() && posYZombie - this.getY() >= porteeLimite;
 		}
-		else {
-//			System.out.println("cas gauche max: " + (posXZombie - this.getX() >= -this.getPortee()));
-//			System.out.println("cas gauche sécurité: " + (posXZombie - this.getX() <= -porteeLimite));
+		else if (resultatX >= 0 && resultatY < 0) {
+//			System.out.println("cas droit max: " + (posXZombie - this.getX() <= this.getPortee()));
+//			System.out.println("cas droit sécurité: " + (posXZombie - this.getX() >= porteeLimite));
+			return posXZombie - this.getX() <= this.getPortee() && posXZombie - this.getX() >= porteeLimite && posYZombie - this.getY() >= -this.getPortee() && posYZombie - this.getY() <= -porteeLimite;
+		}
+		else if (resultatX < 0 && resultatY >= 0) {
+//			System.out.println("cas droit max: " + (posXZombie - this.getX() <= this.getPortee()));
+//			System.out.println("cas droit sécurité: " + (posXZombie - this.getX() >= porteeLimite));
 			return posXZombie - this.getX() >= -this.getPortee() && posXZombie - this.getX() <= -porteeLimite && posYZombie - this.getY() >= -this.getPortee() && posYZombie - this.getY() <= -porteeLimite;
 		}
+		else if (resultatX < 0 && resultatY < 0){
+//			System.out.println("cas gauche max: " + (posXZombie - this.getX() >= -this.getPortee()));
+//			System.out.println("cas gauche sécurité: " + (posXZombie - this.getX() <= -porteeLimite));
+			return posXZombie - this.getX() >= -this.getPortee() && posXZombie - this.getX() <= -porteeLimite && posYZombie - this.getY() <= this.getPortee() && posYZombie - this.getY() >= porteeLimite;
+		}
+		return false;
 	}
 	
 	
