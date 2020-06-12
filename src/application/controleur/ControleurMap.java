@@ -214,11 +214,11 @@ public class ControleurMap implements Initializable {
 
 			if(this.cycle == 0) {
 				if(this.cycleSpawnZombie == 0) {
-//					try {
-//						creerZombieAleatoire();
-//					} catch (FileNotFoundException e) {
-//						e.printStackTrace();
-//					}
+					try {
+						creerZombieAleatoire();
+					} catch (FileNotFoundException e) {
+						e.printStackTrace();
+					}
 					this.cycleSpawnZombie = 250;
 				}
 				else {
@@ -237,11 +237,6 @@ public class ControleurMap implements Initializable {
 			}
 		}));
 		gameloop.getKeyFrames().add(keyframe);
-		try {
-			creerZombieAleatoire();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
 	}
 	
 	void enableModeAchat() {
