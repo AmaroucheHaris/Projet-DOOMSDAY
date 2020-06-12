@@ -9,8 +9,6 @@ public abstract class Tourelle {
 	private int degat;
 	private int vitesseAttack;
 	private int portee;
-	private String id;
-	private static int compteurId = 0;
 	private Environnement env;
 	private int valeurAchat;
 	protected int tpsRechargement;
@@ -22,8 +20,6 @@ public abstract class Tourelle {
 		this.degat = degat;
 		this.vitesseAttack = vitesseAttack;
 		this.portee = portee;
-		this.id = "T" + compteurId;
-		compteurId++;
 		this.tpsRechargement = 0;
 		this.valeurAchat = valeurAchat;
 	}

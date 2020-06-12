@@ -6,6 +6,8 @@ import application.modele.Environnement;
 import application.modele.ennemis.Blesses;
 import application.modele.ennemis.Zombie;
 
+
+//Classe non opérationnelle (enlevée de la VBox pour cette même raison)
 public class Radar extends Tourelle {
 	
 	public Radar(int x, int y, Environnement env) {

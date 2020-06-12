@@ -1,14 +1,10 @@
 package application.modele.tourelles;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
-
 import application.modele.Environnement;
 import application.modele.ennemis.Zombie;
-import application.modele.ennemis.ZombieMilitaire;
-//Classe non fonctionnelle mais juste pour montrer aux profs
+
+//Classe non opérationnelle (enlevée de la VBox pour cette même raison)
 public class GrenadierDesorientant extends Bombardiers {
 	
 	private static int delay = 5;

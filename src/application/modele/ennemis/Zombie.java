@@ -77,12 +77,11 @@ public abstract class Zombie {
 
 		Sommet sommetCourant = this.env.getGraphe().chercheSommet(coordZombie);
 		
-		//mettre � sommetDest la valeur associ�e � sommetCourant dans la HashMap
+		//mettre sommetDest la valeur associee et sommetCourant dans la HashMap
 		
 		Sommet SommetsDest = this.env.getGraphe().getBfs().getAssociationPereFils().get(sommetCourant);
-		System.out.println(SommetsDest);
 		if(SommetsDest != null) {
-			//erreur bléssé vient peut-être de getX();
+			//erreur blesse vient peut-etre de getX();
 			if(this.getX() < SommetsDest.getCoordonnes().getX()) {
 				this.setX(getX() + this.getVitesse());
 			}

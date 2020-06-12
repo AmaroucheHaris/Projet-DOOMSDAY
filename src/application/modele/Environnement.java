@@ -47,7 +47,6 @@ public class Environnement {
 		this.mancheEnCours = true;
 		for(Zombie currentZombie : this.listeZombie) {
 			
-			System.out.println(currentZombie);
 			currentZombie.agit();
 						
 		}
@@ -148,7 +147,7 @@ public class Environnement {
     
 	public Zombie creerTypeZombieAleatoire() throws FileNotFoundException {
 		Random rand = new Random();
-		// mettre Ã  l'interieur de rand.nextInt() le nombre de type de zombie
+		// mettre a  l interieur de rand.nextInt() le nombre de type de zombie
 		int valRand = rand.nextInt(7);
 		
 		Zombie z = null;

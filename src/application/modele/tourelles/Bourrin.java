@@ -10,7 +10,7 @@ import application.modele.ennemis.ZombieMilitaire;
 public class Bourrin extends Tourelle {
 
 	public Bourrin(int x, int y, Environnement env) {
-		super(x, y, env, 100, 176, 30, 100);
+		super(x, y, env, 7, 29, 128, 100);
 	}
 
 	@Override
@@ -31,14 +31,10 @@ public class Bourrin extends Tourelle {
 	@Override
 	public void agir() {
 		Zombie target = this.detecter(this.getEnv());
-		Random rand = new Random();
 		if (target != null) {
 			if(this.tpsRechargement == 0) {
-				int luckHit = rand.nextInt(3);
-				if(luckHit==0) {
-					this.attaquer(target);
-					this.tpsRechargement = this.getVitesseAttack();
-				}
+				this.attaquer(target);
+				this.tpsRechargement = this.getVitesseAttack();
 			}
 			else {
 				this.tpsRechargement -= 1;

@@ -23,8 +23,6 @@ import application.modele.tourelles.PlacementTourelle;
 import application.modele.tourelles.Sniper;
 import application.modele.tourelles.SniperPenetrant;
 import application.modele.tourelles.Grenadier;
-import application.modele.tourelles.Radar;
-import application.modele.tourelles.GrenadierDesorientant;
 import application.modele.tourelles.Tourelle;
 import application.vue.ChargementMap;
 import application.vue.SpriteTourelle;
@@ -90,20 +88,14 @@ public class ControleurMap implements Initializable {
 	private HBox Grenadier;
 	
 	@FXML
-	private HBox Radar;
+	private HBox Bourrin;
 	
-	@FXML
-	private HBox GrenadierDesorientant;
-
 	@FXML
 	private ImageView imageBourrin;
 
 	@FXML
 	private ImageView imageGrenadier;
-
-	@FXML
-	private ImageView imageRadar;
-    
+	
 	@FXML
 	private ImageView target;
 	
@@ -151,14 +143,13 @@ public class ControleurMap implements Initializable {
 		listeHBox.add(Sniper);
 		listeHBox.add(SniperPenetrant);
 		listeHBox.add(Grenadier);
-		listeHBox.add(GrenadierDesorientant);
-		listeHBox.add(Radar);
+		listeHBox.add(Bourrin);
 		modeAchat = false;
 		modeVente = false;
 		tourelle = "";
 		this.cycle = 400;
 		this.cycleSpawnZombie = 0;
-		mapAGenener = new ChargementMap();
+		mapAGenener = new ChargementMap(map1);
 		mapAGenener.genererMap(Tpane);
 		// env.initSommets();
 		this.env = new Environnement(960, 704);
@@ -196,8 +187,6 @@ public class ControleurMap implements Initializable {
 			else if(this.env.getPvBunkerProperty().getValue() == 0) {
 				gameloop.stop();
 				try {
-//					ControlerMainMenu.mpMusiqueDuJeu.setAutoPlay(false);
-//					ControlerMainMenu.mpMusiqueDuJeu.stop();
 					this.mpMusiqueVue1.setAutoPlay(false);
 					this.mpMusiqueVue1.stop();
 					Pane root = FXMLLoader.load(getClass().getClassLoader().getResource("application/vue/gameOver.fxml"));
@@ -277,6 +266,9 @@ public class ControleurMap implements Initializable {
 	@FXML
 	void onMouseClickedOnAchat(MouseEvent event) {
 		this.enableModeAchat();
+		if (modeVente) {
+			this.disableModeVente();
+		}
 	}
 
 	@FXML
@@ -300,6 +292,9 @@ public class ControleurMap implements Initializable {
 	@FXML
 	void onMouseClickedOnSell(MouseEvent event) {
 		this.enableModeVente();
+		if (modeAchat) {
+			this.disableModeAchat();
+		}
 	}
 
 	@FXML
@@ -346,6 +341,7 @@ public class ControleurMap implements Initializable {
 	void onMouseClickedBourrin(MouseEvent event) {
 		if (modeAchat) {
 			tourelle = "Bourrin";
+			this.onMouseClickedHbox();
 		}
 	}
 
@@ -353,22 +349,6 @@ public class ControleurMap implements Initializable {
 	void onMouseClickedGrenadier(MouseEvent event) {
 		if (modeAchat) {
 			tourelle = "Grenadier";
-			this.onMouseClickedHbox();
-		}
-	}
-
-	@FXML
-	void onMouseClickedGrenadierDesorientant(MouseEvent event) {
-		if (modeAchat) {
-			tourelle = "GrenadierDesorientant";
-			this.onMouseClickedHbox();
-		}
-	}
-	
-	@FXML
-	void onMouseClickedRadar(MouseEvent event) {
-		if (modeAchat) {
-			tourelle = "Radar";
 			this.onMouseClickedHbox();
 		}
 	}
@@ -468,14 +448,6 @@ public class ControleurMap implements Initializable {
 				break;
 			case "Grenadier":
 				tour = new Grenadier(posX, posY, env);
-				break;
-
-			case "Radar":
-				tour = new Radar(posX, posY, env);
-				break;
-				
-			case "GrenadierDesorientant":
-				tour = new GrenadierDesorientant(posX, posY, env);
 				break;
 				
 			case "Bourrin":

@@ -14,7 +14,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-import javafx.stage.Stage;
 
 public class ControlerMainMenu implements Initializable {
 
@@ -37,7 +36,7 @@ public class ControlerMainMenu implements Initializable {
 		Pane root = null;
 		try {
 			mpBruitSelectionMenu.play();
-			root = FXMLLoader.load(getClass().getClassLoader().getResource("application/vue/vue1.fxml"));
+			root = FXMLLoader.load(getClass().getClassLoader().getResource("application/vue/gameScreen.fxml"));
 		} catch (IOException e) {
 			System.out.println("vue1.fxml est introuvable");
 			e.printStackTrace();
@@ -76,7 +75,7 @@ public class ControlerMainMenu implements Initializable {
 	}
 	
 	public static void creerMpBruitSelectionMenu() {
-		bruitSelectionMenu = new Media(new File("src/application/vue/ressources/sounds/coup de feu #3.mp3").toURI().toString());
+		bruitSelectionMenu = new Media(new File("src/application/vue/ressources/sounds/coup de feu.mp3").toURI().toString());
 		mpBruitSelectionMenu = new MediaPlayer(bruitSelectionMenu);
 		mpBruitSelectionMenu.setVolume(0.2);
 	}

@@ -14,7 +14,6 @@ public class Sprinteur extends Zombie{
 
 	public void agit() {
 		this.seDeplacer();
-		System.out.println(this.toString());
 	}
 
 }

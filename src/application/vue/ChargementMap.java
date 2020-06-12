@@ -10,8 +10,14 @@ import javafx.scene.layout.TilePane;
 
 public class ChargementMap {
 	
-	private TabMap1 tab = new TabMap1();
-	int [][] map = tab.getTab();
+	private TabMap1 tab;
+    int [][] map;
+
+    public ChargementMap(TabMap1 tab) {
+    	this.tab = tab;
+        map = tab.getTab();
+    }
+	
 	
 	public void genererMap(TilePane tPane) {
 		Image i1 = null;
@@ -73,5 +79,8 @@ public class ChargementMap {
 	public int[][] getMap() {
 		return map;
 	}
-
+	
+	public TabMap1 getTab() {
+		return tab;
+	}
 }

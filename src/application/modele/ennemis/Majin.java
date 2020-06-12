@@ -18,7 +18,6 @@ public class Majin extends Zombie{
 		
 		if(this.getPv() < this.pvMax) {
 			if(this.cycle == 10) {
-				System.out.println("\nje me soigne\n");
 				this.setPv(this.getPv()+1);
 				this.cycle = 0;
 				return true;
