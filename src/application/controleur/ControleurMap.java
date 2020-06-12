@@ -17,11 +17,14 @@ import application.modele.bfs.Coordonnes;
 import application.modele.ennemis.Zombie;
 import application.modele.ennemis.ZombieDeTroie;
 import application.modele.tourelles.Archer;
+import application.modele.tourelles.Bourrin;
 import application.modele.tourelles.Militaire;
 import application.modele.tourelles.PlacementTourelle;
 import application.modele.tourelles.Sniper;
 import application.modele.tourelles.SniperPenetrant;
 import application.modele.tourelles.Grenadier;
+import application.modele.tourelles.Radar;
+import application.modele.tourelles.GrenadierDesorientant;
 import application.modele.tourelles.Tourelle;
 import application.vue.ChargementMap;
 import application.vue.SpriteTourelle;
@@ -88,6 +91,9 @@ public class ControleurMap implements Initializable {
 	
 	@FXML
 	private HBox Radar;
+	
+	@FXML
+	private HBox GrenadierDesorientant;
 
 	@FXML
 	private ImageView imageBourrin;
@@ -145,6 +151,7 @@ public class ControleurMap implements Initializable {
 		listeHBox.add(Sniper);
 		listeHBox.add(SniperPenetrant);
 		listeHBox.add(Grenadier);
+		listeHBox.add(GrenadierDesorientant);
 		listeHBox.add(Radar);
 		modeAchat = false;
 		modeVente = false;
@@ -351,6 +358,14 @@ public class ControleurMap implements Initializable {
 	}
 
 	@FXML
+	void onMouseClickedGrenadierDesorientant(MouseEvent event) {
+		if (modeAchat) {
+			tourelle = "GrenadierDesorientant";
+			this.onMouseClickedHbox();
+		}
+	}
+	
+	@FXML
 	void onMouseClickedRadar(MouseEvent event) {
 		if (modeAchat) {
 			tourelle = "Radar";
@@ -375,7 +390,6 @@ public class ControleurMap implements Initializable {
 			for (Map.Entry<Tourelle, PlacementTourelle> entree : this.linkPlacementTourelles.entrySet()) {
 				Tourelle t = entree.getKey();
 				PlacementTourelle pt = entree.getValue();
-				System.out.println(pt.getIsAvailable());
 				if (!pt.getIsAvailable() && pt.getTileX() == posX && pt.getTileY() == posY && t.getX()/32 == posX && t.getY()/32 == posY) {
 					this.detruireTourelle(t, pt);
 					this.linkPlacementTourelles.remove(t, pt);
@@ -455,9 +469,19 @@ public class ControleurMap implements Initializable {
 			case "Grenadier":
 				tour = new Grenadier(posX, posY, env);
 				break;
-//			case "Radar":
-//				tour = new Radar(posX, posY, env);
-//				break;			
+
+			case "Radar":
+				tour = new Radar(posX, posY, env);
+				break;
+				
+			case "GrenadierDesorientant":
+				tour = new GrenadierDesorientant(posX, posY, env);
+				break;
+				
+			case "Bourrin":
+				tour = new Bourrin(posX, posY, env);
+				break;
+
 		}
 		if (this.env.checkMoneyDown(tour)) {
 			tour = null;

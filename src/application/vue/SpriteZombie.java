@@ -12,6 +12,8 @@ import application.modele.ennemis.Tank;
 import application.modele.ennemis.Zombie;
 import application.modele.ennemis.ZombieDeTroie;
 import application.modele.ennemis.ZombieMilitaire;
+import application.modele.tourelles.Grenadier;
+import application.modele.tourelles.Radar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;

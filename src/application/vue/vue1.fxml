@@ -1,23 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
-<?import java.lang.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="borderPane" prefHeight="730.0" prefWidth="1190.0" style="-fx-background-color: #202020;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controleur.ControleurMap">
+<BorderPane fx:id="borderPane" prefHeight="730.0" prefWidth="1190.0" style="-fx-background-color: #202020;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controleur.ControleurMap">
    <center>
       <Pane fx:id="paneCentrale" onMouseClicked="#onMouseClickedPane">
          <children>
@@ -117,7 +114,24 @@
                                           <Insets left="15.0" top="5.0" />
                                        </HBox.margin>
                                     </ImageView>
-                                    <Label contentDisplay="TOP" ellipsisString="" prefHeight="53.0" prefWidth="53.0" text="Tireur de précision pénétrant" textFill="#f0a110" wrapText="true">
+                                    <Label contentDisplay="TOP" ellipsisString="" prefHeight="53.0" prefWidth="53.0" text="Grenadier" textFill="#f0a110" wrapText="true">
+                                       <HBox.margin>
+                                          <Insets left="20.0" top="7.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox fx:id="GrenadierDesorientant" onMouseClicked="#onMouseClickedGrenadierDesorientant" prefHeight="71.0" prefWidth="191.0" style="-fx-border-color: f0a110;">
+                                 <children>
+                                    <ImageView fitHeight="63.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@ressources/tourelles/GrenadierDesorientant.png" />
+                                       </image>
+                                       <HBox.margin>
+                                          <Insets left="15.0" top="5.0" />
+                                       </HBox.margin>
+                                    </ImageView>
+                                    <Label contentDisplay="TOP" ellipsisString="" prefHeight="53.0" prefWidth="53.0" text="Grenadier Désorientant" textFill="#f0a110" wrapText="true">
                                        <HBox.margin>
                                           <Insets left="20.0" top="7.0" />
                                        </HBox.margin>
@@ -134,7 +148,7 @@
                                           <Insets left="15.0" top="5.0" />
                                        </HBox.margin>
                                     </ImageView>
-                                    <Label contentDisplay="TOP" ellipsisString="" prefHeight="53.0" prefWidth="53.0" text="Tireur de précision pénétrant" textFill="#f0a110" wrapText="true">
+                                    <Label contentDisplay="TOP" ellipsisString="" prefHeight="53.0" prefWidth="53.0" text="Radar" textFill="#f0a110" wrapText="true">
                                        <HBox.margin>
                                           <Insets left="20.0" top="7.0" />
                                        </HBox.margin>
