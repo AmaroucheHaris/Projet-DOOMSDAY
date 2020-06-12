@@ -37,7 +37,7 @@ public class Environnement {
 		this.mancheEnCours = false;
 		listeZombie = new ArrayList<Zombie>();
 		listeTourelle = new ArrayList<Tourelle>();
-		this.money = new SimpleIntegerProperty(100);
+		this.money = new SimpleIntegerProperty(200);
 		this.pvBunker = new SimpleIntegerProperty(5);
 		this.graphe = new Graphe(tab.getTab());
 				
