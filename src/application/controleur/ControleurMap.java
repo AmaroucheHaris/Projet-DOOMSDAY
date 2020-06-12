@@ -1,5 +1,6 @@
 package application.controleur;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 
 
@@ -108,7 +109,6 @@ public class ControleurMap implements Initializable {
 
 	private Environnement env;
 	private Timeline gameloop;
-	private int time;
 	private ChargementMap mapAGenener;
 	private int cycle;
 	private int cycleSpawnZombie;
@@ -120,6 +120,9 @@ public class ControleurMap implements Initializable {
 	private ArrayList<PlacementTourelle> listePlacementsTourelles;
 	private Map<Tourelle, PlacementTourelle> linkPlacementTourelles;
 	private ArrayList<HBox> listeHBox;
+	private MediaPlayer mpDeathZombie;
+	private Media deathZombie;
+	
 	TabMap1 map1 = new TabMap1();
 	int[][] matriceMap1 = map1.getTab();
 
@@ -160,23 +163,6 @@ public class ControleurMap implements Initializable {
 		paneCentrale.setStyle("-fx-background-image: none");
 		paneCentrale.setStyle("-fx-background-color: #202020");
 		
-//		try {
-//			creerZombieAleatoire();
-//			creerZombieAleatoire();
-//			creerZombieAleatoire();
-//			creerZombieAleatoire();
-//		
-//
-//		} catch (FileNotFoundException e) {
-//			e.printStackTrace();
-//		}
-//		try {
-//			creerZombieAleatoire();
-//			creerZombieAleatoire();
-//
-//
-//		} catch (FileNotFoundException e) {
-//			e.printStackTrace();
 		
 		this.labelMoney.textProperty().bind(this.env.getMoneyProperty().asString());
 		this.PVBunker.textProperty().bind(this.env.getPvBunkerProperty().asString());
@@ -196,6 +182,8 @@ public class ControleurMap implements Initializable {
 			else if(this.env.getPvBunkerProperty().getValue() == 0) {
 				gameloop.stop();
 				try {
+					ControlerMainMenu.mpMusiqueDuJeu.setAutoPlay(false);
+					ControlerMainMenu.mpMusiqueDuJeu.stop();
 					Pane root = FXMLLoader.load(getClass().getClassLoader().getResource("application/vue/gameOver.fxml"));
 			    	borderPane.getChildren().setAll(root);
 				} catch (IOException e1) {
@@ -211,7 +199,6 @@ public class ControleurMap implements Initializable {
 
 	private void animation() {
 		this.gameloop = new Timeline();
-		this.time = 0;
 		this.gameloop.setCycleCount(Timeline.INDEFINITE);
 
 		KeyFrame keyframe = new KeyFrame(Duration.seconds(0.017), (ev -> {
@@ -239,7 +226,6 @@ public class ControleurMap implements Initializable {
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
 			}
-			time++;
 		}));
 		gameloop.getKeyFrames().add(keyframe);
 		try {
@@ -414,24 +400,11 @@ public class ControleurMap implements Initializable {
 		sp.ajouterSpriteZombie(paneCentrale);
 		linkSpriteZombie.put(z, sp);
 	}
-
-//	public void creerZombie(String type, int start) throws FileNotFoundException {
-//		// 7 zombies
-//		
-//		SpriteZombie sp;
-//		Zombie z = null;
-//		
-//		switch(type) {
-//		case "Sprinteur":
-//			z = new Sprinteur(env);
-//		}
-//		sp = new SpriteZombie(z);
-//		sp.ajouterSpriteZombie(paneCentrale);
-//		linkSpriteZombie.put(z, sp);
-//	}
 	
 	public void tuerZombie(Zombie target) throws FileNotFoundException {
 		if (!target.estEnVie()) {
+			creerMediaPlayerZombieMort();
+			this.mpDeathZombie.play();
 			// if target instanceof Zombie de troies ----> creerZombieAléatoire;
 			if(target instanceof ZombieDeTroie) {
 				for(int i = 0; i < 3; i++) {
@@ -508,5 +481,11 @@ public class ControleurMap implements Initializable {
 		this.env.moneyAsc(target);
 		pt.setIsAvailable(true);
 		return;
+	}
+	
+	public void creerMediaPlayerZombieMort() {
+		this.deathZombie = new Media(new File("src/application/vue/ressources/sounds/death.mp3").toURI().toString());
+		this.mpDeathZombie = new MediaPlayer(this.deathZombie);
+		this.mpDeathZombie.setVolume(0.2);
 	}
 }

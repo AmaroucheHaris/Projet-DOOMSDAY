@@ -22,8 +22,8 @@ public abstract class Tourelle {
 		this.degat = degat;
 		this.vitesseAttack = vitesseAttack;
 		this.portee = portee;
-		compteurId++;
 		this.id = "T" + compteurId;
+		compteurId++;
 		this.tpsRechargement = 0;
 		this.valeurAchat = valeurAchat;
 	}
@@ -36,9 +36,6 @@ public abstract class Tourelle {
 		this.x = x;
 	}
 	
-//	public IntegerProperty getXProperty() {
-//		return this.x;
-//	}
 	
 	public int getY() {
 		return this.y;
@@ -48,10 +45,6 @@ public abstract class Tourelle {
 		this.y = y;
 	}
 
-//	public IntegerProperty getYProperty() {
-//		return this.y;
-//	}
-	
 	public Environnement getEnv() {
 		return this.env;
 	}
