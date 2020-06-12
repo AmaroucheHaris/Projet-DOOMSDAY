@@ -3,7 +3,12 @@ package application.modele.tourelles;
 import java.util.ArrayList;
 import application.modele.Environnement;
 import application.modele.ennemis.Blesses;
+import application.modele.ennemis.Kamikaze;
+import application.modele.ennemis.Majin;
+import application.modele.ennemis.Sprinteur;
+import application.modele.ennemis.Tank;
 import application.modele.ennemis.Zombie;
+import application.modele.ennemis.ZombieDeTroie;
 import application.modele.ennemis.ZombieMilitaire;
 
 public abstract class TireursDeBase extends Tourelle {
@@ -16,11 +21,7 @@ public abstract class TireursDeBase extends Tourelle {
 	public Zombie detecter(Environnement env) {
 		ArrayList<Zombie> zombies = env.getListeZombies();
 		for (Zombie zombie : zombies) {
-			if(zombie instanceof Blesses ) {
-				return null;
-			}
-			
-			else {
+			if(zombie instanceof Kamikaze ||  zombie instanceof Tank || zombie instanceof Majin || zombie instanceof Sprinteur || zombie instanceof ZombieDeTroie || zombie instanceof ZombieMilitaire || zombie instanceof Blesses) {
 				int differenceXZombieTourelle = zombie.getXProperty().getValue() - this.getX();
 				int differenceYZombieTourelle = zombie.getYProperty().getValue() - this.getY();
 				int distance = (int) Math.sqrt((differenceXZombieTourelle * differenceXZombieTourelle) + (differenceYZombieTourelle * differenceYZombieTourelle));
@@ -49,18 +50,16 @@ public abstract class TireursDeBase extends Tourelle {
 
 	@Override
 	public void attaquer(Zombie target) {
-		if(target instanceof ZombieMilitaire) {
-			boolean tirAbsorbe = ((ZombieMilitaire) target).tirAbsorbe();
-			if(!tirAbsorbe) {
-				target.setPv(target.getPv() - this.getDegat());
-			}
-		}
-		else if(target instanceof Blesses ) {
-			System.out.println("AHHHHHHHHHHHHHHHHHHHHHHH");
-			if(((Blesses) target).isEstDetecter()) {
+//		if(target instanceof ZombieMilitaire) {
+//			boolean tirAbsorbe = ((ZombieMilitaire) target).tirAbsorbe();
+//			if(!tirAbsorbe) {
+//				target.setPv(target.getPv() - this.getDegat());
+//			}
+//		}
+		System.out.println("AHHHHHHHHHHHHHHHHHHHHHHH");
+		if(target instanceof Blesses && ((Blesses) target).isEstDetecter()) {
 				System.out.println("BAKANAAAAAAAAAAAAAAAAAAAA");
 				target.setPv(target.getPv() - this.getDegat());
-			}
 		}
 		else {
 			target.setPv(target.getPv() - this.getDegat());
