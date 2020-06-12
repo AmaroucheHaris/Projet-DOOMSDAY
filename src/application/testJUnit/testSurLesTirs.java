@@ -17,7 +17,7 @@ public class testSurLesTirs {
 		Tank t1 = new Tank(new Environnement(960, 704));
 		Militaire m1 = new Militaire(0, 0, t1.getEnvironnement());
 		m1.attaquer(t1);
-		assertEquals(20, t1.getPv());
+		assertEquals(440, t1.getPv());
 	}
 	
 	@Test
@@ -26,6 +26,6 @@ public class testSurLesTirs {
 		Tank t2 = new Tank(new Environnement(960, 704));
 		Archer a1 = new Archer(0, 0, t2.getEnvironnement());
 		a1.attaquer(t2);
-		assertEquals(25, t2.getPv());
+		assertEquals(465, t2.getPv());
 	}
 }

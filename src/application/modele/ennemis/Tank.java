@@ -5,7 +5,7 @@ import application.modele.Environnement;
 public class Tank extends Zombie{
 
 	public Tank(Environnement env) {
-		super(env, 30, 1);
+		super(env, 500, 1);
 	}
 	public String toString() {
 		return this.getClass().getSimpleName() + super.toString(); 

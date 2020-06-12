@@ -8,7 +8,7 @@ import application.modele.ennemis.Zombie;
 public abstract class Bombardiers extends Tourelle {
 
 	
-	private final static int porteeLimite = 32;
+	private final static int porteeLimite = 108;
 	private static int porteeDegatZone = 64;
 	public Bombardiers(int x, int y, Environnement env, int degat, int vitesseAttack, int portee, int valeurAchat) {
 		super(x, y, env, degat, vitesseAttack, portee, valeurAchat);
