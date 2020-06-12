@@ -98,7 +98,9 @@ public class ControleurMap implements Initializable {
 	
 	@FXML 
 	private BorderPane borderPane;
-
+	
+	private Media musiqueVue1;
+	private MediaPlayer mpMusiqueVue1;
 	private Environnement env;
 	private Timeline gameloop;
 	private ChargementMap mapAGenener;
@@ -120,6 +122,11 @@ public class ControleurMap implements Initializable {
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		ControlerMainMenu.mpMusiqueDuJeu.setAutoPlay(false);
+		ControlerMainMenu.mpMusiqueDuJeu.stop();
+		this.creerMediaPlayerVue1();
+		this.mpMusiqueVue1.setAutoPlay(true);
+		
 		linkSpriteZombie = new HashMap<Zombie, SpriteZombie>();
 		linkSpriteTourelle = new HashMap<Tourelle, SpriteTourelle>();
 		listePlacementsTourelles = new ArrayList<PlacementTourelle>();
@@ -172,8 +179,10 @@ public class ControleurMap implements Initializable {
 			else if(this.env.getPvBunkerProperty().getValue() == 0) {
 				gameloop.stop();
 				try {
-					ControlerMainMenu.mpMusiqueDuJeu.setAutoPlay(false);
-					ControlerMainMenu.mpMusiqueDuJeu.stop();
+//					ControlerMainMenu.mpMusiqueDuJeu.setAutoPlay(false);
+//					ControlerMainMenu.mpMusiqueDuJeu.stop();
+					this.mpMusiqueVue1.setAutoPlay(false);
+					this.mpMusiqueVue1.stop();
 					Pane root = FXMLLoader.load(getClass().getClassLoader().getResource("application/vue/gameOver.fxml"));
 			    	borderPane.getChildren().setAll(root);
 				} catch (IOException e1) {
@@ -464,5 +473,11 @@ public class ControleurMap implements Initializable {
 		this.deathZombie = new Media(new File("src/application/vue/ressources/sounds/death.mp3").toURI().toString());
 		this.mpDeathZombie = new MediaPlayer(this.deathZombie);
 		this.mpDeathZombie.setVolume(0.2);
+	}
+	
+	public void creerMediaPlayerVue1() {
+		this.musiqueVue1 = new Media(new File("src/application/vue/ressources/sounds/most-epic-battle-music-ever-deadwood-by-really-slow-motion.mp3").toURI().toString());
+		this.mpMusiqueVue1 = new MediaPlayer(this.musiqueVue1);
+		this.mpMusiqueVue1.setVolume(0.1);
 	}
 }
