@@ -9,9 +9,9 @@ import application.modele.ennemis.ZombieMilitaire;
 
 public class SniperPenetrant extends Tourelle {
 
-	private static int tolerance = 96;
+	private static int tolerance = 128;
 	public SniperPenetrant(int x, int y, Environnement env) {
-		super(x, y, env, 20, 2, 200, 20);
+		super(x, y, env, 249, 412, 384, 300);
 	}
 
 	@Override
