@@ -48,7 +48,11 @@ public abstract class TireursDeBase extends Tourelle {
 		if(target instanceof ZombieMilitaire) {
 			boolean tirAbsorbe = ((ZombieMilitaire) target).tirAbsorbe();
 			if(!tirAbsorbe) {
+				System.out.println("tir non absorbé");
 				target.setPv(target.getPv() - this.getDegat());
+			}
+			else if(tirAbsorbe) {
+				System.out.println("ABSSSSSSSSS\n\n\n\n\n");
 			}
 		}
 		else {

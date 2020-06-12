@@ -5,7 +5,7 @@ import application.modele.Environnement;
 public class ZombieDeTroie extends Zombie{
 
 	public ZombieDeTroie(Environnement env) {
-		super(env, 30, 1);
+		super(env, 100, 1);
 	}
 	
 	public String toString() {
