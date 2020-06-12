@@ -6,7 +6,7 @@ public class Militaire extends TireursDeBase {
 
 	public Militaire(int x, int y, Environnement env) {
 
-		super(x, y, env, 60, 176, 160, 80);
+		super(x, y, env, 80, 88, 160, 80);
 
 	}
 

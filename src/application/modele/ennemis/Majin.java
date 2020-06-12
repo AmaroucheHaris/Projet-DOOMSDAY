@@ -8,7 +8,7 @@ public class Majin extends Zombie{
 	private double pvMax;
 
 	public Majin(Environnement env) {
-		super(env, 300, 1);
+		super(env, 175, 1);
 		this.cycle = 0;
 		this.pvMax = this.getPv();
 	}
