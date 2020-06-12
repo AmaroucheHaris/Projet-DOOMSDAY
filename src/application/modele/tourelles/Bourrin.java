@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import application.modele.Environnement;
-import application.modele.ennemis.Blesses;
 import application.modele.ennemis.Zombie;
 import application.modele.ennemis.ZombieMilitaire;
 

@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import application.modele.Environnement;
 import application.modele.tourelles.Archer;
 import application.modele.tourelles.Grenadier;
+import application.modele.tourelles.GrenadierDesorientant;
 import application.modele.tourelles.Militaire;
 import application.modele.tourelles.Radar;
 import application.modele.tourelles.Sniper;
@@ -43,12 +44,17 @@ public class SpriteTourelle {
 		else if(this.tourelle instanceof Grenadier) {
 			this.image = new Image(new FileInputStream("src/application/vue/ressources/tourelles/Grenadier.png"));
 		}
+
 		else if(this.tourelle instanceof Radar) {
 			this.image = new Image(new FileInputStream("src/application/vue/ressources/tourelles/Radar.png"));
+		}
+		else if(this.tourelle instanceof GrenadierDesorientant) {
+			this.image = new Image(new FileInputStream("src/application/vue/ressources/tourelles/GrenadierDesorientant.png"));
 		}
 		else {
 			this.image = new Image(new FileInputStream("src/application/vue/ressources/tourelles/Bourrin.png"));
 		}
+
 		this.sprite = new ImageView(this.image);
 		this.sprite.setX(this.posX);
 		this.sprite.setY(this.posY);
@@ -61,25 +67,5 @@ public class SpriteTourelle {
 	public void supprimerSpriteTourelle(Pane pane) {
 	       pane.getChildren().remove(this.sprite);
 	}
-	
-//	private Tourelle tourelle;
-//	private Environnement env;
-//	private Image image;
-//	private ImageView sprite;
-//	
-//	public SpriteTourelle(Tourelle tourelle, Environnement env) throws FileNotFoundException {
-//		this.tourelle = tourelle;
-//		this.env = env;
-//		this.env.getListeTourelles().add(tourelle);
-//		if(this.tourelle instanceof TireurDeBase) {
-//			this.image = new Image(new FileInputStream("src/application/vue/ressources/tourelles/TourelleBase.png"));
-//			this.sprite = new ImageView(this.image);
-//		}
-//	}
-//	
-//	public void creerSpriteTourelle(Pane pane) {
-//		this.sprite.translateXProperty().bind(tourelle.getXProperty());
-//        this.sprite.translateYProperty().bind(tourelle.getYProperty());
-//        pane.getChildren().add(this.sprite);
-//	}			
+			
 }
