@@ -14,22 +14,29 @@ public class Majin extends Zombie{
 	}
 
 	
-	public void seSoigner() {
+	public boolean seSoigner() {
 		
 		if(this.getPv() < this.pvMax) {
 			if(this.cycle == 10) {
+				System.out.println("\nje me soigne\n");
 				this.setPv(this.getPv()+1);
 				this.cycle = 0;
+				return true;
 			}
 			else {
 				this.cycle++;
 			}
 		}
+		return false;
 	}
 	
 	public void agit() {
 		this.seSoigner();
 		this.seDeplacer();
+	}
+	
+	public void setCycle(int cycle) {
+		this.cycle = cycle;
 	}
 	
 	

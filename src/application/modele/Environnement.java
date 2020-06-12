@@ -148,9 +148,7 @@ public class Environnement {
     
 	public Zombie creerTypeZombieAleatoire() throws FileNotFoundException {
 		Random rand = new Random();
-		// mettre à l'interieur de rand.nextInt() le nombre de type de zombie
 		int valRand = rand.nextInt(7);
-		
 		Zombie z = null;
 		
 		switch(valRand) {
