@@ -3,6 +3,7 @@ package application.controleur;
 import java.io.FileNotFoundException;
 
 
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -19,6 +20,7 @@ import application.modele.tourelles.Militaire;
 import application.modele.tourelles.PlacementTourelle;
 import application.modele.tourelles.Sniper;
 import application.modele.tourelles.SniperPenetrant;
+import application.modele.tourelles.Grenadier;
 import application.modele.tourelles.Tourelle;
 import application.vue.ChargementMap;
 import application.vue.SpriteTourelle;
@@ -79,6 +81,12 @@ public class ControleurMap implements Initializable {
 	
 	@FXML
 	private HBox SniperPenetrant;
+	
+	@FXML
+	private HBox Grenadier;
+	
+	@FXML
+	private HBox Radar;
 
 	@FXML
 	private ImageView imageBourrin;
@@ -126,6 +134,8 @@ public class ControleurMap implements Initializable {
 		listeHBox.add(Militaire);
 		listeHBox.add(Sniper);
 		listeHBox.add(SniperPenetrant);
+		listeHBox.add(Grenadier);
+		listeHBox.add(Radar);
 		modeAchat = false;
 		modeVente = false;
 		tourelle = "";
@@ -208,11 +218,11 @@ public class ControleurMap implements Initializable {
 
 			if(this.cycle == 0) {
 				if(this.cycleSpawnZombie == 0) {
-					try {
-						creerZombieAleatoire();
-					} catch (FileNotFoundException e) {
-						e.printStackTrace();
-					}
+//					try {
+//						creerZombieAleatoire();
+//					} catch (FileNotFoundException e) {
+//						e.printStackTrace();
+//					}
 					this.cycleSpawnZombie = 250;
 				}
 				else {
@@ -222,6 +232,7 @@ public class ControleurMap implements Initializable {
 			else {
 				this.cycle--;
 			}
+			
 			env.unTour();
 			try {
 				tuerZombiesMorts();
@@ -231,7 +242,11 @@ public class ControleurMap implements Initializable {
 			time++;
 		}));
 		gameloop.getKeyFrames().add(keyframe);
-
+		try {
+			creerZombieAleatoire();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	void enableModeAchat() {
@@ -342,6 +357,7 @@ public class ControleurMap implements Initializable {
 	void onMouseClickedGrenadier(MouseEvent event) {
 		if (modeAchat) {
 			tourelle = "Grenadier";
+			this.onMouseClickedHbox();
 		}
 	}
 
@@ -349,6 +365,7 @@ public class ControleurMap implements Initializable {
 	void onMouseClickedRadar(MouseEvent event) {
 		if (modeAchat) {
 			tourelle = "Radar";
+			this.onMouseClickedHbox();
 		}
 	}
 
@@ -459,6 +476,12 @@ public class ControleurMap implements Initializable {
 			case "SniperPenetrant":
 				tour = new SniperPenetrant(posX, posY, env);
 				break;
+			case "Grenadier":
+				tour = new Grenadier(posX, posY, env);
+				break;
+//			case "Radar":
+//				tour = new Radar(posX, posY, env);
+//				break;			
 		}
 		if (this.env.checkMoneyDown(tour)) {
 			tour = null;

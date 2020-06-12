@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import application.modele.Environnement;
 import application.modele.tourelles.Archer;
+import application.modele.tourelles.Grenadier;
 import application.modele.tourelles.Militaire;
 import application.modele.tourelles.Sniper;
 import application.modele.tourelles.SniperPenetrant;
@@ -38,6 +39,12 @@ public class SpriteTourelle {
 		else if(this.tourelle instanceof SniperPenetrant) {
 			this.image = new Image(new FileInputStream("src/application/vue/ressources/tourelles/TireurDePrecisionPénétrant.png"));
 		}
+		else if(this.tourelle instanceof Grenadier) {
+			this.image = new Image(new FileInputStream("src/application/vue/ressources/tourelles/Grenadier.png"));
+		}
+//		else if(this.tourelle instanceof Radar) {
+//			this.image = new Image(new FileInputStream("src/application/vue/ressources/tourelles/Radar.png"));
+//		}
 		this.sprite = new ImageView(this.image);
 		this.sprite.setX(this.posX);
 		this.sprite.setY(this.posY);

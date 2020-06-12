@@ -8,7 +8,7 @@ import application.modele.ennemis.ZombieMilitaire;
 
 public class SniperPenetrant extends Tourelle {
 
-	private int tolerance = 96;
+	private static int tolerance = 96;
 	public SniperPenetrant(int x, int y, Environnement env) {
 		super(x, y, env, 20, 2, 200, 20);
 	}
@@ -27,7 +27,6 @@ public class SniperPenetrant extends Tourelle {
 	}
 	
 	public ArrayList<Zombie> doubleShoot(Environnement env) {
-		//version ok
 		ArrayList<Zombie> zombies = env.getListeZombies();
 		ArrayList<Zombie> targets = new ArrayList<Zombie>();
 		Zombie z = this.detecter(env);
@@ -41,7 +40,7 @@ public class SniperPenetrant extends Tourelle {
 					System.out.println("Zombie 2:" + zombie);
 					int posXSecondTarget = zombie.getXProperty().getValue();
 					int posYSecondTarget = zombie.getYProperty().getValue();				
-					if(zombie.estEnVie() && posXSecondTarget - posXFirstTarget >= -this.tolerance && posXSecondTarget - posXFirstTarget <= this.tolerance && posYSecondTarget - posYFirstTarget >= -this.tolerance && posYSecondTarget - posYFirstTarget <= this.tolerance) {	
+					if(zombie.estEnVie() && posXSecondTarget - posXFirstTarget >= -tolerance && posXSecondTarget - posXFirstTarget <= tolerance && posYSecondTarget - posYFirstTarget >= -tolerance && posYSecondTarget - posYFirstTarget <= tolerance) {	
 						targets.add(zombie);
 						return targets;
 					}

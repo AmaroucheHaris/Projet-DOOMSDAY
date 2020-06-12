@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane fx:id="borderPane" style="-fx-background-color: #202020;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controleur.ControleurMap">
+<BorderPane fx:id="borderPane" prefHeight="730.0" prefWidth="1190.0" style="-fx-background-color: #202020;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controleur.ControleurMap">
    <center>
       <Pane fx:id="paneCentrale" onMouseClicked="#onMouseClickedPane">
          <children>
@@ -33,9 +33,9 @@
                   <Insets left="85.0" />
                </VBox.margin>
             </Label>
-            <ScrollPane prefHeight="373.0" prefWidth="225.0">
+            <ScrollPane prefHeight="357.0" prefWidth="225.0">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="625.0" prefWidth="211.0" style="-fx-background-color: #202020;">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="598.0" prefWidth="202.0" style="-fx-background-color: #202020;">
                      <children>
                         <VBox prefHeight="265.0" prefWidth="220.0" spacing="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
@@ -95,6 +95,40 @@
                                     <ImageView fitHeight="63.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@ressources/tourelles/TireurDePrecisionPénétrant.png" />
+                                       </image>
+                                       <HBox.margin>
+                                          <Insets left="15.0" top="5.0" />
+                                       </HBox.margin>
+                                    </ImageView>
+                                    <Label contentDisplay="TOP" ellipsisString="" prefHeight="53.0" prefWidth="53.0" text="Tireur de précision pénétrant" textFill="#f0a110" wrapText="true">
+                                       <HBox.margin>
+                                          <Insets left="20.0" top="7.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox fx:id="Grenadier" onMouseClicked="#onMouseClickedGrenadier" prefHeight="71.0" prefWidth="191.0" style="-fx-border-color: f0a110;">
+                                 <children>
+                                    <ImageView fitHeight="63.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@ressources/tourelles/Grenadier.png" />
+                                       </image>
+                                       <HBox.margin>
+                                          <Insets left="15.0" top="5.0" />
+                                       </HBox.margin>
+                                    </ImageView>
+                                    <Label contentDisplay="TOP" ellipsisString="" prefHeight="53.0" prefWidth="53.0" text="Tireur de précision pénétrant" textFill="#f0a110" wrapText="true">
+                                       <HBox.margin>
+                                          <Insets left="20.0" top="7.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox fx:id="Radar" onMouseClicked="#onMouseClickedRadar" prefHeight="71.0" prefWidth="191.0" style="-fx-border-color: f0a110;">
+                                 <children>
+                                    <ImageView fitHeight="63.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@ressources/tourelles/Radar.png" />
                                        </image>
                                        <HBox.margin>
                                           <Insets left="15.0" top="5.0" />
@@ -227,7 +261,7 @@
                   </HBox>
                </children>
                <VBox.margin>
-                  <Insets top="30.0" />
+                  <Insets top="60.0" />
                </VBox.margin>
             </VBox>
          </children>
