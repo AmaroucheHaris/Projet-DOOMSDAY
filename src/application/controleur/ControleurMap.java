@@ -496,6 +496,6 @@ public class ControleurMap implements Initializable {
 	public void creerMediaPlayerVue1() {
 		this.musiqueVue1 = new Media(new File("src/application/vue/ressources/sounds/most-epic-battle-music-ever-deadwood-by-really-slow-motion.mp3").toURI().toString());
 		this.mpMusiqueVue1 = new MediaPlayer(this.musiqueVue1);
-		this.mpMusiqueVue1.setVolume(0.3);
+		this.mpMusiqueVue1.setVolume(0.1);
 	}
 }

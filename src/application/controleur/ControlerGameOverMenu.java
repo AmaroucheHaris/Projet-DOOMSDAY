@@ -38,6 +38,7 @@ public class ControlerGameOverMenu implements Initializable {
 	public void chargerMenuPrincipal(ActionEvent event){
 		Pane root = null;
 		try {
+			this.mpMusiqueGameOver.stop();
 			ControlerMainMenu.mpBruitSelectionMenu.play();
 			ControlerMainMenu.mpMusiqueDuJeu.setAutoPlay(true);
 			root = FXMLLoader.load(getClass().getClassLoader().getResource("application/vue/menuPrincipal.fxml"));
@@ -51,7 +52,7 @@ public class ControlerGameOverMenu implements Initializable {
 	public void creerMpMusiqueGameOver() {
 		this.musiqueGameOver = new Media(new File("src/application/vue/ressources/sounds/call-of-duty-black-ops-2-zombies-green-run-game-over-song.mp3").toURI().toString());
 		this.mpMusiqueGameOver = new MediaPlayer(this.musiqueGameOver);
-		this.mpMusiqueGameOver.setVolume(0.5);
+		this.mpMusiqueGameOver.setVolume(0.1);
 	}
 
 }
