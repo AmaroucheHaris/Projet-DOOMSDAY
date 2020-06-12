@@ -50,6 +50,7 @@ public abstract class TireursDeBase extends Tourelle {
 
 	@Override
 	public void attaquer(Zombie target) {
+
 //		if(target instanceof ZombieMilitaire) {
 //			boolean tirAbsorbe = ((ZombieMilitaire) target).tirAbsorbe();
 //			if(!tirAbsorbe) {
@@ -57,9 +58,14 @@ public abstract class TireursDeBase extends Tourelle {
 //			}
 //		}
 		System.out.println("AHHHHHHHHHHHHHHHHHHHHHHH");
-		if(target instanceof Blesses && ((Blesses) target).isEstDetecter()) {
-				System.out.println("BAKANAAAAAAAAAAAAAAAAAAAA");
-				target.setPv(target.getPv() - this.getDegat());
+		if(target instanceof Blesses) {
+				try {
+					target.wait();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				};
+
 		}
 		else {
 			target.setPv(target.getPv() - this.getDegat());
