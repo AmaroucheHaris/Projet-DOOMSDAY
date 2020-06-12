@@ -17,7 +17,12 @@ public abstract class TireursDeBase extends Tourelle {
 		for (Zombie zombie : zombies) {
 			int posXZombie =  zombie.getXProperty().getValue();
 			int posYZombie =  zombie.getYProperty().getValue();
-			if(zombie.estEnVie() && posXZombie - this.getX() >= -this.getPortee() && posXZombie - this.getX() <= this.getPortee() && posYZombie - this.getY() >= -this.getPortee() && posYZombie - this.getY() <= this.getPortee()) {	
+			int differenceXZombieTourelle = posXZombie - this.getX();
+			int differenceYZombieTourelle = posYZombie - this.getY();
+			int distance = (int) Math.sqrt((differenceXZombieTourelle * differenceXZombieTourelle) + (differenceYZombieTourelle * differenceYZombieTourelle));
+			System.out.println(zombie.estEnVie());
+			System.out.println(distance <= this.getPortee());
+			if(zombie.estEnVie() && distance <= this.getPortee()) {	
 				return zombie;
 			}
 		}

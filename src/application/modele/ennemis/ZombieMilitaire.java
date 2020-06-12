@@ -2,8 +2,6 @@ package application.modele.ennemis;
 
 import java.util.Random;
 
-import com.sun.xml.internal.ws.api.pipe.NextAction;
-
 import application.modele.Environnement;
 
 public class ZombieMilitaire extends Zombie{

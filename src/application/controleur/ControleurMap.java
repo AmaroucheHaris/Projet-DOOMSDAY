@@ -228,7 +228,6 @@ public class ControleurMap implements Initializable {
 			else {
 				this.cycle--;
 			}
-			
 			env.unTour();
 			try {
 				tuerZombiesMorts();
