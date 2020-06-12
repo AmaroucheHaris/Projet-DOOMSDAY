@@ -1,5 +1,6 @@
 package application.controleur;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -11,6 +12,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 public class ControlerGameOverMenu implements Initializable {
 	
@@ -19,11 +22,16 @@ public class ControlerGameOverMenu implements Initializable {
 	
 	@FXML
 	private AnchorPane aPane;
+	
+	private Media musiqueGameOver;
+	private MediaPlayer mpMusiqueGameOver;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		ControlerMainMenu.creerMpBruitSelectionMenu();
 		ControlerMainMenu.creerMpMusiqueDuJeu();
+		this.creerMpMusiqueGameOver();
+		this.mpMusiqueGameOver.play();
 	}
 	
 	@FXML
@@ -38,6 +46,12 @@ public class ControlerGameOverMenu implements Initializable {
 			e.printStackTrace();
 		}
 		aPane.getChildren().setAll(root);
+	}
+	
+	public void creerMpMusiqueGameOver() {
+		this.musiqueGameOver = new Media(new File("src/application/vue/ressources/sounds/call-of-duty-black-ops-2-zombies-green-run-game-over-song.mp3").toURI().toString());
+		this.mpMusiqueGameOver = new MediaPlayer(this.musiqueGameOver);
+		this.mpMusiqueGameOver.setVolume(0.1);
 	}
 
 }
