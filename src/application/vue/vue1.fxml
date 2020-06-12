@@ -117,7 +117,24 @@
                                           <Insets left="15.0" top="5.0" />
                                        </HBox.margin>
                                     </ImageView>
-                                    <Label contentDisplay="TOP" ellipsisString="" prefHeight="53.0" prefWidth="53.0" text="Tireur de précision pénétrant" textFill="#f0a110" wrapText="true">
+                                    <Label contentDisplay="TOP" ellipsisString="" prefHeight="53.0" prefWidth="53.0" text="Grenadier" textFill="#f0a110" wrapText="true">
+                                       <HBox.margin>
+                                          <Insets left="20.0" top="7.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox fx:id="GrenadierDesorientant" onMouseClicked="#onMouseClickedGrenadierDesorientant" prefHeight="71.0" prefWidth="191.0" style="-fx-border-color: f0a110;">
+                                 <children>
+                                    <ImageView fitHeight="63.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@ressources/tourelles/GrenadierDesorientant.png" />
+                                       </image>
+                                       <HBox.margin>
+                                          <Insets left="15.0" top="5.0" />
+                                       </HBox.margin>
+                                    </ImageView>
+                                    <Label contentDisplay="TOP" ellipsisString="" prefHeight="53.0" prefWidth="53.0" text="Grenadier Désorientant" textFill="#f0a110" wrapText="true">
                                        <HBox.margin>
                                           <Insets left="20.0" top="7.0" />
                                        </HBox.margin>
@@ -134,7 +151,7 @@
                                           <Insets left="15.0" top="5.0" />
                                        </HBox.margin>
                                     </ImageView>
-                                    <Label contentDisplay="TOP" ellipsisString="" prefHeight="53.0" prefWidth="53.0" text="Tireur de précision pénétrant" textFill="#f0a110" wrapText="true">
+                                    <Label contentDisplay="TOP" ellipsisString="" prefHeight="53.0" prefWidth="53.0" text="Radar" textFill="#f0a110" wrapText="true">
                                        <HBox.margin>
                                           <Insets left="20.0" top="7.0" />
                                        </HBox.margin>
