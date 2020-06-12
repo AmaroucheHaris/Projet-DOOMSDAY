@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javax.sound.midi.ControllerEventListener;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -29,6 +31,7 @@ public class ControlerRegles implements Initializable{
 	    void chargeMenuPrecedent(ActionEvent event){
 			Pane root = null;
 			try {
+				ControlerMainMenu.mpBruitSelectionMenu.play();
 				root = FXMLLoader.load(getClass().getClassLoader().getResource("application/vue/menuPrincipal.fxml"));
 			} catch (IOException e) {
 				System.out.println("menuPrincipal.fxml est introuvable");
@@ -40,6 +43,7 @@ public class ControlerRegles implements Initializable{
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		ControlerMainMenu.creerMpBruitSelectionMenu();
 		rootPane.setStyle("-fx-background-image: url('file:src/application/vue/ressources/background/background-rules.jpg')");
 	}
 

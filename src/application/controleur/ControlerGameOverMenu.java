@@ -22,13 +22,16 @@ public class ControlerGameOverMenu implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		
+		ControlerMainMenu.creerMpBruitSelectionMenu();
+		ControlerMainMenu.creerMpMusiqueDuJeu();
 	}
 	
 	@FXML
 	public void chargerMenuPrincipal(ActionEvent event){
 		Pane root = null;
 		try {
+			ControlerMainMenu.mpBruitSelectionMenu.play();
+			ControlerMainMenu.mpMusiqueDuJeu.setAutoPlay(true);
 			root = FXMLLoader.load(getClass().getClassLoader().getResource("application/vue/menuPrincipal.fxml"));
 		} catch (IOException e) {
 			System.out.println("menuPrincipal.fxml est introuvable");

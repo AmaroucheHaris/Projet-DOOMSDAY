@@ -27,13 +27,16 @@ public class ControlerMainMenu implements Initializable {
     @FXML
     private Button regles;
     
-    protected Media musiqueDuJeu;
-    protected static MediaPlayer mpMusiqueDuJeu;
+    protected static Media musiqueDuJeu;
+    protected static Media bruitSelectionMenu;
+    public static MediaPlayer mpMusiqueDuJeu;
+    protected static MediaPlayer mpBruitSelectionMenu;
 
     @FXML
     void commencerPartie(ActionEvent event) {
 		Pane root = null;
 		try {
+			mpBruitSelectionMenu.play();
 			root = FXMLLoader.load(getClass().getClassLoader().getResource("application/vue/vue1.fxml"));
 		} catch (IOException e) {
 			System.out.println("vue1.fxml est introuvable");
@@ -46,6 +49,7 @@ public class ControlerMainMenu implements Initializable {
     void afficherRegles(ActionEvent event){
     	Pane root = null;
 		try {
+			mpBruitSelectionMenu.play();
 			root = FXMLLoader.load(getClass().getClassLoader().getResource("application/vue/regles.fxml"));
 		} catch (IOException e) {
 			System.out.println("regles.fxml est introuvable");
@@ -60,14 +64,19 @@ public class ControlerMainMenu implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		rootPane.setStyle("-fx-background-image: none");
 		rootPane.setStyle("-fx-background-color: #202020");
-		this.creerMpMusiqueDuJeu();
-		mpMusiqueDuJeu.setAutoPlay(true);
+		creerMpBruitSelectionMenu();
 		
 	}
 	
-	public void creerMpMusiqueDuJeu() {
-		this.musiqueDuJeu = new Media(new File("src/application/vue/ressources/sounds/in-the-house-in-the-heartbeat.mp3").toURI().toString());
+	public static void creerMpMusiqueDuJeu() {
+		musiqueDuJeu = new Media(new File("src/application/vue/ressources/sounds/in-the-house-in-the-heartbeat.mp3").toURI().toString());
 		mpMusiqueDuJeu = new MediaPlayer(musiqueDuJeu);
+	}
+	
+	public static void creerMpBruitSelectionMenu() {
+		bruitSelectionMenu = new Media(new File("src/application/vue/ressources/sounds/coup de feu #3.mp3").toURI().toString());
+		mpBruitSelectionMenu = new MediaPlayer(bruitSelectionMenu);
+		mpBruitSelectionMenu.setVolume(0.2);
 	}
 
 }
