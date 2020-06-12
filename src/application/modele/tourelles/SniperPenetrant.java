@@ -3,6 +3,7 @@ package application.modele.tourelles;
 import java.util.ArrayList;
 
 import application.modele.Environnement;
+import application.modele.ennemis.Blesses;
 import application.modele.ennemis.Zombie;
 import application.modele.ennemis.ZombieMilitaire;
 
@@ -17,10 +18,15 @@ public class SniperPenetrant extends Tourelle {
 	public Zombie detecter(Environnement env) {
 		ArrayList<Zombie> zombies = env.getListeZombies();
 		for (Zombie zombie : zombies) {
-			int posXZombie =  zombie.getXProperty().getValue();
-			int posYZombie =  zombie.getYProperty().getValue();
-			if(zombie.estEnVie() && posXZombie - this.getX() >= -this.getPortee() && posXZombie - this.getX() <= this.getPortee() && posYZombie - this.getY() >= -this.getPortee() && posYZombie - this.getY() <= this.getPortee()) {	
-				return zombie;
+			if(zombie instanceof Blesses ) {
+				return null;
+			}
+			else {
+				int posXZombie =  zombie.getXProperty().getValue();
+				int posYZombie =  zombie.getYProperty().getValue();
+				if(zombie.estEnVie() && posXZombie - this.getX() >= -this.getPortee() && posXZombie - this.getX() <= this.getPortee() && posYZombie - this.getY() >= -this.getPortee() && posYZombie - this.getY() <= this.getPortee()) {	
+					return zombie;
+				}
 			}
 		}
 		return null;
